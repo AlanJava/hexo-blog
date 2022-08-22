@@ -1,11 +1,44 @@
 # Hexo Configuration
 ## Docs: https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
+
+# 归档页
+archive:
+  banner_img: /img/wallhaven.png
+
+# 分类页
+category:
+  banner_img: /img/wallhaven.png
+
+#关于页
+about:
+  banner_img: /img/wallhaven.png
+
+#自定义页
+page:
+  banner_img: /img/wallhaven.png
+#友链页
+links:
+  banner_img: /img/wallhaven.png
+
+# 侧边栏展示文章目录
+toc:
+  enable: true
+  # 置于板块的左侧或右侧
+  # Options: left | right
+  placement: left
+  # 目录会选择这些节点作为标题
+  headingSelector: "h1,h2,h3,h4,h5,h6"
+  # 层级的折叠深度，0 是全部折叠，大于 0 后如果存在下级标题则默认展开
+  collapseDepth: 2
+
 # 左上角标题
 navbar:
   blog_title: AlanBlog
-# 首页打字机
+
+# 首页
 index:
+  banner_img: /img/wallhaven.png
   slogan:
     enable: true
     text: This is Alan's blog website
@@ -47,8 +80,12 @@ dark_mode:
   enable: true
   default: auto
 
+# 归档
+tag:
+  banner_img: /img/wallhaven.png
 # 文章配置
 post:
+  banner_img: /img/wallhaven.png
   # 评论
   comments:
     enable: false
