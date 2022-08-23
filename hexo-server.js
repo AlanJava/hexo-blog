@@ -1,6 +1,6 @@
-var http= require("http");
+const http= require("http");
 // 创建http server，并传入回调函数:
-var server = http.createServer(function (request,response) {
+const server = http.createServer(function (request,response) {
     var result = {
         code : 200,
         msg: '操作成功',
