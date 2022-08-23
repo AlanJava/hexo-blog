@@ -19,22 +19,34 @@ page:
   banner_img: /img/wallhaven.png
 #友链页
 links:
-  banner_img: /img/wallhaven.png
-
-# 侧边栏展示文章目录
-toc:
   enable: true
-  # 置于板块的左侧或右侧
-  # Options: left | right
-  placement: left
-  # 目录会选择这些节点作为标题
-  headingSelector: "h1,h2,h3,h4,h5,h6"
-  # 层级的折叠深度，0 是全部折叠，大于 0 后如果存在下级标题则默认展开
-  collapseDepth: 2
-
+  banner_img: /img/wallhaven.png
+  banner_img_height: 60
+  banner_mask_alpha: 0.3
+  # 友链的成员项
+  items:
+    - {
+      title: "Fluid Blog",
+      intro: "本站使用主题",
+      link: "https://hexo.fluid-dev.com/",
+      avatar: "/img/favicon.png"
+    }
+    - {
+      title: "Fluid Repo",
+      intro: "Fluid主题 GitHub 仓库",
+      link: "https://github.com/fluid-dev/hexo-theme-fluid",
+      avatar: "/img/github.png"
+    }
 # 左上角标题
 navbar:
   blog_title: AlanBlog
+  menu:
+    - { key: "home", link: "/", icon: "iconfont icon-home-fill" }
+    - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
+    - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
+    - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
+    - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
+    - { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
 
 # 首页
 index:
@@ -75,6 +87,7 @@ footer:
     police_code:
     # 公安备案的图片. 为空时不显示备案图片
     police_icon:
+
 # 暗色模式
 dark_mode:
   enable: true
@@ -86,6 +99,37 @@ tag:
 # 文章配置
 post:
   banner_img: /img/wallhaven.png
+  updated:
+    enable: true
+    # 是否使用相对时间表示，比如："3 天前"
+    relative: true
+  # 侧边栏展示当前分类下的文章
+  category_bar:
+    enable: true
+    # 开启后，只有在文章 Front-matter 里指定 `category_bar: true` 才会展示分类，也可以通过 `category_bar: ["分类A"]` 来指定分类
+    specific: false
+    # 置于板块的左侧或右侧
+    # Options: left | right
+    placement: right
+    # 文章的排序字段，前面带减号是倒序，不带减号是正序
+    # Options: date | title | or other field of front-matter
+    post_order_by: "date"
+    # 单个分类中折叠展示文章数的最大值，超过限制会显示 More，0 则不限制
+    post_limit: 5
+  # 侧边栏展示文章目录
+  toc:
+    enable: true
+    # 置于板块的左侧或右侧
+    # Options: left | right
+    placement: left
+    # 目录会选择这些节点作为标题
+    headingSelector: "h1,h2,h3,h4,h5,h6"
+    # 层级的折叠深度，0 是全部折叠，大于 0 后如果存在下级标题则默认展开
+    collapseDepth: 2
+  # 许可协议
+  copyright:
+    enable: true
+    license: ""
   # 评论
   comments:
     enable: false
@@ -120,11 +164,6 @@ valine:
   recordIP: true
   serverURLs: https://nta7oxvt.api.lncldglobal.com
   mathJax: false
-
-# 许可协议
-copyright:
-  enable: false
-  license: " "
 
 # Site
 title: AlanBlog
