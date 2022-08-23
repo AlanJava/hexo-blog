@@ -66,15 +66,15 @@ footer:
   # content:
   #备案信息
   beian:
-    enable: false
+    enable: true
     # ICP证号
-    icp_text: 京ICP证123456号
+    icp_text: 皖ICP备2022001395号
     # 公安备案号，不填则只显示ICP
-    police_text: 京公网安备12345678号
+    police_text:
     # 公安备案的编号，用于URL跳转查询
-    police_code: 12345678
+    police_code:
     # 公安备案的图片. 为空时不显示备案图片
-    police_icon: /img/police_beian.png
+    police_icon:
 # 暗色模式
 dark_mode:
   enable: true
