@@ -44,7 +44,7 @@ index:
     text: This is Alan's blog website
     api:
       enable: true
-      url: "http://localhost:4001/slogan"
+      url: "api/slogan"
       method: "GET"
       headers: { }
       keys: [ "data" ]
