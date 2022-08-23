@@ -165,6 +165,19 @@ valine:
   serverURLs: https://nta7oxvt.api.lncldglobal.com
   mathJax: false
 
+# 一些好玩的功能
+fun_features:
+  # 为 subtitle 添加打字机效果
+  typing:
+    enable: true
+    # 打印速度，数字越大越慢
+    typeSpeed: 40
+    # 游标字符
+    cursorChar: "|"
+
+
+
+
 # Site
 title: AlanBlog
 subtitle: ''
@@ -256,11 +269,6 @@ pagination_dir: page
 include:
 exclude:
 ignore:
-
-# Extensions
-## Plugins: https://hexo.io/plugins/
-## Themes: https://hexo.io/themes/
-theme: landscape
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
