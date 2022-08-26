@@ -1,4 +1,5 @@
 const http= require("http");
+const sloganArray = require("./slogan.json")
 // 创建http server，并传入回调函数:
 const server = http.createServer(function (request,response) {
     var result = {
@@ -14,19 +15,9 @@ const server = http.createServer(function (request,response) {
     // 设置可以跨域的请求方法
     response.setHeader("Access-Control-Request-Method","PUT,POST,GET,DELETE,OPTIONS");
     if(request.url === '/slogan'){
-        const sloganArray = [
-            "This is Alan's blog website.",
-            "Welcome to AlanBlog.",
-            "记录我想记录的。",
-            "良好的生活习惯对人的一生都至关重要。",
-            "从胜利学得少，从失败学得多。",
-            "思诚为修身之本，而明善又为思诚之本。",
-            "爱代码,爱编程。"
-        ]
         const index = Math.floor(Math.random() * sloganArray.length);
         const slogan = sloganArray[index];
         console.log(request.method + ': ' + request.url+"-slogan["+index+"]:"+slogan);
-        // 将HTTP响应200写入response, 同时设置Content-Type: text/html:
         response.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'});
         result.data = slogan
     }
