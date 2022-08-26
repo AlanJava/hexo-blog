@@ -9,11 +9,16 @@ archive:
 # 分类页
 category:
   banner_img: /img/wallhaven.png
+  collapse_depth: 1
 
 #关于页
 about:
   banner_img: /img/wallhaven.png
-
+  avatar: /img/man.svg
+  name: "Alan"
+  intro: "我是Alan,一名程序猿"
+  icons:
+    - { class: 'iconfont icon-github-fill', link: 'https://github.com/AlanJava', tip: 'GitHub' }
 #自定义页
 page:
   banner_img: /img/wallhaven.png
@@ -96,6 +101,8 @@ dark_mode:
 # 归档
 tag:
   banner_img: /img/wallhaven.png
+  tagcloud:
+    min_font: 20
 # 文章配置
 post:
   banner_img: /img/wallhaven.png
