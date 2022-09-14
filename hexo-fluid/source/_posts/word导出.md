@@ -32,67 +32,69 @@ categories: java导出
 ## 2.1 maven依赖
 
 ```xml
-<dependency>
-    <groupId>org.apache.poi</groupId>
-    <artifactId>poi</artifactId>
-    <version>4.1.1</version>
-</dependency>
-<dependency>
-    <groupId>org.apache.poi</groupId>
-    <artifactId>poi-ooxml</artifactId>
-    <version>4.1.1</version>
-</dependency>
-<dependency>
-    <groupId>org.jxls</groupId>
-    <artifactId>jxls</artifactId>
-    <version>2.6.0</version>
-    <exclusions>
-        <exclusion>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-        </exclusion>
-    </exclusions>
-</dependency>
-<dependency>
-    <groupId>org.jxls</groupId>
-    <artifactId>jxls-poi</artifactId>
-    <version>1.2.0</version>
-</dependency>
-<dependency>
-    <groupId>fr.opensagres.xdocreport</groupId>
-    <artifactId>fr.opensagres.xdocreport.core</artifactId>
-    <version>2.0.2</version>
-</dependency>
-<dependency>
-    <groupId>fr.opensagres.xdocreport</groupId>
-    <artifactId>fr.opensagres.xdocreport.document</artifactId>
-    <version>2.0.2</version>
-</dependency>
-<dependency>
-    <groupId>fr.opensagres.xdocreport</groupId>
-    <artifactId>fr.opensagres.xdocreport.template</artifactId>
-    <version>2.0.2</version>
-</dependency>
-<dependency>
-    <groupId>fr.opensagres.xdocreport</groupId>
-    <artifactId>fr.opensagres.xdocreport.document.docx</artifactId>
-    <version>2.0.2</version>
-</dependency>
-<dependency>
-    <groupId>fr.opensagres.xdocreport</groupId>
-    <artifactId>fr.opensagres.xdocreport.template.freemarker</artifactId>
-    <version>2.0.2</version>
-</dependency>
-<dependency>
-    <groupId>org.freemarker</groupId>
-    <artifactId>freemarker</artifactId>
-    <version>2.3.23</version>
-</dependency>
-<dependency>
-    <groupId>commons-io</groupId>
-    <artifactId>commons-io</artifactId>
-    <version>2.5</version>
-</dependency>
+<dependencys>
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>4.1.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+        <version>4.1.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.jxls</groupId>
+        <artifactId>jxls</artifactId>
+        <version>2.6.0</version>
+        <exclusions>
+            <exclusion>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+    <dependency>
+        <groupId>org.jxls</groupId>
+        <artifactId>jxls-poi</artifactId>
+        <version>1.2.0</version>
+    </dependency>
+    <dependency>
+        <groupId>fr.opensagres.xdocreport</groupId>
+        <artifactId>fr.opensagres.xdocreport.core</artifactId>
+        <version>2.0.2</version>
+    </dependency>
+    <dependency>
+        <groupId>fr.opensagres.xdocreport</groupId>
+        <artifactId>fr.opensagres.xdocreport.document</artifactId>
+        <version>2.0.2</version>
+    </dependency>
+    <dependency>
+        <groupId>fr.opensagres.xdocreport</groupId>
+        <artifactId>fr.opensagres.xdocreport.template</artifactId>
+        <version>2.0.2</version>
+    </dependency>
+    <dependency>
+        <groupId>fr.opensagres.xdocreport</groupId>
+        <artifactId>fr.opensagres.xdocreport.document.docx</artifactId>
+        <version>2.0.2</version>
+    </dependency>
+    <dependency>
+        <groupId>fr.opensagres.xdocreport</groupId>
+        <artifactId>fr.opensagres.xdocreport.template.freemarker</artifactId>
+        <version>2.0.2</version>
+    </dependency>
+    <dependency>
+        <groupId>org.freemarker</groupId>
+        <artifactId>freemarker</artifactId>
+        <version>2.3.23</version>
+    </dependency>
+    <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.5</version>
+    </dependency>
+</dependencys>
 ```
 
 ## 2.2 制作word模板
