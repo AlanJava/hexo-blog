@@ -109,7 +109,7 @@ post:
   updated:
     enable: true
     # 是否使用相对时间表示，比如："3 天前"
-    relative: true
+    relative: false
   # 侧边栏展示当前分类下的文章
   category_bar:
     enable: true
