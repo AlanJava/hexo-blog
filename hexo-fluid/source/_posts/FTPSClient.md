@@ -1,6 +1,6 @@
 ---
 title: FTPSClient 522 SSL connection failed错误
-date: 2022-08-26 15:52:20
+date: 2022-08-26 20:52:20
 tags: [FTPS,FTPSClient,常见报错]
 categories: 报错解决
 ---
