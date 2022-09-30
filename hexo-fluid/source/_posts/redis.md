@@ -1107,14 +1107,14 @@ public class JedisLearn {
 
 - 导入依赖
 
-- ```properties
+```properties
     spring.redis.host
     spring.redis.port
-    ```
+```
 
 - 测试
 
-```
+```java
 @AutoWired
 private RedisTemplate redisTemplate
 ```
