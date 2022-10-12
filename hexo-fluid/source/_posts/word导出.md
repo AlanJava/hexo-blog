@@ -2,7 +2,7 @@
 title: word导出
 date: 2022-09-14 20:23:54
 tags: [导出,word]
-categories: java导出
+categories: java
 ---
 
 利用java动态导出word,根据数据行数在word中动态生成表格,并在表格中显示图片
