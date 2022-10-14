@@ -4,11 +4,12 @@ date: 2022-10-12 17:23:51
 tags: [java新特性,java17,java11]
 categories: java
 ---
-Springboot宣布最新的3.0最低只支持Java 17版本,大部分开发者由于一直使用Java 8,并不了解Java 11到Java17更新了什么
+Springboot宣布最新的3.0最低只支持Java 17版本,大部分开发者由于一直使用Java 8,并不了解Java 11到Java17更新了什么,
+本文将介绍Java11到Java17的更新内容
 
 <!-- more -->
 
-转载来源:民工哥技术之路 <https://mp.weixin.qq.com/s/SVleHYFQeePNT7q67UoL4Q>
+文章转载来源:民工哥技术之路 <https://mp.weixin.qq.com/s/SVleHYFQeePNT7q67UoL4Q>
 
 # Java 11 特性详解
 
@@ -185,7 +186,7 @@ ZGC 即 Z Garbage Collector（垃圾收集器或垃圾回收器），这应该�
 - 针以及 Load barriers 优化奠定基础
 - 当前只支持 Linux/x64 位平台 停顿时间在 10ms 以下，10ms 其实是一个很保守的数据，即便是 10ms 这个数据，也是 GC 调优几乎达不到的极值。根据 SPECjbb 2015 的基准测试，128G 的大堆下最大停顿时间才 1.68ms，远低于 10ms，和 G1 算法相比，改进非常明显。
 
-![ZGC](https://mmbiz.qpic.cn/mmbiz_png/tuSaKc6SfPoPsJdee5KMGlJmflYib8QBWdHgH0K5wVAlhpMIBWDoibxsI7eSlAsAJkEbblhT48BocQX3ZadkNJSQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![ZGC](https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/640)
 
 本图片引用自：The Z Garbage Collector – An Introduction
 
@@ -295,7 +296,7 @@ Shenandoah 垃圾回收器是 Red Hat 在 2014 年宣布进行的一项垃圾收
 
 图 1. Shenandoah GC 工作周期如下所示：
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/tuSaKc6SfPoPsJdee5KMGlJmflYib8QBWLdCGJAAUKiciaz6j9wW8aFME0iaLNpYIic5al8zkhIgbDsbbESRqdFicgCw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/640)
 
 上图对应工作周期如下：
 
@@ -313,7 +314,7 @@ Shenandoah 垃圾回收器是 Red Hat 在 2014 年宣布进行的一项垃圾收
 
 图 2. 各种 GC 工作负载对比：
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/tuSaKc6SfPoPsJdee5KMGlJmflYib8QBWm3H1zq2ZObViacXoR0nHnibiboehKCGfibx3fgFesIq2ZvRUiadFhU7T4kw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/640)
 
 **下面推荐几个配置或调试 Shenandoah 的 JVM 参数:**
 
@@ -882,7 +883,7 @@ switch (day) {
 
 清单 10. Switch 表达式
 
-```
+```java
 int dayOfWeek = switch (day) {
     case MONDAY, FRIDAY, SUNDAY -> 6;
     case TUESDAY                -> 7;
@@ -1120,7 +1121,7 @@ Nashorn 是 JDK 1.8 引入的一个 JavaScript 脚本引擎，用来取代 Rhino
 
 重新实现了老的 DatagramSocket API 接口，更改了 java.net.DatagramSocket 和 java.net.MulticastSocket 为更加简单、现代化的底层实现，更易于维护和调试。
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/tuSaKc6SfPoPsJdee5KMGlJmflYib8QBWaSEiawGlbwULzFyXdGv1PC8UDIb09I39tbnR02QtPcXWMoLdySDa2iag/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/640)
 
 `java.net.datagram.Socket`和`java.net.MulticastSocket`的当前实现可以追溯到JDK 1.0，那时IPv6还在开发中。因此，当前的多播套接字实现尝试调和IPv4和IPv6难以维护的方式。
 
@@ -1184,7 +1185,7 @@ ZGC 是一个可伸缩的、低延迟的垃圾收集器，主要为了满足如�
 - 针以及 Load barriers 优化奠定基础
 - 当前只支持 Linux/x64 位平台 停顿时间在 10ms 以下，10ms 其实是一个很保守的数据，即便是 10ms 这个数据，也是 GC 调优几乎达不到的极值。根据 SPECjbb 2015 的基准测试，128G 的大堆下最大停顿时间才 1.68ms，远低于 10ms，和 G1 算法相比，改进非常明显。
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/tuSaKc6SfPoPsJdee5KMGlJmflYib8QBWdHgH0K5wVAlhpMIBWDoibxsI7eSlAsAJkEbblhT48BocQX3ZadkNJSQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/640)
 
 本图片引用自：The Z Garbage Collector – An Introduction
 
