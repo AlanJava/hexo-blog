@@ -1,0 +1,826 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/blog.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Alan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本站搭建十分简单,主要依赖hexo网站框架和hexo-theme-fluid主题,无需写代码即可搭建精美的博客站点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="本站搭建指南">
+<meta property="og:url" content="http://tgkzxy.top/2022/08/25/%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="AlanBlog">
+<meta property="og:description" content="本站搭建十分简单,主要依赖hexo网站框架和hexo-theme-fluid主题,无需写代码即可搭建精美的博客站点">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-25T13:05:40.000Z">
+<meta property="article:modified_time" content="2022-10-14T05:53:55.814Z">
+<meta property="article:author" content="Alan">
+<meta property="article:tag" content="搭建指南">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>本站搭建指南 - AlanBlog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"tgkzxy.top","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":40,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"https://hm.baidu.com/hm.js?7d37043c4c8a6f686df5c990bb99f544","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?https://hm.baidu.com/hm.js?7d37043c4c8a6f686df5c990bb99f544";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>AlanBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/wallhaven.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="本站搭建指南"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          32k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          268 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">本站搭建指南</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2022年10月14日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本站搭建十分简单,主要依赖hexo网站框架和hexo-theme-fluid主题,无需写代码即可搭建精美的博客站点</p>
+<span id="more"></span>
+
+<h1 id="1-Hexo"><a href="#1-Hexo" class="headerlink" title="1. Hexo"></a>1. Hexo</h1><h2 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo官网</a></p>
+<p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 <a target="_blank" rel="noopener" href="http://daringfireball.net/projects/markdown/">Markdown</a>（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+<ul>
+<li><strong>超快速度</strong></li>
+</ul>
+<p>Node.js 所带来的超快生成速度，让上百个页面在几秒内瞬间完成渲染。</p>
+<ul>
+<li><strong>支持 Markdown</strong></li>
+</ul>
+<p>Hexo 支持 GitHub Flavored Markdown 的所有功能，甚至可以整合 Octopress 的大多数插件。</p>
+<ul>
+<li><strong>一键部署</strong></li>
+</ul>
+<p>只需一条指令即可部署到 GitHub Pages, Heroku 或其他平台。</p>
+<ul>
+<li><strong>插件和可扩展性</strong></li>
+</ul>
+<p>强大的 API 带来无限的可能，与数种模板引擎（EJS，Pug，Nunjucks）和工具（Babel，PostCSS，Less&#x2F;Sass）轻易集成</p>
+<h2 id="1-2-安装"><a href="#1-2-安装" class="headerlink" title="1.2 安装"></a>1.2 安装</h2><p>安装 Hexo 相当简单，只需要先安装下列应用程序即可：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://nodejs.org/">Node.js</a> (Node.js 版本需不低于 10.13，建议使用 Node.js 12.0 及以上版本)</li>
+<li><a target="_blank" rel="noopener" href="http://git-scm.com/">Git</a></li>
+</ul>
+<p>所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">npm install -g hexo-cli</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="1-3-创建Hexo应用"><a href="#1-3-创建Hexo应用" class="headerlink" title="1.3 创建Hexo应用"></a>1.3 创建Hexo应用</h2><p>安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">hexo init &lt;folder&gt;</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">cd</span> &lt;folder&gt;</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">npm install</span><br></code></pre></td></tr></table></figure>
+
+<p>或者新建文件夹,进入文件夹执行命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">hexo init</span> <br><span class="hljs-meta prompt_">$ </span><span class="language-bash">npm install</span><br></code></pre></td></tr></table></figure>
+
+<p>这样Hexo就安装完成,并已经生成好了一个网站模板</p>
+<h2 id="1-4-目录结构"><a href="#1-4-目录结构" class="headerlink" title="1.4 目录结构"></a>1.4 目录结构</h2><p>新建完成后，文件夹的目录如下：</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sqf">.<br>├── <span class="hljs-variable">_config</span>.yml<br>├── package.json<br>├── scaffolds<br>├── source<br>|   ├── <span class="hljs-variable">_drafts</span><br>|   └── <span class="hljs-variable">_posts</span><br>└── themes<br></code></pre></td></tr></table></figure>
+
+<h3 id="config-yml"><a href="#config-yml" class="headerlink" title="_config.yml"></a>_config.yml</h3><p>网站的 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration">配置</a> 信息，您可以在此配置大部分的参数。</p>
+<h3 id="source"><a href="#source" class="headerlink" title="source"></a>source</h3><p>资源文件夹是存放用户资源的地方。除 <code>_posts</code> 文件夹之外，开头命名为 <code>_</code> (下划线)的文件 &#x2F; 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 <code>public</code> 文件夹，而其他文件会被拷贝过去。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">package</span>.json&#123;<br>  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;hexo-site&quot;</span>,<br>  <span class="hljs-string">&quot;version&quot;</span>: <span class="hljs-string">&quot;0.0.0&quot;</span>,<br>  <span class="hljs-string">&quot;private&quot;</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-string">&quot;hexo&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;version&quot;</span>: <span class="hljs-string">&quot;&quot;</span><br>  &#125;,<br>  <span class="hljs-string">&quot;dependencies&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;hexo&quot;</span>: <span class="hljs-string">&quot;^3.8.0&quot;</span>,<br>    <span class="hljs-string">&quot;hexo-generator-archive&quot;</span>: <span class="hljs-string">&quot;^0.1.5&quot;</span>,<br>    <span class="hljs-string">&quot;hexo-generator-category&quot;</span>: <span class="hljs-string">&quot;^0.1.3&quot;</span>,<br>    <span class="hljs-string">&quot;hexo-generator-index&quot;</span>: <span class="hljs-string">&quot;^0.2.1&quot;</span>,<br>    <span class="hljs-string">&quot;hexo-generator-tag&quot;</span>: <span class="hljs-string">&quot;^0.2.0&quot;</span>,<br>    <span class="hljs-string">&quot;hexo-renderer-ejs&quot;</span>: <span class="hljs-string">&quot;^0.3.1&quot;</span>,<br>    <span class="hljs-string">&quot;hexo-renderer-stylus&quot;</span>: <span class="hljs-string">&quot;^0.3.3&quot;</span>,<br>    <span class="hljs-string">&quot;hexo-renderer-marked&quot;</span>: <span class="hljs-string">&quot;^0.3.2&quot;</span>,<br>    <span class="hljs-string">&quot;hexo-server&quot;</span>: <span class="hljs-string">&quot;^0.3.3&quot;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h1 id="2-Fluid"><a href="#2-Fluid" class="headerlink" title="2. Fluid"></a>2. Fluid</h1><h2 id="2-1-简介"><a href="#2-1-简介" class="headerlink" title="2.1 简介"></a>2.1 简介</h2><p>一款 Material Design 风格的主题</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid">Fluid官方仓库</a></p>
+<h2 id="2-2-安装"><a href="#2-2-安装" class="headerlink" title="2.2 安装"></a>2.2 安装</h2><p>通过 npm 直接安装</p>
+<p>进入博客目录执行命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install --save hexo-theme-fluid<br></code></pre></td></tr></table></figure>
+
+<p>然后在博客目录下创建 <code>_config.fluid.yml</code>,这是Fluid主题的配置文件</p>
+<p>全部的配置项如下</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br><span class="line">601</span><br><span class="line">602</span><br><span class="line">603</span><br><span class="line">604</span><br><span class="line">605</span><br><span class="line">606</span><br><span class="line">607</span><br><span class="line">608</span><br><span class="line">609</span><br><span class="line">610</span><br><span class="line">611</span><br><span class="line">612</span><br><span class="line">613</span><br><span class="line">614</span><br><span class="line">615</span><br><span class="line">616</span><br><span class="line">617</span><br><span class="line">618</span><br><span class="line">619</span><br><span class="line">620</span><br><span class="line">621</span><br><span class="line">622</span><br><span class="line">623</span><br><span class="line">624</span><br><span class="line">625</span><br><span class="line">626</span><br><span class="line">627</span><br><span class="line">628</span><br><span class="line">629</span><br><span class="line">630</span><br><span class="line">631</span><br><span class="line">632</span><br><span class="line">633</span><br><span class="line">634</span><br><span class="line">635</span><br><span class="line">636</span><br><span class="line">637</span><br><span class="line">638</span><br><span class="line">639</span><br><span class="line">640</span><br><span class="line">641</span><br><span class="line">642</span><br><span class="line">643</span><br><span class="line">644</span><br><span class="line">645</span><br><span class="line">646</span><br><span class="line">647</span><br><span class="line">648</span><br><span class="line">649</span><br><span class="line">650</span><br><span class="line">651</span><br><span class="line">652</span><br><span class="line">653</span><br><span class="line">654</span><br><span class="line">655</span><br><span class="line">656</span><br><span class="line">657</span><br><span class="line">658</span><br><span class="line">659</span><br><span class="line">660</span><br><span class="line">661</span><br><span class="line">662</span><br><span class="line">663</span><br><span class="line">664</span><br><span class="line">665</span><br><span class="line">666</span><br><span class="line">667</span><br><span class="line">668</span><br><span class="line">669</span><br><span class="line">670</span><br><span class="line">671</span><br><span class="line">672</span><br><span class="line">673</span><br><span class="line">674</span><br><span class="line">675</span><br><span class="line">676</span><br><span class="line">677</span><br><span class="line">678</span><br><span class="line">679</span><br><span class="line">680</span><br><span class="line">681</span><br><span class="line">682</span><br><span class="line">683</span><br><span class="line">684</span><br><span class="line">685</span><br><span class="line">686</span><br><span class="line">687</span><br><span class="line">688</span><br><span class="line">689</span><br><span class="line">690</span><br><span class="line">691</span><br><span class="line">692</span><br><span class="line">693</span><br><span class="line">694</span><br><span class="line">695</span><br><span class="line">696</span><br><span class="line">697</span><br><span class="line">698</span><br><span class="line">699</span><br><span class="line">700</span><br><span class="line">701</span><br><span class="line">702</span><br><span class="line">703</span><br><span class="line">704</span><br><span class="line">705</span><br><span class="line">706</span><br><span class="line">707</span><br><span class="line">708</span><br><span class="line">709</span><br><span class="line">710</span><br><span class="line">711</span><br><span class="line">712</span><br><span class="line">713</span><br><span class="line">714</span><br><span class="line">715</span><br><span class="line">716</span><br><span class="line">717</span><br><span class="line">718</span><br><span class="line">719</span><br><span class="line">720</span><br><span class="line">721</span><br><span class="line">722</span><br><span class="line">723</span><br><span class="line">724</span><br><span class="line">725</span><br><span class="line">726</span><br><span class="line">727</span><br><span class="line">728</span><br><span class="line">729</span><br><span class="line">730</span><br><span class="line">731</span><br><span class="line">732</span><br><span class="line">733</span><br><span class="line">734</span><br><span class="line">735</span><br><span class="line">736</span><br><span class="line">737</span><br><span class="line">738</span><br><span class="line">739</span><br><span class="line">740</span><br><span class="line">741</span><br><span class="line">742</span><br><span class="line">743</span><br><span class="line">744</span><br><span class="line">745</span><br><span class="line">746</span><br><span class="line">747</span><br><span class="line">748</span><br><span class="line">749</span><br><span class="line">750</span><br><span class="line">751</span><br><span class="line">752</span><br><span class="line">753</span><br><span class="line">754</span><br><span class="line">755</span><br><span class="line">756</span><br><span class="line">757</span><br><span class="line">758</span><br><span class="line">759</span><br><span class="line">760</span><br><span class="line">761</span><br><span class="line">762</span><br><span class="line">763</span><br><span class="line">764</span><br><span class="line">765</span><br><span class="line">766</span><br><span class="line">767</span><br><span class="line">768</span><br><span class="line">769</span><br><span class="line">770</span><br><span class="line">771</span><br><span class="line">772</span><br><span class="line">773</span><br><span class="line">774</span><br><span class="line">775</span><br><span class="line">776</span><br><span class="line">777</span><br><span class="line">778</span><br><span class="line">779</span><br><span class="line">780</span><br><span class="line">781</span><br><span class="line">782</span><br><span class="line">783</span><br><span class="line">784</span><br><span class="line">785</span><br><span class="line">786</span><br><span class="line">787</span><br><span class="line">788</span><br><span class="line">789</span><br><span class="line">790</span><br><span class="line">791</span><br><span class="line">792</span><br><span class="line">793</span><br><span class="line">794</span><br><span class="line">795</span><br><span class="line">796</span><br><span class="line">797</span><br><span class="line">798</span><br><span class="line">799</span><br><span class="line">800</span><br><span class="line">801</span><br><span class="line">802</span><br><span class="line">803</span><br><span class="line">804</span><br><span class="line">805</span><br><span class="line">806</span><br><span class="line">807</span><br><span class="line">808</span><br><span class="line">809</span><br><span class="line">810</span><br><span class="line">811</span><br><span class="line">812</span><br><span class="line">813</span><br><span class="line">814</span><br><span class="line">815</span><br><span class="line">816</span><br><span class="line">817</span><br><span class="line">818</span><br><span class="line">819</span><br><span class="line">820</span><br><span class="line">821</span><br><span class="line">822</span><br><span class="line">823</span><br><span class="line">824</span><br><span class="line">825</span><br><span class="line">826</span><br><span class="line">827</span><br><span class="line">828</span><br><span class="line">829</span><br><span class="line">830</span><br><span class="line">831</span><br><span class="line">832</span><br><span class="line">833</span><br><span class="line">834</span><br><span class="line">835</span><br><span class="line">836</span><br><span class="line">837</span><br><span class="line">838</span><br><span class="line">839</span><br><span class="line">840</span><br><span class="line">841</span><br><span class="line">842</span><br><span class="line">843</span><br><span class="line">844</span><br><span class="line">845</span><br><span class="line">846</span><br><span class="line">847</span><br><span class="line">848</span><br><span class="line">849</span><br><span class="line">850</span><br><span class="line">851</span><br><span class="line">852</span><br><span class="line">853</span><br><span class="line">854</span><br><span class="line">855</span><br><span class="line">856</span><br><span class="line">857</span><br><span class="line">858</span><br><span class="line">859</span><br><span class="line">860</span><br><span class="line">861</span><br><span class="line">862</span><br><span class="line">863</span><br><span class="line">864</span><br><span class="line">865</span><br><span class="line">866</span><br><span class="line">867</span><br><span class="line">868</span><br><span class="line">869</span><br><span class="line">870</span><br><span class="line">871</span><br><span class="line">872</span><br><span class="line">873</span><br><span class="line">874</span><br><span class="line">875</span><br><span class="line">876</span><br><span class="line">877</span><br><span class="line">878</span><br><span class="line">879</span><br><span class="line">880</span><br><span class="line">881</span><br><span class="line">882</span><br><span class="line">883</span><br><span class="line">884</span><br><span class="line">885</span><br><span class="line">886</span><br><span class="line">887</span><br><span class="line">888</span><br><span class="line">889</span><br><span class="line">890</span><br><span class="line">891</span><br><span class="line">892</span><br><span class="line">893</span><br><span class="line">894</span><br><span class="line">895</span><br><span class="line">896</span><br><span class="line">897</span><br><span class="line">898</span><br><span class="line">899</span><br><span class="line">900</span><br><span class="line">901</span><br><span class="line">902</span><br><span class="line">903</span><br><span class="line">904</span><br><span class="line">905</span><br><span class="line">906</span><br><span class="line">907</span><br><span class="line">908</span><br><span class="line">909</span><br><span class="line">910</span><br><span class="line">911</span><br><span class="line">912</span><br><span class="line">913</span><br><span class="line">914</span><br><span class="line">915</span><br><span class="line">916</span><br><span class="line">917</span><br><span class="line">918</span><br><span class="line">919</span><br><span class="line">920</span><br><span class="line">921</span><br><span class="line">922</span><br><span class="line">923</span><br><span class="line">924</span><br><span class="line">925</span><br><span class="line">926</span><br><span class="line">927</span><br><span class="line">928</span><br><span class="line">929</span><br><span class="line">930</span><br><span class="line">931</span><br><span class="line">932</span><br><span class="line">933</span><br><span class="line">934</span><br><span class="line">935</span><br><span class="line">936</span><br><span class="line">937</span><br><span class="line">938</span><br><span class="line">939</span><br><span class="line">940</span><br><span class="line">941</span><br><span class="line">942</span><br><span class="line">943</span><br><span class="line">944</span><br><span class="line">945</span><br><span class="line">946</span><br><span class="line">947</span><br><span class="line">948</span><br><span class="line">949</span><br><span class="line">950</span><br><span class="line">951</span><br><span class="line">952</span><br><span class="line">953</span><br><span class="line">954</span><br><span class="line">955</span><br><span class="line">956</span><br><span class="line">957</span><br><span class="line">958</span><br><span class="line">959</span><br><span class="line">960</span><br><span class="line">961</span><br><span class="line">962</span><br><span class="line">963</span><br><span class="line">964</span><br><span class="line">965</span><br><span class="line">966</span><br><span class="line">967</span><br><span class="line">968</span><br><span class="line">969</span><br><span class="line">970</span><br><span class="line">971</span><br><span class="line">972</span><br><span class="line">973</span><br><span class="line">974</span><br><span class="line">975</span><br><span class="line">976</span><br><span class="line">977</span><br><span class="line">978</span><br><span class="line">979</span><br><span class="line">980</span><br><span class="line">981</span><br><span class="line">982</span><br><span class="line">983</span><br><span class="line">984</span><br><span class="line">985</span><br><span class="line">986</span><br><span class="line">987</span><br><span class="line">988</span><br><span class="line">989</span><br><span class="line">990</span><br><span class="line">991</span><br><span class="line">992</span><br><span class="line">993</span><br><span class="line">994</span><br><span class="line">995</span><br><span class="line">996</span><br><span class="line">997</span><br><span class="line">998</span><br><span class="line">999</span><br><span class="line">1000</span><br><span class="line">1001</span><br><span class="line">1002</span><br><span class="line">1003</span><br><span class="line">1004</span><br><span class="line">1005</span><br><span class="line">1006</span><br><span class="line">1007</span><br><span class="line">1008</span><br><span class="line">1009</span><br><span class="line">1010</span><br><span class="line">1011</span><br><span class="line">1012</span><br><span class="line">1013</span><br><span class="line">1014</span><br><span class="line">1015</span><br><span class="line">1016</span><br><span class="line">1017</span><br><span class="line">1018</span><br><span class="line">1019</span><br><span class="line">1020</span><br><span class="line">1021</span><br><span class="line">1022</span><br><span class="line">1023</span><br><span class="line">1024</span><br><span class="line">1025</span><br><span class="line">1026</span><br><span class="line">1027</span><br><span class="line">1028</span><br><span class="line">1029</span><br><span class="line">1030</span><br><span class="line">1031</span><br><span class="line">1032</span><br><span class="line">1033</span><br><span class="line">1034</span><br><span class="line">1035</span><br><span class="line">1036</span><br><span class="line">1037</span><br><span class="line">1038</span><br><span class="line">1039</span><br><span class="line">1040</span><br><span class="line">1041</span><br><span class="line">1042</span><br><span class="line">1043</span><br><span class="line">1044</span><br><span class="line">1045</span><br><span class="line">1046</span><br><span class="line">1047</span><br><span class="line">1048</span><br><span class="line">1049</span><br><span class="line">1050</span><br><span class="line">1051</span><br><span class="line">1052</span><br><span class="line">1053</span><br><span class="line">1054</span><br><span class="line">1055</span><br><span class="line">1056</span><br><span class="line">1057</span><br><span class="line">1058</span><br><span class="line">1059</span><br><span class="line">1060</span><br><span class="line">1061</span><br><span class="line">1062</span><br><span class="line">1063</span><br><span class="line">1064</span><br><span class="line">1065</span><br><span class="line">1066</span><br><span class="line">1067</span><br><span class="line">1068</span><br><span class="line">1069</span><br><span class="line">1070</span><br><span class="line">1071</span><br><span class="line">1072</span><br><span class="line">1073</span><br><span class="line">1074</span><br><span class="line">1075</span><br><span class="line">1076</span><br><span class="line">1077</span><br><span class="line">1078</span><br><span class="line">1079</span><br><span class="line">1080</span><br><span class="line">1081</span><br><span class="line">1082</span><br><span class="line">1083</span><br><span class="line">1084</span><br><span class="line">1085</span><br><span class="line">1086</span><br><span class="line">1087</span><br><span class="line">1088</span><br><span class="line">1089</span><br><span class="line">1090</span><br><span class="line">1091</span><br><span class="line">1092</span><br><span class="line">1093</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment">#---------------------------</span><br><span class="hljs-comment"># Hexo Theme Fluid</span><br><span class="hljs-comment"># Author: Fluid-dev</span><br><span class="hljs-comment"># Github: https://github.com/fluid-dev/hexo-theme-fluid</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># 配置指南: https://hexo.fluid-dev.com/docs/guide/</span><br><span class="hljs-comment"># 你可以从指南中获得更详细的说明</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># Guide: https://hexo.fluid-dev.com/docs/en/guide/</span><br><span class="hljs-comment"># You can get more detailed help from the guide</span><br><span class="hljs-comment">#---------------------------</span><br><br><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-comment"># 全局</span><br><span class="hljs-comment"># Global</span><br><span class="hljs-comment">#---------------------------</span><br><br><span class="hljs-comment"># 用于浏览器标签的图标</span><br><span class="hljs-comment"># Icon for browser tab</span><br><span class="hljs-attr">favicon:</span> <span class="hljs-string">/img/fluid.png</span><br><br><span class="hljs-comment"># 用于苹果设备的图标</span><br><span class="hljs-comment"># Icon for Apple touch</span><br><span class="hljs-attr">apple_touch_icon:</span> <span class="hljs-string">/img/fluid.png</span><br><br><span class="hljs-comment"># 浏览器标签页中的标题分隔符，效果： 文章名 - 站点名</span><br><span class="hljs-comment"># Title separator in browser tab, eg: article - site</span><br><span class="hljs-attr">tab_title_separator:</span> <span class="hljs-string">&quot; - &quot;</span><br><br><span class="hljs-comment"># 强制所有链接升级为 HTTPS（适用于图片等资源出现 HTTP 混入报错）</span><br><span class="hljs-comment"># Force all links to be HTTPS (applicable to HTTP mixed error)</span><br><span class="hljs-attr">force_https:</span> <span class="hljs-literal">false</span><br><br><span class="hljs-comment"># 代码块的增强配置</span><br><span class="hljs-comment"># Enhancements to code blocks</span><br><span class="hljs-attr">code:</span><br>  <span class="hljs-comment"># 是否开启复制代码的按钮</span><br>  <span class="hljs-comment"># Enable copy code button</span><br>  <span class="hljs-attr">copy_btn:</span> <span class="hljs-literal">true</span><br><br>  <span class="hljs-comment"># 代码语言</span><br>  <span class="hljs-comment"># Code language</span><br>  <span class="hljs-attr">language:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">default:</span> <span class="hljs-string">&quot;TEXT&quot;</span><br><br>  <span class="hljs-comment"># 代码高亮</span><br>  <span class="hljs-comment"># Code highlight</span><br>  <span class="hljs-attr">highlight:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br><br>    <span class="hljs-comment"># 代码块是否显示行号</span><br>    <span class="hljs-comment"># If true, the code block display line numbers</span><br>    <span class="hljs-attr">line_number:</span> <span class="hljs-literal">true</span><br><br>    <span class="hljs-comment"># 实现高亮的库，对应下面的设置</span><br>    <span class="hljs-comment"># Highlight library</span><br>    <span class="hljs-comment"># Options: highlightjs | prismjs</span><br>    <span class="hljs-attr">lib:</span> <span class="hljs-string">&quot;highlightjs&quot;</span><br><br>    <span class="hljs-attr">highlightjs:</span><br>      <span class="hljs-comment"># 在链接中挑选 style 填入</span><br>      <span class="hljs-comment"># Select a style in the link</span><br>      <span class="hljs-comment"># See: https://highlightjs.org/static/demo/</span><br>      <span class="hljs-attr">style:</span> <span class="hljs-string">&quot;github gist&quot;</span><br>      <span class="hljs-attr">style_dark:</span> <span class="hljs-string">&quot;dark&quot;</span><br><br>    <span class="hljs-attr">prismjs:</span><br>      <span class="hljs-comment"># 在下方链接页面右侧的圆形按钮挑选 style 填入，也可以直接填入 css 链接</span><br>      <span class="hljs-comment"># Select the style button on the right side of the link page, you can also set the CSS link</span><br>      <span class="hljs-comment"># See: https://prismjs.com/</span><br>      <span class="hljs-attr">style:</span> <span class="hljs-string">&quot;default&quot;</span><br>      <span class="hljs-attr">style_dark:</span> <span class="hljs-string">&quot;tomorrow night&quot;</span><br><br>      <span class="hljs-comment"># 设为 true 高亮将本地静态生成（但只支持部分 prismjs 插件），设为 false 高亮将在浏览器通过 js 生成</span><br>      <span class="hljs-comment"># If true, it will be generated locally (but some prismjs plugins are not supported). If false, it will be generated via JS in the browser</span><br>      <span class="hljs-attr">preprocess:</span> <span class="hljs-literal">true</span><br><br><span class="hljs-comment"># 一些好玩的功能</span><br><span class="hljs-comment"># Some fun features</span><br><span class="hljs-attr">fun_features:</span><br>  <span class="hljs-comment"># 为 subtitle 添加打字机效果</span><br>  <span class="hljs-comment"># Typing animation for subtitle</span><br>  <span class="hljs-attr">typing:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br><br>    <span class="hljs-comment"># 打印速度，数字越大越慢</span><br>    <span class="hljs-comment"># Typing speed, the larger the number, the slower</span><br>    <span class="hljs-attr">typeSpeed:</span> <span class="hljs-number">70</span><br><br>    <span class="hljs-comment"># 游标字符</span><br>    <span class="hljs-comment"># Cursor character</span><br>    <span class="hljs-attr">cursorChar:</span> <span class="hljs-string">&quot;_&quot;</span><br><br>    <span class="hljs-comment"># 是否循环播放效果</span><br>    <span class="hljs-comment"># If true, loop animation</span><br>    <span class="hljs-attr">loop:</span> <span class="hljs-literal">false</span><br><br>    <span class="hljs-comment"># 在指定页面开启，不填则在所有页面开启</span><br>    <span class="hljs-comment"># Enable in specified page, all pages by default</span><br>    <span class="hljs-comment"># Options: home | post | tag | category | about | links | page | 404</span><br>    <span class="hljs-attr">scope:</span> []<br><br>  <span class="hljs-comment"># 为文章内容中的标题添加锚图标</span><br>  <span class="hljs-comment"># Add an anchor icon to the title on the post page</span><br>  <span class="hljs-attr">anchorjs:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">element:</span> <span class="hljs-string">h1,h2,h3,h4,h5,h6</span><br>    <span class="hljs-comment"># Options: left | right</span><br>    <span class="hljs-attr">placement:</span> <span class="hljs-string">left</span><br>    <span class="hljs-comment"># Options: hover | always | touch</span><br>    <span class="hljs-attr">visible:</span> <span class="hljs-string">hover</span><br>    <span class="hljs-comment"># Options: § | # | ❡</span><br>    <span class="hljs-attr">icon:</span> <span class="hljs-string">&quot;&quot;</span><br><br>  <span class="hljs-comment"># 加载进度条</span><br>  <span class="hljs-comment"># Progress bar when loading</span><br>  <span class="hljs-attr">progressbar:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">height_px:</span> <span class="hljs-number">3</span><br>    <span class="hljs-attr">color:</span> <span class="hljs-string">&quot;#29d&quot;</span><br>    <span class="hljs-comment"># See: https://github.com/rstacruz/nprogress</span><br>    <span class="hljs-attr">options:</span> &#123; <span class="hljs-attr">showSpinner:</span> <span class="hljs-literal">false</span>, <span class="hljs-attr">trickleSpeed:</span> <span class="hljs-number">100</span> &#125;<br><br><span class="hljs-comment"># 主题暗色模式，开启后菜单中会出现切换按钮，用户浏览器会存储切换选项，并且会遵循 prefers-color-scheme 自动切换</span><br><span class="hljs-comment"># Theme dark mode. If enable, a switch button will appear on the menu, each of the visitor&#x27;s browser will store his switch option</span><br><span class="hljs-attr">dark_mode:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-comment"># 默认的选项（当用户手动切换后则不再按照默认模式），选择 `auto` 会优先遵循 prefers-color-scheme，其次按用户本地时间 18 点到次日 6 点之间进入暗色模式</span><br>  <span class="hljs-comment"># Default option (when the visitor switches manually, the default mode is no longer followed), choosing `auto` will give priority to prefers-color-scheme, and then enter the dark mode from 18:00 to 6:00 in the visitor’s local time</span><br>  <span class="hljs-comment"># Options: auto | light | dark</span><br>  <span class="hljs-attr">default:</span> <span class="hljs-string">auto</span><br><br><span class="hljs-comment"># 主题颜色配置，其他不生效的地方请使用自定义 css 解决，配色可以在下方链接中获得启发</span><br><span class="hljs-comment"># Theme color, please use custom CSS to solve other colors, color schema can be inspired by the links below</span><br><span class="hljs-comment"># See: https://www.webdesignrankings.com/resources/lolcolors/</span><br><span class="hljs-attr">color:</span><br>  <span class="hljs-comment"># body 背景色</span><br>  <span class="hljs-comment"># Color of body background</span><br>  <span class="hljs-attr">body_bg_color:</span> <span class="hljs-string">&quot;#eee&quot;</span><br>  <span class="hljs-comment"># 暗色模式下的 body 背景色，下同</span><br>  <span class="hljs-comment"># Color in dark mode, the same below</span><br>  <span class="hljs-attr">body_bg_color_dark:</span> <span class="hljs-string">&quot;#181c27&quot;</span><br><br>  <span class="hljs-comment"># 顶部菜单背景色</span><br>  <span class="hljs-comment"># Color of navigation bar background</span><br>  <span class="hljs-attr">navbar_bg_color:</span> <span class="hljs-string">&quot;#2f4154&quot;</span><br>  <span class="hljs-attr">navbar_bg_color_dark:</span> <span class="hljs-string">&quot;#1f3144&quot;</span><br><br>  <span class="hljs-comment"># 顶部菜单字体色</span><br>  <span class="hljs-comment"># Color of navigation bar text</span><br>  <span class="hljs-attr">navbar_text_color:</span> <span class="hljs-string">&quot;#fff&quot;</span><br>  <span class="hljs-attr">navbar_text_color_dark:</span> <span class="hljs-string">&quot;#d0d0d0&quot;</span><br><br>  <span class="hljs-comment"># 副标题字体色</span><br>  <span class="hljs-comment"># Color of navigation bar text</span><br>  <span class="hljs-attr">subtitle_color:</span> <span class="hljs-string">&quot;#fff&quot;</span><br>  <span class="hljs-attr">subtitle_color_dark:</span> <span class="hljs-string">&quot;#d0d0d0&quot;</span><br><br>  <span class="hljs-comment"># 全局字体色</span><br>  <span class="hljs-comment"># Color of global text</span><br>  <span class="hljs-attr">text_color:</span> <span class="hljs-string">&quot;#3c4858&quot;</span><br>  <span class="hljs-attr">text_color_dark:</span> <span class="hljs-string">&quot;#c4c6c9&quot;</span><br><br>  <span class="hljs-comment"># 全局次级字体色（摘要、简介等位置）</span><br>  <span class="hljs-comment"># Color of global secondary text (excerpt, introduction, etc.)</span><br>  <span class="hljs-attr">sec_text_color:</span> <span class="hljs-string">&quot;#718096&quot;</span><br>  <span class="hljs-attr">sec_text_color_dark:</span> <span class="hljs-string">&quot;#a7a9ad&quot;</span><br><br>  <span class="hljs-comment"># 主面板背景色</span><br>  <span class="hljs-comment"># Color of main board</span><br>  <span class="hljs-attr">board_color:</span> <span class="hljs-string">&quot;#fff&quot;</span><br>  <span class="hljs-attr">board_color_dark:</span> <span class="hljs-string">&quot;#252d38&quot;</span><br><br>  <span class="hljs-comment"># 文章正文字体色</span><br>  <span class="hljs-comment"># Color of post text</span><br>  <span class="hljs-attr">post_text_color:</span> <span class="hljs-string">&quot;#2c3e50&quot;</span><br>  <span class="hljs-attr">post_text_color_dark:</span> <span class="hljs-string">&quot;#c4c6c9&quot;</span><br><br>  <span class="hljs-comment"># 文章正文字体色（h1 h2 h3...）</span><br>  <span class="hljs-comment"># Color of Article heading (h1 h2 h3...)</span><br>  <span class="hljs-attr">post_heading_color:</span> <span class="hljs-string">&quot;#1a202c&quot;</span><br>  <span class="hljs-attr">post_heading_color_dark:</span> <span class="hljs-string">&quot;#c4c6c9&quot;</span><br><br>  <span class="hljs-comment"># 文章超链接字体色</span><br>  <span class="hljs-comment"># Color of post link</span><br>  <span class="hljs-attr">post_link_color:</span> <span class="hljs-string">&quot;#0366d6&quot;</span><br>  <span class="hljs-attr">post_link_color_dark:</span> <span class="hljs-string">&quot;#1589e9&quot;</span><br><br>  <span class="hljs-comment"># 超链接悬浮时字体色</span><br>  <span class="hljs-comment"># Color of link when hovering</span><br>  <span class="hljs-attr">link_hover_color:</span> <span class="hljs-string">&quot;#30a9de&quot;</span><br>  <span class="hljs-attr">link_hover_color_dark:</span> <span class="hljs-string">&quot;#30a9de&quot;</span><br><br>  <span class="hljs-comment"># 超链接悬浮背景色</span><br>  <span class="hljs-comment"># Color of link background when hovering</span><br>  <span class="hljs-attr">link_hover_bg_color:</span> <span class="hljs-string">&quot;#f8f9fa&quot;</span><br>  <span class="hljs-attr">link_hover_bg_color_dark:</span> <span class="hljs-string">&quot;#364151&quot;</span><br><br>  <span class="hljs-comment"># 分隔线和表格边线的颜色</span><br>  <span class="hljs-comment"># Color of horizontal rule and table border</span><br>  <span class="hljs-attr">line_color:</span> <span class="hljs-string">&quot;#eaecef&quot;</span><br>  <span class="hljs-attr">line_color_dark:</span> <span class="hljs-string">&quot;#435266&quot;</span><br><br>  <span class="hljs-comment"># 滚动条颜色</span><br>  <span class="hljs-comment"># Color of scrollbar</span><br>  <span class="hljs-attr">scrollbar_color:</span> <span class="hljs-string">&quot;#c4c6c9&quot;</span><br>  <span class="hljs-attr">scrollbar_color_dark:</span> <span class="hljs-string">&quot;#687582&quot;</span><br>  <span class="hljs-comment"># 滚动条悬浮颜色</span><br>  <span class="hljs-comment"># Color of scrollbar when hovering</span><br>  <span class="hljs-attr">scrollbar_hover_color:</span> <span class="hljs-string">&quot;#a6a6a6&quot;</span><br>  <span class="hljs-attr">scrollbar_hover_color_dark:</span> <span class="hljs-string">&quot;#9da8b3&quot;</span><br><br>  <span class="hljs-comment"># 按钮背景色</span><br>  <span class="hljs-comment"># Color of button</span><br>  <span class="hljs-attr">button_bg_color:</span> <span class="hljs-string">&quot;transparent&quot;</span><br>  <span class="hljs-attr">button_bg_color_dark:</span> <span class="hljs-string">&quot;transparent&quot;</span><br>  <span class="hljs-comment"># 按钮悬浮背景色</span><br>  <span class="hljs-comment"># Color of button when hovering</span><br>  <span class="hljs-attr">button_hover_bg_color:</span> <span class="hljs-string">&quot;#f2f3f5&quot;</span><br>  <span class="hljs-attr">button_hover_bg_color_dark:</span> <span class="hljs-string">&quot;#46647e&quot;</span><br><br><span class="hljs-comment"># 主题字体配置</span><br><span class="hljs-comment"># Font</span><br><span class="hljs-attr">font:</span><br>  <span class="hljs-attr">font_size:</span> <span class="hljs-string">16px</span><br>  <span class="hljs-attr">font_family:</span><br>  <span class="hljs-attr">letter_spacing:</span> <span class="hljs-number">0.</span><span class="hljs-string">02em</span><br>  <span class="hljs-attr">code_font_size:</span> <span class="hljs-number">85</span><span class="hljs-string">%</span><br><br><span class="hljs-comment"># 指定自定义 .js 文件路径，支持列表；路径是相对 source 目录，如 /js/custom.js 对应存放目录 source/js/custom.js</span><br><span class="hljs-comment"># Specify the path of your custom js file, support list. The path is relative to the source directory, such as `/js/custom.js` corresponding to the directory `source/js/custom.js`</span><br><span class="hljs-attr">custom_js:</span><br><br><span class="hljs-comment"># 指定自定义 .css 文件路径，用法和 custom_js 相同</span><br><span class="hljs-comment"># The usage is the same as custom_js</span><br><span class="hljs-attr">custom_css:</span><br><br><span class="hljs-comment"># 网页访问统计</span><br><span class="hljs-comment"># Analysis of website visitors</span><br><span class="hljs-attr">web_analytics:</span>  <span class="hljs-comment"># 网页访问统计</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br><br>  <span class="hljs-comment"># 遵循访客浏览器&quot;请勿追踪&quot;的设置，如果开启则不统计其访问</span><br>  <span class="hljs-comment"># Follow the &quot;Do Not Track&quot; setting of the visitor&#x27;s browser</span><br>  <span class="hljs-comment"># See: https://www.w3.org/TR/tracking-dnt/</span><br>  <span class="hljs-attr">follow_dnt:</span> <span class="hljs-literal">true</span><br><br>  <span class="hljs-comment"># 百度统计的 Key，值需要获取下方链接中 `hm.js?` 后边的字符串</span><br>  <span class="hljs-comment"># Baidu analytics, get the string behind `hm.js?`</span><br>  <span class="hljs-comment"># See: https://tongji.baidu.com/sc-web/10000033910/home/site/getjs?siteId=13751376</span><br>  <span class="hljs-attr">baidu:</span><br><br>  <span class="hljs-comment"># Google 统计的 Tracking ID</span><br>  <span class="hljs-comment"># Google analytics, set Tracking ID</span><br>  <span class="hljs-comment"># See: https://developers.google.com/analytics/devguides/collection/analyticsjs</span><br>  <span class="hljs-attr">google:</span><br><br>  <span class="hljs-comment"># Google gtag.js 的媒体资源 ID</span><br>  <span class="hljs-comment"># Google gtag.js GA_MEASUREMENT_ID</span><br>  <span class="hljs-comment"># See: https://developers.google.com/analytics/devguides/collection/gtagjs/</span><br>  <span class="hljs-attr">gtag:</span><br><br>  <span class="hljs-comment"># 腾讯统计的 H5 App ID，开启高级功能才有cid</span><br>  <span class="hljs-comment"># Tencent analytics, set APP ID</span><br>  <span class="hljs-comment"># See: https://mta.qq.com/h5/manage/ctr_app_manage</span><br>  <span class="hljs-attr">tencent:</span><br>    <span class="hljs-attr">sid:</span><br>    <span class="hljs-attr">cid:</span><br><br>  <span class="hljs-comment"># 51.la 站点统计 ID</span><br>  <span class="hljs-comment"># 51.la analytics</span><br>  <span class="hljs-comment"># See: https://www.51.la/user/site/index</span><br>  <span class="hljs-attr">woyaola:</span>  <span class="hljs-comment"># 51.la 站点统计 ID，参见</span><br><br>  <span class="hljs-comment"># 友盟/cnzz 站点统计 web_id</span><br>  <span class="hljs-comment"># cnzz analytics</span><br>  <span class="hljs-comment"># See: https://web.umeng.com/main.php?c=site&amp;a=show</span><br>  <span class="hljs-attr">cnzz:</span><br><br>  <span class="hljs-comment"># LeanCloud 计数统计，可用于 PV UV 展示，如果 `web_analytics: enable` 没有开启，PV UV 展示只会查询不会增加</span><br>  <span class="hljs-comment"># LeanCloud count statistics, which can be used for PV UV display. If `web_analytics: enable` is false, PV UV display will only query and not increase</span><br>  <span class="hljs-attr">leancloud:</span><br>    <span class="hljs-attr">app_id:</span><br>    <span class="hljs-attr">app_key:</span><br>    <span class="hljs-comment"># REST API 服务器地址，国际版不填</span><br>    <span class="hljs-comment"># Only the Chinese mainland users need to set</span><br>    <span class="hljs-attr">server_url:</span><br>    <span class="hljs-comment"># 统计页面时获取路径的属性</span><br>    <span class="hljs-comment"># Get the attribute of the page path during statistics</span><br>    <span class="hljs-attr">path:</span> <span class="hljs-string">window.location.pathname</span><br>    <span class="hljs-comment"># 开启后不统计本地路径( localhost 与 127.0.0.1 )</span><br>    <span class="hljs-comment"># If true, ignore localhost &amp; 127.0.0.1</span><br>    <span class="hljs-attr">ignore_local:</span> <span class="hljs-literal">false</span><br><br><span class="hljs-comment"># 对页面中的图片和评论插件进行懒加载处理，可见范围外的元素不会提前加载</span><br><span class="hljs-comment"># Lazy loading of images and comment plugin on the page</span><br><span class="hljs-attr">lazyload:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br><br>  <span class="hljs-comment"># 加载时的占位图片</span><br>  <span class="hljs-comment"># The placeholder image when loading</span><br>  <span class="hljs-attr">loading_img:</span> <span class="hljs-string">/img/loading.gif</span><br><br>  <span class="hljs-comment"># 开启后懒加载仅在文章页生效，如果自定义页面需要使用，可以在 Front-matter 里指定 `lazyload: true`</span><br>  <span class="hljs-comment"># If true, only enable lazyload on the post page. For custom pages, you can set &#x27;lazyload: true&#x27; in front-matter</span><br>  <span class="hljs-attr">onlypost:</span> <span class="hljs-literal">false</span><br><br>  <span class="hljs-comment"># 触发加载的偏移倍数，基数是视窗高度，可根据部署环境的请求速度调节</span><br>  <span class="hljs-comment"># The factor of viewport height that triggers loading</span><br>  <span class="hljs-attr">offset_factor:</span> <span class="hljs-number">2</span><br><br><span class="hljs-comment"># 图标库，包含了大量社交类图标，主题依赖的不包含在内，因此可自行修改，详见 https://hexo.fluid-dev.com/docs/icon/</span><br><span class="hljs-comment"># Icon library, which includes many social icons, does not include those theme dependent, so your can modify link by yourself. See: https://hexo.fluid-dev.com/docs/en/icon/</span><br><span class="hljs-attr">iconfont:</span> <span class="hljs-string">//at.alicdn.com/t/font_1736178_lbnruvf0jn.css</span><br><br><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-comment"># 页头</span><br><span class="hljs-comment"># Header</span><br><span class="hljs-comment">#---------------------------</span><br><br><span class="hljs-comment"># 导航栏的相关配置</span><br><span class="hljs-comment"># Navigation bar</span><br><span class="hljs-attr">navbar:</span><br>  <span class="hljs-comment"># 导航栏左侧的标题，为空则按 hexo config 中 `title` 显示</span><br>  <span class="hljs-comment"># The title on the left side of the navigation bar. If empty, it is based on `title` in hexo config</span><br>  <span class="hljs-attr">blog_title:</span> <span class="hljs-string">&quot;Fluid&quot;</span><br><br>  <span class="hljs-comment"># 导航栏毛玻璃特效，实验性功能，可能会造成页面滚动掉帧和抖动，部分浏览器不支持会自动不生效</span><br>  <span class="hljs-comment"># Navigation bar frosted glass special animation. It is an experimental feature</span><br>  <span class="hljs-attr">ground_glass:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br><br>    <span class="hljs-comment"># 模糊像素，只能为数字，数字越大模糊度越高</span><br>    <span class="hljs-comment"># Number of blurred pixel. the larger the number, the higher the blur</span><br>    <span class="hljs-attr">px:</span> <span class="hljs-number">3</span><br><br>    <span class="hljs-comment"># 不透明度，数字越大透明度越低，注意透明过度可能看不清菜单字体</span><br>    <span class="hljs-comment"># Ratio of opacity, 1.0 is completely opaque</span><br>    <span class="hljs-comment"># available: 0 - 1.0</span><br>    <span class="hljs-attr">alpha:</span> <span class="hljs-number">0.7</span><br><br>  <span class="hljs-comment"># 导航栏菜单，可自行增减，key 用来关联 languages/*.yml，如不存在关联则显示 key 本身的值；icon 是 css class，可以省略；增加 name 可以强制显示指定名称</span><br>  <span class="hljs-comment"># Navigation bar menu. `key` is used to associate languages/*.yml. If there is no association, the value of `key` itself will be displayed; if `icon` is a css class, it can be omitted; adding `name` can force the display of the specified name</span><br>  <span class="hljs-attr">menu:</span><br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&quot;home&quot;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-attr">icon:</span> <span class="hljs-string">&quot;iconfont icon-home-fill&quot;</span> &#125;<br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&quot;archive&quot;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&quot;/archives/&quot;</span>, <span class="hljs-attr">icon:</span> <span class="hljs-string">&quot;iconfont icon-archive-fill&quot;</span> &#125;<br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&quot;category&quot;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&quot;/categories/&quot;</span>, <span class="hljs-attr">icon:</span> <span class="hljs-string">&quot;iconfont icon-category-fill&quot;</span> &#125;<br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&quot;tag&quot;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&quot;/tags/&quot;</span>, <span class="hljs-attr">icon:</span> <span class="hljs-string">&quot;iconfont icon-tags-fill&quot;</span> &#125;<br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">&quot;about&quot;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&quot;/about/&quot;</span>, <span class="hljs-attr">icon:</span> <span class="hljs-string">&quot;iconfont icon-user-fill&quot;</span> &#125;<br>    <span class="hljs-comment">#- &#123; key: &quot;links&quot;, link: &quot;/links/&quot;, icon: &quot;iconfont icon-link-fill&quot; &#125;</span><br><br><span class="hljs-comment"># 搜索功能，基于 hexo-generator-search 插件，若已安装其他搜索插件请关闭此功能，以避免生成多余的索引文件</span><br><span class="hljs-comment"># Search feature, based on hexo-generator-search. If you have installed other search plugins, please disable this feature to avoid generating redundant index files</span><br><span class="hljs-attr">search:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br><br>  <span class="hljs-comment"># 搜索索引文件的路径，可以是相对路径或外站的绝对路径</span><br>  <span class="hljs-comment"># Path for search index file, it can be a relative path or an absolute path</span><br>  <span class="hljs-attr">path:</span> <span class="hljs-string">/local-search.xml</span><br><br>  <span class="hljs-comment"># 文件生成在本地的位置，必须是相对路径</span><br>  <span class="hljs-comment"># The location where the index file is generated locally, it must be a relative location</span><br>  <span class="hljs-attr">generate_path:</span> <span class="hljs-string">/local-search.xml</span><br><br>  <span class="hljs-comment"># 搜索的范围</span><br>  <span class="hljs-comment"># Search field</span><br>  <span class="hljs-comment"># Options: post | page | all</span><br>  <span class="hljs-attr">field:</span> <span class="hljs-string">post</span><br><br>  <span class="hljs-comment"># 搜索是否扫描正文</span><br>  <span class="hljs-comment"># If true, search will scan the post content</span><br>  <span class="hljs-attr">content:</span> <span class="hljs-literal">true</span><br><br><span class="hljs-comment"># 首屏图片的相关配置</span><br><span class="hljs-comment"># Config of the big image on the first screen</span><br><span class="hljs-attr">banner:</span><br>  <span class="hljs-comment"># 视差滚动，图片与板块会随着屏幕滚动产生视差效果</span><br>  <span class="hljs-comment"># Scrolling parallax</span><br>  <span class="hljs-attr">parallax:</span> <span class="hljs-literal">true</span><br><br>  <span class="hljs-comment"># 图片最小的宽高比，以免图片两边被过度裁剪，适用于移动端竖屏时，如需关闭设为 0</span><br>  <span class="hljs-comment"># Minimum ratio of width to height, applicable to the vertical screen of mobile device, if you need to close it, set it to 0</span><br>  <span class="hljs-attr">width_height_ratio:</span> <span class="hljs-number">1.0</span><br><br><span class="hljs-comment"># 向下滚动的箭头</span><br><span class="hljs-comment"># Scroll down arrow</span><br><span class="hljs-attr">scroll_down_arrow:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br><br>  <span class="hljs-comment"># 头图高度不小于指定比例，才显示箭头</span><br>  <span class="hljs-comment"># Only the height of the banner image is greater than the ratio, the arrow is displayed</span><br>  <span class="hljs-comment"># Available: 0 - 100</span><br>  <span class="hljs-attr">banner_height_limit:</span> <span class="hljs-number">80</span><br><br>  <span class="hljs-comment"># 翻页后自动滚动</span><br>  <span class="hljs-comment"># Auto scroll after page turning</span><br>  <span class="hljs-attr">scroll_after_turning_page:</span> <span class="hljs-literal">true</span><br><br><span class="hljs-comment"># 向顶部滚动的箭头</span><br><span class="hljs-comment"># Scroll top arrow</span><br><span class="hljs-attr">scroll_top_arrow:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br><br><span class="hljs-comment"># Open Graph metadata</span><br><span class="hljs-comment"># See: https://hexo.io/docs/helpers.html#open-graph</span><br><span class="hljs-attr">open_graph:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">twitter_card:</span> <span class="hljs-string">summary_large_image</span><br>  <span class="hljs-attr">twitter_id:</span><br>  <span class="hljs-attr">twitter_site:</span><br>  <span class="hljs-attr">google_plus:</span><br>  <span class="hljs-attr">fb_admins:</span><br>  <span class="hljs-attr">fb_app_id:</span><br><br><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-comment"># 页脚</span><br><span class="hljs-comment"># Footer</span><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-attr">footer:</span><br>  <span class="hljs-comment"># 页脚第一行文字的 HTML，建议保留 Fluid 的链接，用于向更多人推广本主题</span><br>  <span class="hljs-comment"># HTML of the first line of the footer, it is recommended to keep the Fluid link to promote this theme to more people</span><br>  <span class="hljs-attr">content:</span> <span class="hljs-string">&#x27;</span><br><span class="hljs-string">    &lt;a href=&quot;https://hexo.io&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;&lt;span&gt;Hexo&lt;/span&gt;&lt;/a&gt;</span><br><span class="hljs-string">    &lt;i class=&quot;iconfont icon-love&quot;&gt;&lt;/i&gt;</span><br><span class="hljs-string">    &lt;a href=&quot;https://github.com/fluid-dev/hexo-theme-fluid&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;&lt;span&gt;Fluid&lt;/span&gt;&lt;/a&gt;</span><br><span class="hljs-string">  &#x27;</span><br><br>  <span class="hljs-comment"># 展示网站的 PV、UV 统计数</span><br>  <span class="hljs-comment"># Display website PV and UV statistics</span><br>  <span class="hljs-attr">statistics:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br><br>    <span class="hljs-comment"># 统计数据来源，使用 leancloud 需要设置 `web_analytics: leancloud` 中的参数；使用 busuanzi 不需要额外设置，但是有时不稳定，另外本地运行时 busuanzi 显示统计数据很大属于正常现象，部署后会正常</span><br>    <span class="hljs-comment"># Data source. If use leancloud, you need to set the parameter in `web_analytics: leancloud`</span><br>    <span class="hljs-comment"># Options: busuanzi | leancloud</span><br>    <span class="hljs-attr">source:</span> <span class="hljs-string">&quot;busuanzi&quot;</span><br><br>  <span class="hljs-comment"># 国内大陆服务器的备案信息</span><br>  <span class="hljs-comment"># For Chinese mainland website policy, other areas keep disable</span><br>  <span class="hljs-attr">beian:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-comment"># ICP证号</span><br>    <span class="hljs-attr">icp_text:</span> <span class="hljs-string">京ICP证123456号</span><br>    <span class="hljs-comment"># 公安备案号，不填则只显示ICP</span><br>    <span class="hljs-attr">police_text:</span> <span class="hljs-string">京公网安备12345678号</span><br>    <span class="hljs-comment"># 公安备案的编号，用于URL跳转查询</span><br>    <span class="hljs-attr">police_code:</span> <span class="hljs-number">12345678</span><br>    <span class="hljs-comment"># 公安备案的图片. 为空时不显示备案图片</span><br>    <span class="hljs-attr">police_icon:</span> <span class="hljs-string">/img/police_beian.png</span><br><br><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-comment"># 首页</span><br><span class="hljs-comment"># Home Page</span><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-attr">index:</span><br>  <span class="hljs-comment"># 首页 Banner 头图，可以是相对路径或绝对路径，以下相同</span><br>  <span class="hljs-comment"># Path of Banner image, can be a relative path or an absolute path, the same on other pages</span><br>  <span class="hljs-attr">banner_img:</span> <span class="hljs-string">/img/default.png</span><br><br>  <span class="hljs-comment"># 头图高度，屏幕百分比</span><br>  <span class="hljs-comment"># Height ratio of banner image</span><br>  <span class="hljs-comment"># Available: 0 - 100</span><br>  <span class="hljs-attr">banner_img_height:</span> <span class="hljs-number">100</span><br><br>  <span class="hljs-comment"># 头图黑色蒙版的不透明度，available: 0 - 1.0， 1 是完全不透明</span><br>  <span class="hljs-comment"># Opacity of the banner mask, 1.0 is completely opaque</span><br>  <span class="hljs-comment"># Available: 0 - 1.0</span><br>  <span class="hljs-attr">banner_mask_alpha:</span> <span class="hljs-number">0.3</span><br><br>  <span class="hljs-comment"># 首页副标题的独立设置</span><br>  <span class="hljs-comment"># Independent config of home page subtitle</span><br>  <span class="hljs-attr">slogan:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br><br>    <span class="hljs-comment"># 为空则按 hexo config.subtitle 显示</span><br>    <span class="hljs-comment"># If empty, text based on `subtitle` in hexo config</span><br>    <span class="hljs-attr">text:</span> <span class="hljs-string">&quot;An elegant Material-Design theme for Hexo&quot;</span><br><br>    <span class="hljs-comment"># 通过 API 接口作为首页副标题的内容，必须返回的是 JSON 格式，如果请求失败则按 text 字段显示，该功能必须先开启 typing 打字机功能</span><br>    <span class="hljs-comment"># Subtitle of the homepage through the API, must be returned a JSON. If the request fails, it will be displayed in `text` value. This feature must first enable the typing animation</span><br>    <span class="hljs-attr">api:</span><br>      <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br><br>      <span class="hljs-comment"># 请求地址</span><br>      <span class="hljs-comment"># Request url</span><br>      <span class="hljs-attr">url:</span> <span class="hljs-string">&quot;&quot;</span><br><br>      <span class="hljs-comment"># 请求方法</span><br>      <span class="hljs-comment"># Request method</span><br>      <span class="hljs-comment"># Available: GET | POST | PUT</span><br>      <span class="hljs-attr">method:</span> <span class="hljs-string">&quot;GET&quot;</span><br><br>      <span class="hljs-comment"># 请求头</span><br>      <span class="hljs-comment"># Request headers</span><br>      <span class="hljs-attr">headers:</span> &#123;&#125;<br><br>      <span class="hljs-comment"># 从请求结果获取字符串的取值字段，最终必须是一个字符串，例如返回结果为 &#123;&quot;data&quot;: &#123;&quot;author&quot;: &quot;fluid&quot;, &quot;content&quot;: &quot;An elegant theme&quot;&#125;&#125;, 则取值字段为 [&#x27;data&#x27;, &#x27;content&#x27;]；如果返回是列表则自动选择第一项</span><br>      <span class="hljs-comment"># The value field of the string obtained from the response. For example, the response content is &#123;&quot;data&quot;: &#123;&quot;author&quot;: &quot;fluid&quot;, &quot;content&quot;: &quot;An elegant theme&quot;&#125;&#125;, the expected `keys: [&#x27;data&#x27;,&#x27;content&#x27;]`; if the return is a list, the first item is automatically selected</span><br>      <span class="hljs-attr">keys:</span> []<br><br>  <span class="hljs-comment"># 自动截取文章摘要</span><br>  <span class="hljs-comment"># Auto extract post</span><br>  <span class="hljs-attr">auto_excerpt:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br><br>  <span class="hljs-comment"># 打开文章的标签方式</span><br>  <span class="hljs-comment"># The browser tag to open the post</span><br>  <span class="hljs-comment"># Available: _blank | _self</span><br>  <span class="hljs-attr">post_url_target:</span> <span class="hljs-string">_self</span><br><br>  <span class="hljs-comment"># 是否显示文章信息（时间、分类、标签）</span><br>  <span class="hljs-comment"># Meta information of post</span><br>  <span class="hljs-attr">post_meta:</span><br>    <span class="hljs-attr">date:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">category:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">tag:</span> <span class="hljs-literal">true</span><br><br>  <span class="hljs-comment"># 文章通过 sticky 排序后，在首页文章标题前显示图标</span><br>  <span class="hljs-comment"># If the posts are sorted by `sticky`, an icon is displayed in front of the post title</span><br>  <span class="hljs-attr">post_sticky:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">icon:</span> <span class="hljs-string">&quot;iconfont icon-top&quot;</span><br><br><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-comment"># 文章页</span><br><span class="hljs-comment"># Post Page</span><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-attr">post:</span><br>  <span class="hljs-attr">banner_img:</span> <span class="hljs-string">/img/default.png</span><br>  <span class="hljs-attr">banner_img_height:</span> <span class="hljs-number">70</span><br>  <span class="hljs-attr">banner_mask_alpha:</span> <span class="hljs-number">0.3</span><br><br>  <span class="hljs-comment"># 文章在首页的默认封面图，当没有指定 index_img 时会使用该图片，若两者都为空则不显示任何图片</span><br>  <span class="hljs-comment"># Path of the default post cover when `index_img` is not set. If both are empty, no image will be displayed</span><br>  <span class="hljs-attr">default_index_img:</span><br><br>  <span class="hljs-comment"># 文章标题下方的元信息</span><br>  <span class="hljs-comment"># Meta information below title</span><br>  <span class="hljs-attr">meta:</span><br>    <span class="hljs-comment"># 作者，优先根据 front-matter 里 author 字段，其次是 hexo 配置中 author 值</span><br>    <span class="hljs-comment"># Author, based on `author` field in front-matter, if not set, based on `author` value in hexo config</span><br>    <span class="hljs-attr">author:</span><br>      <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br><br>    <span class="hljs-comment"># 文章日期，优先根据 front-matter 里 date 字段，其次是 md 文件日期</span><br>    <span class="hljs-comment"># Post date, based on `date` field in front-matter, if not set, based on create date of .md file</span><br>    <span class="hljs-attr">date:</span><br>      <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>      <span class="hljs-comment"># 格式参照 ISO-8601 日期格式化</span><br>      <span class="hljs-comment"># ISO-8601 date format</span><br>      <span class="hljs-comment"># See: http://momentjs.cn/docs/#/parsing/string-format/</span><br>      <span class="hljs-attr">format:</span> <span class="hljs-string">&quot;LL a&quot;</span><br><br>    <span class="hljs-comment"># 字数统计</span><br>    <span class="hljs-comment"># Word count</span><br>    <span class="hljs-attr">wordcount:</span><br>      <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br><br>    <span class="hljs-comment"># 估计阅读全文需要的时长</span><br>    <span class="hljs-comment"># Estimated reading time</span><br>    <span class="hljs-attr">min2read:</span><br>      <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>      <span class="hljs-comment"># 每个字词的长度，建议：中文≈2，英文≈5，中英混合可自行调节</span><br>      <span class="hljs-comment"># Average word length (chars count in word), ZH ≈ 2, EN ≈ 5</span><br>      <span class="hljs-attr">awl:</span> <span class="hljs-number">2</span><br>      <span class="hljs-comment"># 每分钟阅读字数，如果大部分是技术文章可适度调低</span><br>      <span class="hljs-comment"># Words per minute</span><br>      <span class="hljs-attr">wpm:</span> <span class="hljs-number">60</span><br><br>    <span class="hljs-comment"># 浏览量计数</span><br>    <span class="hljs-comment"># Number of visits</span><br>    <span class="hljs-attr">views:</span><br>      <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br>      <span class="hljs-comment"># 统计数据来源</span><br>      <span class="hljs-comment"># Data Source</span><br>      <span class="hljs-comment"># Options: busuanzi | leancloud</span><br>      <span class="hljs-attr">source:</span> <span class="hljs-string">&quot;busuanzi&quot;</span><br><br>  <span class="hljs-comment"># 在文章开头显示文章更新时间，该时间默认是 md 文件更新时间，可通过 front-matter 中 `updated` 手动指定（和 date 一样格式）</span><br>  <span class="hljs-comment"># Update date is displayed at the beginning of the post. The default date is the update date of the md file, which can be manually specified by `updated` in front-matter (same format as date)</span><br>  <span class="hljs-attr">updated:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br><br>    <span class="hljs-comment"># 格式参照 ISO-8601 日期格式化</span><br>    <span class="hljs-comment"># ISO-8601 date format</span><br>    <span class="hljs-comment"># See: http://momentjs.cn/docs/#/parsing/string-format/</span><br>    <span class="hljs-attr">date_format:</span> <span class="hljs-string">&quot;LL a&quot;</span><br><br>    <span class="hljs-comment"># 是否使用相对时间表示，比如：&quot;3 天前&quot;</span><br>    <span class="hljs-comment"># If true, it will be a relative time, such as: &quot;3 days ago&quot;</span><br>    <span class="hljs-attr">relative:</span> <span class="hljs-literal">false</span><br><br>    <span class="hljs-comment"># 提示标签类型</span><br>    <span class="hljs-comment"># Note class</span><br>    <span class="hljs-comment"># Options: default | primary | info | success | warning | danger | light</span><br>    <span class="hljs-attr">note_class:</span> <span class="hljs-string">info</span><br><br>  <span class="hljs-comment"># 侧边栏展示当前分类下的文章</span><br>  <span class="hljs-comment"># Sidebar of category</span><br>  <span class="hljs-attr">category_bar:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br><br>    <span class="hljs-comment"># 开启后，只有在文章 Front-matter 里指定 `category_bar: true` 才会展示分类，也可以通过 `category_bar: [&quot;分类A&quot;]` 来指定分类</span><br>    <span class="hljs-comment"># If true, only set `category_bar: true` in Front-matter will enable sidebar of category, also set `category_bar: [&quot;CategoryA&quot;]` to specify categories</span><br>    <span class="hljs-attr">specific:</span> <span class="hljs-literal">true</span><br><br>    <span class="hljs-comment"># 置于板块的左侧或右侧</span><br>    <span class="hljs-comment"># place in the board</span><br>    <span class="hljs-comment"># Options: left | right</span><br>    <span class="hljs-attr">placement:</span> <span class="hljs-string">left</span><br><br>    <span class="hljs-comment"># 文章的排序字段，前面带减号是倒序，不带减号是正序</span><br>    <span class="hljs-comment"># Sort field for posts, with a minus sign is reverse order</span><br>    <span class="hljs-comment"># Options: date | title | or other field of front-matter</span><br>    <span class="hljs-attr">post_order_by:</span> <span class="hljs-string">&quot;title&quot;</span><br><br>    <span class="hljs-comment"># 单个分类中折叠展示文章数的最大值，超过限制会显示 More，0 则不限制</span><br>    <span class="hljs-comment"># The maximum number of posts in a single category. If the limit is exceeded, it will be displayed More. If 0 no limit</span><br>    <span class="hljs-attr">post_limit:</span> <span class="hljs-number">0</span><br><br>  <span class="hljs-comment"># 侧边栏展示文章目录</span><br>  <span class="hljs-comment"># Table of contents (TOC) in the sidebar</span><br>  <span class="hljs-attr">toc:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br><br>    <span class="hljs-comment"># 置于板块的左侧或右侧</span><br>    <span class="hljs-comment"># place in the board</span><br>    <span class="hljs-comment"># Options: left | right</span><br>    <span class="hljs-attr">placement:</span> <span class="hljs-string">right</span><br><br>    <span class="hljs-comment"># 目录会选择这些节点作为标题</span><br>    <span class="hljs-comment"># TOC will select these nodes as headings</span><br>    <span class="hljs-attr">headingSelector:</span> <span class="hljs-string">&quot;h1,h2,h3,h4,h5,h6&quot;</span><br><br>    <span class="hljs-comment"># 层级的折叠深度，0 是全部折叠，大于 0 后如果存在下级标题则默认展开</span><br>    <span class="hljs-comment"># Collapse depth. If 0, all headings collapsed. If greater than 0, it will be expanded by default if there are sub headings</span><br>    <span class="hljs-attr">collapseDepth:</span> <span class="hljs-number">0</span><br><br>  <span class="hljs-comment"># 版权声明，会显示在每篇文章的结尾</span><br>  <span class="hljs-comment"># Copyright, will be displayed at the end of each post</span><br>  <span class="hljs-attr">copyright:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br><br>    <span class="hljs-comment"># CreativeCommons license</span><br>    <span class="hljs-comment"># Options: BY | BY-SA | BY-ND | BY-NC | BY-NC-SA | BY-NC-ND</span><br>    <span class="hljs-attr">license:</span> <span class="hljs-string">&#x27;BY&#x27;</span><br><br>    <span class="hljs-comment"># 显示作者</span><br>    <span class="hljs-attr">author:</span><br>      <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br><br>    <span class="hljs-comment"># 显示发布日期</span><br>    <span class="hljs-comment"># Show post date</span><br>    <span class="hljs-attr">post_date:</span><br>      <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>      <span class="hljs-attr">format:</span> <span class="hljs-string">&quot;LL&quot;</span><br><br>    <span class="hljs-comment"># 显示更新日期</span><br>    <span class="hljs-comment"># Show update date</span><br>    <span class="hljs-attr">update_date:</span><br>      <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br>      <span class="hljs-attr">format:</span> <span class="hljs-string">&quot;LL&quot;</span><br><br>  <span class="hljs-comment"># 文章底部上一篇下一篇功能</span><br>  <span class="hljs-comment"># Link to previous/next post</span><br>  <span class="hljs-attr">prev_next:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br><br>  <span class="hljs-comment"># 文章图片标题</span><br>  <span class="hljs-comment"># Image caption</span><br>  <span class="hljs-attr">image_caption:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br><br>  <span class="hljs-comment"># 文章图片可点击放大</span><br>  <span class="hljs-comment"># Zoom feature of images</span><br>  <span class="hljs-attr">image_zoom:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-comment"># 放大后图片链接替换规则，可用于将压缩图片链接替换为原图片链接，如 [&#x27;-slim&#x27;, &#x27;&#x27;] 是将链接中 `-slim` 移除；如果想使用正则请使用 `re:` 前缀，如 [&#x27;re:\\d&#123;3,4&#125;\\/\\d&#123;3,4&#125;\\/&#x27;, &#x27;&#x27;]</span><br>    <span class="hljs-comment"># The image url replacement when zooming, the feature can be used to replace the compressed image to the original image, eg: [&#x27;-slim&#x27;, &#x27;&#x27;] removes `-slim` from the image url when zooming; if you want to use regular, use prefix `re:`, eg: [&#x27;re:\\d&#123;3,4&#125;\\/\\d&#123;3,4&#125;\\/&#x27;,&#x27;&#x27;]</span><br>    <span class="hljs-attr">img_url_replace:</span> [<span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>]<br><br>  <span class="hljs-comment"># 脚注语法，会在文章底部生成脚注，如果 Markdown 渲染器本身支持，则建议关闭，否则可能会冲突</span><br>  <span class="hljs-comment"># Support footnote syntax, footnotes will be generated at the bottom of the post page. If the Markdown renderer itself supports it, please disable it, otherwise it may conflict</span><br>  <span class="hljs-attr">footnote:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-comment"># 脚注的节标题，也可以在 front-matter 中通过 `foot<span class="hljs-doctag">note:</span> &lt;h2&gt;Reference&lt;/h2&gt;` 这种形式修改单独页面的 header</span><br>    <span class="hljs-comment"># The section title of the footnote, you can also modify the header of a single page in the form of `foot<span class="hljs-doctag">note:</span> &lt;h2&gt;Reference&lt;/h2&gt;` in front-matter</span><br>    <span class="hljs-attr">header:</span> <span class="hljs-string">&#x27;&#x27;</span><br><br>  <span class="hljs-comment"># 数学公式，开启之前需要更换 Markdown 渲染器，否则复杂公式会有兼容问题，具体请见：https://hexo.fluid-dev.com/docs/guide/##latex-数学公式</span><br>  <span class="hljs-comment"># Mathematical formula. If enable, you need to change the Markdown renderer, see: https://hexo.fluid-dev.com/docs/en/guide/#math</span><br>  <span class="hljs-attr">math:</span><br>    <span class="hljs-comment"># 开启后文章默认可用，自定义页面如需使用，需在 Front-matter 中指定 `math: true`</span><br>    <span class="hljs-comment"># If you want to use math on the custom page, you need to set `math: true` in Front-matter</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br><br>    <span class="hljs-comment"># 开启后，只有在文章 Front-matter 里指定 `math: true` 才会在文章页启动公式转换，以便在页面不包含公式时提高加载速度</span><br>    <span class="hljs-comment"># If true, only set `math: true` in Front-matter will enable math, to load faster when the page does not contain math</span><br>    <span class="hljs-attr">specific:</span> <span class="hljs-literal">false</span><br><br>    <span class="hljs-comment"># Options: mathjax | katex</span><br>    <span class="hljs-attr">engine:</span> <span class="hljs-string">mathjax</span><br><br>  <span class="hljs-comment"># 流程图，基于 mermaid-js，具体请见：https://hexo.fluid-dev.com/docs/guide/#mermaid-流程图</span><br>  <span class="hljs-comment"># Flow chart, based on mermaid-js, see: https://hexo.fluid-dev.com/docs/en/guide/#mermaid</span><br>  <span class="hljs-attr">mermaid:</span><br>    <span class="hljs-comment"># 开启后文章默认可用，自定义页面如需使用，需在 Front-matter 中指定 `mermaid: true`</span><br>    <span class="hljs-comment"># If you want to use mermaid on the custom page, you need to set `mermaid: true` in Front-matter</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br><br>    <span class="hljs-comment"># 开启后，只有在文章 Front-matter 里指定 `mermaid: true` 才会在文章页启动公式转换，以便在页面不包含公式时提高加载速度</span><br>    <span class="hljs-comment"># If true, only set `mermaid: true` in Front-matter will enable mermaid, to load faster when the page does not contain mermaid</span><br>    <span class="hljs-attr">specific:</span> <span class="hljs-literal">false</span><br><br>    <span class="hljs-comment"># See: http://mermaid-js.github.io/mermaid/</span><br>    <span class="hljs-attr">options:</span> &#123; <span class="hljs-attr">theme:</span> <span class="hljs-string">&#x27;default&#x27;</span> &#125;<br><br>  <span class="hljs-comment"># 评论插件</span><br>  <span class="hljs-comment"># Comment plugin</span><br>  <span class="hljs-attr">comments:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-comment"># 指定的插件，需要同时设置对应插件的必要参数</span><br>    <span class="hljs-comment"># The specified plugin needs to set the necessary parameters at the same time</span><br>    <span class="hljs-comment"># Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus</span><br>    <span class="hljs-attr">type:</span> <span class="hljs-string">disqus</span><br><br><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-comment"># 评论插件</span><br><span class="hljs-comment"># Comment plugins</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># 开启评论需要先设置上方 `post: comments: enable: true`，然后根据 `type` 设置下方对应的评论插件参数</span><br><span class="hljs-comment"># Enable comments need to be set `post: comments: enable: true`, then set the corresponding comment plugin parameters below according to `type`</span><br><span class="hljs-comment">#---------------------------</span><br><br><span class="hljs-comment"># Utterances</span><br><span class="hljs-comment"># 基于 GitHub Issues</span><br><span class="hljs-comment"># Based on GitHub Issues</span><br><span class="hljs-comment"># See: https://utteranc.es</span><br><span class="hljs-attr">utterances:</span><br>  <span class="hljs-attr">repo:</span><br>  <span class="hljs-attr">issue_term:</span> <span class="hljs-string">pathname</span><br>  <span class="hljs-attr">label:</span> <span class="hljs-string">utterances</span><br>  <span class="hljs-attr">theme:</span> <span class="hljs-string">github-light</span><br>  <span class="hljs-attr">theme_dark:</span> <span class="hljs-string">github-dark</span><br><br><span class="hljs-comment"># Disqus</span><br><span class="hljs-comment"># 基于第三方的服务，国内用户直接使用容易被墙，建议配合 Disqusjs</span><br><span class="hljs-comment"># Based on third-party service</span><br><span class="hljs-comment"># See: https://disqus.com</span><br><span class="hljs-attr">disqus:</span><br>  <span class="hljs-attr">shortname:</span><br>  <span class="hljs-comment"># 以下为 Disqusjs 支持, 国内用户如果想使用 Disqus 建议配合使用</span><br>  <span class="hljs-comment"># The following are Disqusjs configurations, please ignore if DisqusJS is not required</span><br>  <span class="hljs-comment"># See: https://github.com/SukkaW/DisqusJS</span><br>  <span class="hljs-attr">disqusjs:</span> <span class="hljs-literal">false</span><br>  <span class="hljs-attr">apikey:</span><br><br><span class="hljs-comment"># Gitalk</span><br><span class="hljs-comment"># 基于 GitHub Issues</span><br><span class="hljs-comment"># Based on GitHub Issues</span><br><span class="hljs-comment"># See: https://github.com/gitalk/gitalk#options</span><br><span class="hljs-attr">gitalk:</span><br>  <span class="hljs-attr">clientID:</span><br>  <span class="hljs-attr">clientSecret:</span><br>  <span class="hljs-attr">repo:</span><br>  <span class="hljs-attr">owner:</span><br>  <span class="hljs-attr">admin:</span> [<span class="hljs-string">&#x27;name&#x27;</span>]<br>  <span class="hljs-attr">language:</span> <span class="hljs-string">zh-CN</span><br>  <span class="hljs-attr">labels:</span> [<span class="hljs-string">&#x27;Gitalk&#x27;</span>]<br>  <span class="hljs-attr">perPage:</span> <span class="hljs-number">10</span><br>  <span class="hljs-attr">pagerDirection:</span> <span class="hljs-string">last</span><br>  <span class="hljs-attr">distractionFreeMode:</span> <span class="hljs-literal">false</span><br>  <span class="hljs-attr">createIssueManually:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-comment"># 默认 proxy 可能会失效，解决方法请见下方链接</span><br>  <span class="hljs-comment"># The default proxy may be invalid, refer to the links for solutions</span><br>  <span class="hljs-comment"># https://github.com/gitalk/gitalk/issues/429</span><br>  <span class="hljs-comment"># https://github.com/Zibri/cloudflare-cors-anywhere</span><br>  <span class="hljs-attr">proxy:</span> <span class="hljs-string">https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token</span><br><br><span class="hljs-comment"># Valine</span><br><span class="hljs-comment"># 基于 LeanCloud</span><br><span class="hljs-comment"># Based on LeanCloud</span><br><span class="hljs-comment"># See: https://valine.js.org/</span><br><span class="hljs-attr">valine:</span><br>  <span class="hljs-attr">appId:</span><br>  <span class="hljs-attr">appKey:</span><br>  <span class="hljs-attr">path:</span> <span class="hljs-string">window.location.pathname</span><br>  <span class="hljs-attr">placeholder:</span><br>  <span class="hljs-attr">avatar:</span> <span class="hljs-string">&#x27;retro&#x27;</span><br>  <span class="hljs-attr">meta:</span> [<span class="hljs-string">&#x27;nick&#x27;</span>, <span class="hljs-string">&#x27;mail&#x27;</span>, <span class="hljs-string">&#x27;link&#x27;</span>]<br>  <span class="hljs-attr">requiredFields:</span> []<br>  <span class="hljs-attr">pageSize:</span> <span class="hljs-number">10</span><br>  <span class="hljs-attr">lang:</span> <span class="hljs-string">&#x27;zh-CN&#x27;</span><br>  <span class="hljs-attr">highlight:</span> <span class="hljs-literal">false</span><br>  <span class="hljs-attr">recordIP:</span> <span class="hljs-literal">false</span><br>  <span class="hljs-attr">serverURLs:</span> <span class="hljs-string">&#x27;&#x27;</span><br>  <span class="hljs-attr">emojiCDN:</span><br>  <span class="hljs-attr">emojiMaps:</span><br>  <span class="hljs-attr">enableQQ:</span> <span class="hljs-literal">false</span><br><br><span class="hljs-comment"># Waline</span><br><span class="hljs-comment"># 从 Valine 衍生而来，额外增加了服务端和多种功能</span><br><span class="hljs-comment"># Derived from Valine, with self-hosted service and new features</span><br><span class="hljs-comment"># See: https://waline.js.org/</span><br><span class="hljs-attr">waline:</span><br>  <span class="hljs-attr">serverURL:</span> <span class="hljs-string">&#x27;&#x27;</span><br>  <span class="hljs-attr">path:</span> <span class="hljs-string">window.location.pathname</span><br>  <span class="hljs-attr">meta:</span> [<span class="hljs-string">&#x27;nick&#x27;</span>, <span class="hljs-string">&#x27;mail&#x27;</span>, <span class="hljs-string">&#x27;link&#x27;</span>]<br>  <span class="hljs-attr">requiredMeta:</span> [<span class="hljs-string">&#x27;nick&#x27;</span>]<br>  <span class="hljs-attr">lang:</span> <span class="hljs-string">&#x27;zh-CN&#x27;</span><br>  <span class="hljs-attr">emoji:</span> [<span class="hljs-string">&#x27;https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo&#x27;</span>]<br>  <span class="hljs-attr">dark:</span> <span class="hljs-string">&#x27;html[data-user-color-scheme=&quot;dark&quot;]&#x27;</span><br>  <span class="hljs-attr">wordLimit:</span> <span class="hljs-number">0</span><br>  <span class="hljs-attr">pageSize:</span> <span class="hljs-number">10</span><br><br><span class="hljs-comment"># 畅言 Changyan</span><br><span class="hljs-comment"># 基于第三方的服务</span><br><span class="hljs-comment"># Based on third-party service, insufficient support for regions outside China</span><br><span class="hljs-comment"># http://changyan.kuaizhan.com</span><br><span class="hljs-attr">changyan:</span><br>  <span class="hljs-attr">appid:</span> <span class="hljs-string">&#x27;&#x27;</span><br>  <span class="hljs-attr">appkey:</span> <span class="hljs-string">&#x27;&#x27;</span><br><br><span class="hljs-comment"># 来必力 Livere</span><br><span class="hljs-comment"># 基于第三方的服务</span><br><span class="hljs-comment"># Based on third-party service</span><br><span class="hljs-comment"># See: https://www.livere.com</span><br><span class="hljs-attr">livere:</span><br>  <span class="hljs-attr">uid:</span> <span class="hljs-string">&#x27;&#x27;</span><br><br><span class="hljs-comment"># Remark42</span><br><span class="hljs-comment"># 需要自托管服务端</span><br><span class="hljs-comment"># Based on self-hosted service</span><br><span class="hljs-comment"># See: https://remark42.com</span><br><span class="hljs-attr">remark42:</span><br>  <span class="hljs-attr">host:</span><br>  <span class="hljs-attr">site_id:</span><br>  <span class="hljs-attr">max_shown_comments:</span> <span class="hljs-number">10</span><br>  <span class="hljs-attr">locale:</span> <span class="hljs-string">zh</span><br>  <span class="hljs-attr">components:</span> [<span class="hljs-string">&#x27;embed&#x27;</span>]<br><br><span class="hljs-comment"># Twikoo</span><br><span class="hljs-comment"># 基于腾讯云开发</span><br><span class="hljs-comment"># Based on Tencent CloudBase</span><br><span class="hljs-comment"># See: https://twikoo.js.org</span><br><span class="hljs-attr">twikoo:</span><br>  <span class="hljs-attr">envId:</span><br>  <span class="hljs-attr">region:</span> <span class="hljs-string">ap-shanghai</span><br>  <span class="hljs-attr">path:</span> <span class="hljs-string">window.location.pathname</span><br><br><span class="hljs-comment"># Cusdis</span><br><span class="hljs-comment"># 基于第三方服务或自托管服务</span><br><span class="hljs-comment"># Based on third-party or self-hosted service</span><br><span class="hljs-comment"># See https://cusdis.com</span><br><span class="hljs-attr">cusdis:</span><br>  <span class="hljs-attr">host:</span><br>  <span class="hljs-attr">app_id:</span><br>  <span class="hljs-attr">lang:</span> <span class="hljs-string">zh-cn</span><br><br><span class="hljs-comment"># Giscus</span><br><span class="hljs-comment"># 基于 GitHub Discussions，类似于 Utterances</span><br><span class="hljs-comment"># Based on GitHub Discussions, similar to Utterances</span><br><span class="hljs-comment"># See: https://giscus.app/</span><br><span class="hljs-attr">giscus:</span><br>  <span class="hljs-attr">repo:</span><br>  <span class="hljs-attr">repo-id:</span><br>  <span class="hljs-attr">category:</span><br>  <span class="hljs-attr">category-id:</span><br>  <span class="hljs-attr">theme-light:</span> <span class="hljs-string">light</span><br>  <span class="hljs-attr">theme-dark:</span> <span class="hljs-string">dark</span><br>  <span class="hljs-attr">mapping:</span> <span class="hljs-string">pathname</span><br>  <span class="hljs-attr">reactions-enabled:</span> <span class="hljs-number">1</span><br>  <span class="hljs-attr">emit-metadata:</span> <span class="hljs-number">0</span><br>  <span class="hljs-attr">input-position:</span> <span class="hljs-string">top</span><br>  <span class="hljs-attr">lang:</span> <span class="hljs-string">zh-CN</span><br><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-comment"># 归档页</span><br><span class="hljs-comment"># Archive Page</span><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-attr">archive:</span><br>  <span class="hljs-attr">banner_img:</span> <span class="hljs-string">/img/default.png</span><br>  <span class="hljs-attr">banner_img_height:</span> <span class="hljs-number">60</span><br>  <span class="hljs-attr">banner_mask_alpha:</span> <span class="hljs-number">0.3</span><br><br><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-comment"># 分类页</span><br><span class="hljs-comment"># Category Page</span><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-attr">category:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">banner_img:</span> <span class="hljs-string">/img/default.png</span><br>  <span class="hljs-attr">banner_img_height:</span> <span class="hljs-number">60</span><br>  <span class="hljs-attr">banner_mask_alpha:</span> <span class="hljs-number">0.3</span><br><br>  <span class="hljs-comment"># 分类的排序字段，前面带减号是倒序，不带减号是正序</span><br>  <span class="hljs-comment"># Sort field for categories, with a minus sign is reverse order</span><br>  <span class="hljs-comment"># Options: length | name</span><br>  <span class="hljs-attr">order_by:</span> <span class="hljs-string">&quot;-length&quot;</span><br><br>  <span class="hljs-comment"># 层级的折叠深度，0 是全部折叠，大于 0 后如果存在子分类则默认展开</span><br>  <span class="hljs-comment"># Collapse depth. If 0, all posts collapsed. If greater than 0, it will be expanded by default if there are subcategories</span><br>  <span class="hljs-attr">collapse_depth:</span> <span class="hljs-number">0</span><br><br>  <span class="hljs-comment"># 文章的排序字段，前面带减号是倒序，不带减号是正序</span><br>  <span class="hljs-comment"># Sort field for posts, with a minus sign is reverse order</span><br>  <span class="hljs-comment"># Options: date | title | or other field of front-matter</span><br>  <span class="hljs-attr">post_order_by:</span> <span class="hljs-string">&quot;-date&quot;</span><br><br>  <span class="hljs-comment"># 单个分类中折叠展示文章数的最大值，超过限制会显示 More，0 则不限制</span><br>  <span class="hljs-comment"># The maximum number of posts in a single category. If the limit is exceeded, it will be displayed More. If 0 no limit</span><br>  <span class="hljs-attr">post_limit:</span> <span class="hljs-number">10</span><br><br><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-comment"># 标签页</span><br><span class="hljs-comment"># Tag Page</span><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-attr">tag:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">banner_img:</span> <span class="hljs-string">/img/default.png</span><br>  <span class="hljs-attr">banner_img_height:</span> <span class="hljs-number">80</span><br>  <span class="hljs-attr">banner_mask_alpha:</span> <span class="hljs-number">0.3</span><br>  <span class="hljs-attr">tagcloud:</span><br>    <span class="hljs-attr">min_font:</span> <span class="hljs-number">15</span><br>    <span class="hljs-attr">max_font:</span> <span class="hljs-number">30</span><br>    <span class="hljs-attr">unit:</span> <span class="hljs-string">px</span><br>    <span class="hljs-attr">start_color:</span> <span class="hljs-string">&quot;#BBBBEE&quot;</span><br>    <span class="hljs-attr">end_color:</span> <span class="hljs-string">&quot;#337ab7&quot;</span><br><br><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-comment"># 关于页</span><br><span class="hljs-comment"># About Page</span><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-attr">about:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">banner_img:</span> <span class="hljs-string">/img/default.png</span><br>  <span class="hljs-attr">banner_img_height:</span> <span class="hljs-number">60</span><br>  <span class="hljs-attr">banner_mask_alpha:</span> <span class="hljs-number">0.3</span><br>  <span class="hljs-attr">avatar:</span> <span class="hljs-string">/img/avatar.png</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">&quot;Fluid&quot;</span><br>  <span class="hljs-attr">intro:</span> <span class="hljs-string">&quot;An elegant theme for Hexo&quot;</span><br>  <span class="hljs-comment"># 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，`class` 代表图标的 css class，添加 `qrcode` 后，图标不再是链接而是悬浮二维码</span><br>  <span class="hljs-comment"># More icons can be found from https://hexo.fluid-dev.com/docs/en/icon/  `class` is the css class of the icon. If adding `qrcode`, The icon is no longer a link, but a hovering QR code</span><br>  <span class="hljs-attr">icons:</span><br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">class:</span> <span class="hljs-string">&quot;iconfont icon-github-fill&quot;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&quot;https://github.com&quot;</span>, <span class="hljs-attr">tip:</span> <span class="hljs-string">&quot;GitHub&quot;</span> &#125;<br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">class:</span> <span class="hljs-string">&quot;iconfont icon-douban-fill&quot;</span>, <span class="hljs-attr">link:</span> <span class="hljs-string">&quot;https://douban.com&quot;</span>, <span class="hljs-attr">tip:</span> <span class="hljs-string">&quot;豆瓣&quot;</span> &#125;<br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">class:</span> <span class="hljs-string">&quot;iconfont icon-wechat-fill&quot;</span>, <span class="hljs-attr">qrcode:</span> <span class="hljs-string">&quot;/img/favicon.png&quot;</span> &#125;<br><br><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-comment"># 自定义页</span><br><span class="hljs-comment"># Custom Page</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># 通过 hexo new page 命令创建的页面</span><br><span class="hljs-comment"># Custom Page through `hexo new page`</span><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-attr">page:</span><br>  <span class="hljs-attr">banner_img:</span> <span class="hljs-string">/img/default.png</span><br>  <span class="hljs-attr">banner_img_height:</span> <span class="hljs-number">60</span><br>  <span class="hljs-attr">banner_mask_alpha:</span> <span class="hljs-number">0.3</span><br><br><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-comment"># 404页</span><br><span class="hljs-comment"># 404 Page</span><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-attr">page404:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">banner_img:</span> <span class="hljs-string">/img/default.png</span><br>  <span class="hljs-attr">banner_img_height:</span> <span class="hljs-number">85</span><br>  <span class="hljs-attr">banner_mask_alpha:</span> <span class="hljs-number">0.3</span><br>  <span class="hljs-comment"># 重定向到首页的延迟(毫秒)</span><br>  <span class="hljs-comment"># Delay in redirecting to home page (milliseconds)</span><br>  <span class="hljs-attr">redirect_delay:</span> <span class="hljs-number">5000</span><br><br><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-comment"># 友链页</span><br><span class="hljs-comment"># Links Page</span><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-attr">links:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">banner_img:</span> <span class="hljs-string">/img/default.png</span><br>  <span class="hljs-attr">banner_img_height:</span> <span class="hljs-number">60</span><br>  <span class="hljs-attr">banner_mask_alpha:</span> <span class="hljs-number">0.3</span><br>  <span class="hljs-comment"># 友链的成员项</span><br>  <span class="hljs-comment"># Member item of page</span><br>  <span class="hljs-attr">items:</span><br>    <span class="hljs-bullet">-</span> &#123;<br>      <span class="hljs-attr">title:</span> <span class="hljs-string">&quot;Fluid Blog&quot;</span>,<br>      <span class="hljs-attr">intro:</span> <span class="hljs-string">&quot;主题博客&quot;</span>,<br>      <span class="hljs-attr">link:</span> <span class="hljs-string">&quot;https://hexo.fluid-dev.com/&quot;</span>,<br>      <span class="hljs-attr">avatar:</span> <span class="hljs-string">&quot;/img/favicon.png&quot;</span><br>    &#125;<br>    <span class="hljs-bullet">-</span> &#123;<br>      <span class="hljs-attr">title:</span> <span class="hljs-string">&quot;Fluid Docs&quot;</span>,<br>      <span class="hljs-attr">intro:</span> <span class="hljs-string">&quot;主题使用指南&quot;</span>,<br>      <span class="hljs-attr">link:</span> <span class="hljs-string">&quot;https://hexo.fluid-dev.com/docs/&quot;</span>,<br>      <span class="hljs-attr">avatar:</span> <span class="hljs-string">&quot;/img/favicon.png&quot;</span><br>    &#125;<br>    <span class="hljs-bullet">-</span> &#123;<br>      <span class="hljs-attr">title:</span> <span class="hljs-string">&quot;Fluid Repo&quot;</span>,<br>      <span class="hljs-attr">intro:</span> <span class="hljs-string">&quot;主题 GitHub 仓库&quot;</span>,<br>      <span class="hljs-attr">link:</span> <span class="hljs-string">&quot;https://github.com/fluid-dev/hexo-theme-fluid&quot;</span>,<br>      <span class="hljs-attr">avatar:</span> <span class="hljs-string">&quot;/img/favicon.png&quot;</span><br>    &#125;<br><br>  <span class="hljs-comment"># 当成员头像加载失败时，替换为指定图片</span><br>  <span class="hljs-comment"># When the member avatar fails to load, replace the specified image</span><br>  <span class="hljs-attr">onerror_avatar:</span> <span class="hljs-string">/img/avatar.png</span><br><br>  <span class="hljs-comment"># 友链下方自定义区域，支持 HTML，可插入例如申请友链的文字</span><br>  <span class="hljs-comment"># Custom content at the bottom of the links</span><br>  <span class="hljs-attr">custom:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-attr">content:</span> <span class="hljs-string">&#x27;&lt;hr&gt;&lt;p&gt;在下方留言申请加入我的友链，按如下格式提供信息：&lt;/p&gt;&lt;ul&gt;&lt;li&gt;博客名：Fluid&lt;/li&gt;&lt;li&gt;简介：Fluid 主题官方博客&lt;/li&gt;&lt;li&gt;链接：https://hexo.fluid-dev.com&lt;/li&gt;&lt;li&gt;图片：https://hexo.fluid-dev.com/img/favicon.png&lt;/li&gt;&lt;/ul&gt;&#x27;</span><br><br>  <span class="hljs-comment"># 评论插件</span><br>  <span class="hljs-comment"># Comment plugin</span><br>  <span class="hljs-attr">comments:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-comment"># 指定的插件，需要同时设置对应插件的必要参数</span><br>    <span class="hljs-comment"># The specified plugin needs to set the necessary parameters at the same time</span><br>    <span class="hljs-comment"># Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus</span><br>    <span class="hljs-attr">type:</span> <span class="hljs-string">disqus</span><br><br><br><span class="hljs-comment">#---------------------------</span><br><span class="hljs-comment"># 以下是配置 JS CSS 等静态资源的 URL 前缀，可以自定义成 CDN 地址，</span><br><span class="hljs-comment"># 如果需要修改，最好使用与默认配置相同的版本，以避免潜在的问题，</span><br><span class="hljs-comment"># ** 如果你不知道如何设置，请不要做任何改动 **</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># Here is the url prefix to configure the static assets. Set CDN addresses you want to customize.</span><br><span class="hljs-comment"># Be aware that you would better use the same version as default ones to avoid potential problems.</span><br><span class="hljs-comment"># DO NOT EDIT THE FOLLOWING SETTINGS UNLESS YOU KNOW WHAT YOU ARE DOING</span><br><span class="hljs-comment">#---------------------------</span><br><br><span class="hljs-attr">static_prefix:</span><br>  <span class="hljs-comment"># 内部静态</span><br>  <span class="hljs-comment"># Internal static</span><br>  <span class="hljs-attr">internal_js:</span> <span class="hljs-string">/js</span><br>  <span class="hljs-attr">internal_css:</span> <span class="hljs-string">/css</span><br>  <span class="hljs-attr">internal_img:</span> <span class="hljs-string">/img</span><br><br>  <span class="hljs-attr">anchor:</span> <span class="hljs-string">https://lib.baomitu.com/anchor-js/4.3.1/</span><br><br>  <span class="hljs-attr">github_markdown:</span> <span class="hljs-string">https://lib.baomitu.com/github-markdown-css/4.0.0/</span><br><br>  <span class="hljs-attr">jquery:</span> <span class="hljs-string">https://lib.baomitu.com/jquery/3.6.0/</span><br><br>  <span class="hljs-attr">bootstrap:</span> <span class="hljs-string">https://lib.baomitu.com/twitter-bootstrap/4.6.1/</span><br><br>  <span class="hljs-attr">prismjs:</span> <span class="hljs-string">https://lib.baomitu.com/prism/1.27.0/</span><br><br>  <span class="hljs-attr">tocbot:</span> <span class="hljs-string">https://lib.baomitu.com/tocbot/4.18.2/</span><br><br>  <span class="hljs-attr">typed:</span> <span class="hljs-string">https://lib.baomitu.com/typed.js/2.0.12/</span><br><br>  <span class="hljs-attr">fancybox:</span> <span class="hljs-string">https://lib.baomitu.com/fancybox/3.5.7/</span><br><br>  <span class="hljs-attr">nprogress:</span> <span class="hljs-string">https://lib.baomitu.com/nprogress/0.2.0/</span><br><br>  <span class="hljs-attr">mathjax:</span> <span class="hljs-string">https://lib.baomitu.com/mathjax/3.2.1/</span><br><br>  <span class="hljs-attr">katex:</span> <span class="hljs-string">https://lib.baomitu.com/KaTeX/0.15.6/</span><br><br>  <span class="hljs-attr">busuanzi:</span> <span class="hljs-string">https://busuanzi.ibruce.info/busuanzi/2.3/</span><br><br>  <span class="hljs-attr">clipboard:</span> <span class="hljs-string">https://lib.baomitu.com/clipboard.js/2.0.10/</span><br><br>  <span class="hljs-attr">mermaid:</span> <span class="hljs-string">https://lib.baomitu.com/mermaid/8.14.0/</span><br><br>  <span class="hljs-attr">valine:</span> <span class="hljs-string">https://lib.baomitu.com/valine/1.4.17/</span><br><br>  <span class="hljs-attr">waline:</span> <span class="hljs-string">https://lib.baomitu.com/waline/2.5.1/</span><br><br>  <span class="hljs-attr">gitalk:</span> <span class="hljs-string">https://lib.baomitu.com/gitalk/1.7.2/</span><br><br>  <span class="hljs-attr">disqusjs:</span> <span class="hljs-string">https://lib.baomitu.com/disqusjs/1.3.0/</span><br><br>  <span class="hljs-attr">twikoo:</span> <span class="hljs-string">https://lib.baomitu.com/twikoo/1.5.11/</span><br><br>  <span class="hljs-attr">hint:</span> <span class="hljs-string">https://lib.baomitu.com/hint.css/2.7.0/</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="2-3-指定主题"><a href="#2-3-指定主题" class="headerlink" title="2.3 指定主题"></a>2.3 指定主题</h2><p>修改 Hexo 博客目录中的 <code>_config.yml</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">theme: fluid  # 指定主题<br><br>language: zh-CN  # 指定语言，会影响主题显示的语言，按需修改<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-4-创建「关于页」"><a href="#2-4-创建「关于页」" class="headerlink" title="2.4 创建「关于页」"></a>2.4 创建「关于页」</h2><p>首次使用主题的「关于页」需要手动创建：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">hexo new page about<br></code></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h1 id="3-常用命令"><a href="#3-常用命令" class="headerlink" title="3. 常用命令"></a>3. 常用命令</h1><h2 id="3-1-hexo-server-启动Hexo服务"><a href="#3-1-hexo-server-启动Hexo服务" class="headerlink" title="3.1 hexo server 启动Hexo服务"></a>3.1 hexo server 启动Hexo服务</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">hexo server<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-2-hexo-new-新建文章"><a href="#3-2-hexo-new-新建文章" class="headerlink" title="3.2 hexo new 新建文章"></a>3.2 hexo new 新建文章</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">hexo new post 文件名</span><br></code></pre></td></tr></table></figure>
+
+<p>执行成功后会在source&#x2F;_posts目录下生成<code>文件名.md</code>文件,内容如下所示</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs md">---<br>title: 文章题目<br>date: 2022-08-26 10:17:20<br>tags: [标签1,标签2]<br><span class="hljs-section">categories: 分类</span><br><span class="hljs-section">---</span><br>文章描述<br>&lt;!--more--&gt;<br>正文内容<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-3-hexo-g-打包"><a href="#3-3-hexo-g-打包" class="headerlink" title="3.3 hexo g 打包"></a>3.3 hexo g 打包</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">hexo g<br></code></pre></td></tr></table></figure>
+
+<p>执行完成后会生成public文件夹,可以将此文件夹内容部署在nginx服务器上,实现网站的部署</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99/" class="category-chain-item">关于本站</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/">#搭建指南</a>
+      
+        <a href="/tags/blog/">#blog</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>本站搭建指南</div>
+      <div>http://tgkzxy.top/2022/08/25/搭建指南/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Alan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月25日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/26/FTPSClient/" title="FTPSClient 522 SSL connection failed错误">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">FTPSClient 522 SSL connection failed错误</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/25/SpringBootToken/" title="SpringBoot便捷的token验证方式">
+                        <span class="hidden-mobile">SpringBoot便捷的token验证方式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="关于本站"
+        id="heading-237de3ecca865e3778a5b4d82c558842" role="tab" data-toggle="collapse" href="#collapse-237de3ecca865e3778a5b4d82c558842"
+        aria-expanded="true"
+      >
+        关于本站
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-237de3ecca865e3778a5b4d82c558842"
+           role="tabpanel" aria-labelledby="heading-237de3ecca865e3778a5b4d82c558842">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/08/25/%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/" title="本站搭建指南"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">本站搭建指南</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      皖ICP备2022001395号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

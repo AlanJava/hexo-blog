@@ -1,0 +1,999 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/blog.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Alan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="计算机软考程序设计师学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软考中级-程序设计师">
+<meta property="og:url" content="http://tgkzxy.top/2022/08/22/%E8%BD%AF%E8%80%83%E4%B8%AD%E7%BA%A7-%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%B8%88/index.html">
+<meta property="og:site_name" content="AlanBlog">
+<meta property="og:description" content="计算机软考程序设计师学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/imgimage-20220813231108042.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220813231320703.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220814171106987.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220814171425987.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220814172127598.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220814172635450.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220814224640572.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220814225138122.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220814225552143.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220814230211871.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220814231124623.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220820184336040.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220820184815083.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220820192204457.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220821223216663.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220821223732567.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220821224204359.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220821224822213.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220821225048926.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220821225942722.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220821232506844.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220821233220278.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826223534565.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826224211258.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826224913992.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826225204348.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826225318377.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826225436069.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826230606575.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826231417124.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826231530418.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826232151517.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826232230303.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826232331975.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826232450469.png">
+<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826232717862.png">
+<meta property="article:published_time" content="2022-08-22T14:15:59.000Z">
+<meta property="article:modified_time" content="2022-10-14T05:53:55.817Z">
+<meta property="article:author" content="Alan">
+<meta property="article:tag" content="软考">
+<meta property="article:tag" content="计算机">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/imgimage-20220813231108042.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>软考中级-程序设计师 - AlanBlog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"tgkzxy.top","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":40,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"https://hm.baidu.com/hm.js?7d37043c4c8a6f686df5c990bb99f544","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?https://hm.baidu.com/hm.js?7d37043c4c8a6f686df5c990bb99f544";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>AlanBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/wallhaven.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="软考中级-程序设计师"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">软考中级-程序设计师</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2022年10月14日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>计算机软考程序设计师学习笔记</p>
+<span id="more"></span>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><h2 id="考试时间"><a href="#考试时间" class="headerlink" title="考试时间"></a>考试时间</h2><blockquote>
+<p> 上午</p>
+</blockquote>
+<p>计算机与软件工程 150分钟 笔试 选择题</p>
+<blockquote>
+<p>下午</p>
+</blockquote>
+<p>软件设计150分钟  笔试 问答题</p>
+<p>数据流图</p>
+<p>数据库</p>
+<p>UML</p>
+<p>算法-一般用c语言</p>
+<p>面向对象编程-以设计模式为背景 c++ java二选一</p>
+<h2 id="分数占比"><a href="#分数占比" class="headerlink" title="分数占比"></a>分数占比</h2><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/imgimage-20220813231108042.png" srcset="/img/loading.gif" lazyload alt="image-20220813231108042"></p>
+<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220813231320703.png" srcset="/img/loading.gif" lazyload alt="image-20220813231320703"></p>
+<h1 id="1-计算机组成原理与体系结构"><a href="#1-计算机组成原理与体系结构" class="headerlink" title="1. 计算机组成原理与体系结构"></a>1. 计算机组成原理与体系结构</h1><h2 id="1-1-前言"><a href="#1-1-前言" class="headerlink" title="1.1 前言"></a>1.1 前言</h2><blockquote>
+<p> 分值</p>
+</blockquote>
+<p>6分</p>
+<blockquote>
+<p>内容</p>
+</blockquote>
+<ul>
+<li>数据的表示</li>
+<li>计算机结构</li>
+<li>Flynn分类法</li>
+<li>CISC与RISC</li>
+<li>流水线技术</li>
+<li>存储系统</li>
+<li>总线系统</li>
+<li>可靠性</li>
+<li>检验码</li>
+</ul>
+<h2 id="1-2-数据的表示-进制转换"><a href="#1-2-数据的表示-进制转换" class="headerlink" title="1.2 数据的表示(进制转换)"></a>1.2 数据的表示(进制转换)</h2><h3 id="1-2-1-各种进制转10进制"><a href="#1-2-1-各种进制转10进制" class="headerlink" title="1.2.1 各种进制转10进制"></a>1.2.1 各种进制转10进制</h3><p>如图所示</p>
+<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220814171106987.png" srcset="/img/loading.gif" lazyload alt="image-20220814171106987"></p>
+<h3 id="1-2-2-十进制转其他进制"><a href="#1-2-2-十进制转其他进制" class="headerlink" title="1.2.2 十进制转其他进制"></a>1.2.2 十进制转其他进制</h3><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220814171425987.png" srcset="/img/loading.gif" lazyload alt="image-20220814171425987"></p>
+<h3 id="1-2-3-二进制-转-八进制和十六进制"><a href="#1-2-3-二进制-转-八进制和十六进制" class="headerlink" title="1.2.3 二进制 转 八进制和十六进制"></a>1.2.3 二进制 转 八进制和十六进制</h3><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220814172127598.png" srcset="/img/loading.gif" lazyload alt="image-20220814172127598"></p>
+<blockquote>
+<p> 十六进制 双位数的表示</p>
+</blockquote>
+<ul>
+<li>10 A</li>
+<li>11 B</li>
+<li>12 C</li>
+<li>13 D</li>
+<li>14 E</li>
+<li>15 F</li>
+</ul>
+<h2 id="1-3-数据表示-原码反码补码移码"><a href="#1-3-数据表示-原码反码补码移码" class="headerlink" title="1.3 数据表示(原码反码补码移码)"></a>1.3 数据表示(原码反码补码移码)</h2><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220814172635450.png" srcset="/img/loading.gif" lazyload alt="image-20220814172635450"></p>
+<h3 id="1-3-1-概念"><a href="#1-3-1-概念" class="headerlink" title="1.3.1 概念"></a>1.3.1 概念</h3><blockquote>
+<p>原码</p>
+</blockquote>
+<p>一个字节8个bit,所以至少有8个数字</p>
+<ul>
+<li><strong>正数</strong></li>
+</ul>
+<p>开头是0</p>
+<ul>
+<li><strong>负数</strong></li>
+</ul>
+<p>开头是1</p>
+<blockquote>
+<p>反码</p>
+</blockquote>
+<ul>
+<li><strong>正数</strong></li>
+</ul>
+<p>和原码一样</p>
+<ul>
+<li><strong>负数</strong></li>
+</ul>
+<p>除了第一个符号位,其它相对于原码取反</p>
+<blockquote>
+<p>补码</p>
+</blockquote>
+<ul>
+<li><strong>正数</strong></li>
+</ul>
+<p>和原码一样</p>
+<ul>
+<li><strong>负数</strong></li>
+</ul>
+<p>比反码+1</p>
+<blockquote>
+<p>移码</p>
+</blockquote>
+<p>用处:作为浮点运算中的解码</p>
+<ul>
+<li><strong>正数</strong></li>
+</ul>
+<p>原码的首位取反</p>
+<ul>
+<li><strong>负数</strong></li>
+</ul>
+<p>补码的首位取反</p>
+<hr>
+<h3 id="1-3-2表示范围"><a href="#1-3-2表示范围" class="headerlink" title="1.3.2表示范围"></a>1.3.2表示范围</h3><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220814224640572.png" srcset="/img/loading.gif" lazyload alt="image-20220814224640572"></p>
+<hr>
+<h2 id="1-4-浮点数运算"><a href="#1-4-浮点数运算" class="headerlink" title="1.4 浮点数运算"></a>1.4 浮点数运算</h2><h3 id="1-4-1-概念"><a href="#1-4-1-概念" class="headerlink" title="1.4.1 概念"></a>1.4.1 概念</h3><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220814225138122.png" srcset="/img/loading.gif" lazyload alt="image-20220814225138122"></p>
+<ul>
+<li><p><strong>对阶</strong>–低的往高的对   10^2^变10^3^</p>
+</li>
+<li><p><strong>尾数计算</strong>–相加</p>
+</li>
+<li><p><strong>结果格式化</strong>  变成x.xxx</p>
+</li>
+</ul>
+<hr>
+<h2 id="1-5-计算机结构"><a href="#1-5-计算机结构" class="headerlink" title="1.5 计算机结构"></a>1.5 计算机结构</h2><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220814225552143.png" srcset="/img/loading.gif" lazyload alt="image-20220814225552143"></p>
+<p>这里的主机只包含CPU和内存</p>
+<hr>
+<h2 id="1-6-计算机体系结构分类-Flynn"><a href="#1-6-计算机体系结构分类-Flynn" class="headerlink" title="1.6 计算机体系结构分类-Flynn"></a>1.6 计算机体系结构分类-Flynn</h2><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220814230211871.png" srcset="/img/loading.gif" lazyload alt="image-20220814230211871"></p>
+<hr>
+<h2 id="1-7-CISC和RISC"><a href="#1-7-CISC和RISC" class="headerlink" title="1.7 CISC和RISC"></a>1.7 CISC和RISC</h2><p><strong>针对特征考选择题</strong></p>
+<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220814231124623.png" srcset="/img/loading.gif" lazyload alt="image-20220814231124623"></p>
+<blockquote>
+<p>CISC(复杂)</p>
+</blockquote>
+<blockquote>
+<p>RISC(精简)</p>
+</blockquote>
+<hr>
+<h2 id="1-8-流水线概念"><a href="#1-8-流水线概念" class="headerlink" title="1.8 流水线概念"></a>1.8 流水线概念</h2><p>必考-考计算的问题</p>
+<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220820184336040.png" srcset="/img/loading.gif" lazyload alt="image-20220820184336040"></p>
+<p>取指,分析,执行用的是不同的部件,每个部件做专门的事情,使用流水线可以让各个部件不用等待上一个指令</p>
+<h2 id="1-9-流水线计算"><a href="#1-9-流水线计算" class="headerlink" title="1.9 流水线计算"></a>1.9 流水线计算</h2><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220820184815083.png" srcset="/img/loading.gif" lazyload alt="image-20220820184815083"></p>
+<p>**周期:**取指,分析,执行中用时最长的一个步骤所用的时间</p>
+<p>**理论公式来源:**第一个流程走完,然后再进入流水线</p>
+<p>**实际公式来源:**把每个步骤的执行时间都当做一个周期时间来计算,这里取指,分析,执行一共有三步,所以当做3个周期</p>
+<p>总共就是102个周期</p>
+<p>选答案的时候首先计算理论公式,其次使用实践公式</p>
+<hr>
+<h2 id="1-10-流水线吞吐率计算"><a href="#1-10-流水线吞吐率计算" class="headerlink" title="1.10 流水线吞吐率计算"></a>1.10 流水线吞吐率计算</h2><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220820192204457.png" srcset="/img/loading.gif" lazyload alt="image-20220820192204457"></p>
+<p>单位时间内,流水线能完成的任务数量</p>
+<p>100条指令,执行203毫秒,吞吐率 &#x3D; 100&#x2F;203</p>
+<p>**最大吞吐率:**1&#x2F;周期</p>
+<hr>
+<h2 id="1-11-流水线的加速比"><a href="#1-11-流水线的加速比" class="headerlink" title="1.11 流水线的加速比"></a>1.11 流水线的加速比</h2><p>加速比 &#x3D; 不使用流水线的时间&#x2F;使用流水线的时间</p>
+<hr>
+<h2 id="1-12-流水线的效率"><a href="#1-12-流水线的效率" class="headerlink" title="1.12 流水线的效率"></a>1.12 流水线的效率</h2><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220821223216663.png" srcset="/img/loading.gif" lazyload alt="image-20220821223216663"></p>
+<p>效率 &#x3D; 阴影部分除以全部部分</p>
+<hr>
+<h2 id="1-13-层次化存储结构"><a href="#1-13-层次化存储结构" class="headerlink" title="1.13 层次化存储结构"></a>1.13 层次化存储结构</h2><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220821223732567.png" srcset="/img/loading.gif" lazyload alt="image-20220821223732567"></p>
+<h2 id="1-14-cache的基本概念"><a href="#1-14-cache的基本概念" class="headerlink" title="1.14 cache的基本概念"></a>1.14 cache的基本概念</h2><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220821224204359.png" srcset="/img/loading.gif" lazyload alt="image-20220821224204359"></p>
+<p>用上cache 的平均周期 &#x3D; 命中率 乘上 cache周期+未命中率 乘上 内存周期</p>
+<hr>
+<h2 id="1-15-局部性原理"><a href="#1-15-局部性原理" class="headerlink" title="1.15 局部性原理"></a>1.15 局部性原理</h2><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220821224822213.png" srcset="/img/loading.gif" lazyload alt="image-20220821224822213"></p>
+<p>时间局部性&#x3D;刚访问过的数据,存入cache,再次访问从cache取</p>
+<p>空间局部性&#x3D;数组,访问了i[0],接下来访问i[1]很快</p>
+<hr>
+<h2 id="1-16-随机存储器和只读存储器"><a href="#1-16-随机存储器和只读存储器" class="headerlink" title="1.16 随机存储器和只读存储器"></a>1.16 随机存储器和只读存储器</h2><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220821225048926.png" srcset="/img/loading.gif" lazyload alt="image-20220821225048926"></p>
+<blockquote>
+<p>主存的编址</p>
+</blockquote>
+<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220821225942722.png" srcset="/img/loading.gif" lazyload alt="image-20220821225942722"></p>
+<h2 id="1-17-磁盘工作原理"><a href="#1-17-磁盘工作原理" class="headerlink" title="1.17 磁盘工作原理"></a>1.17 磁盘工作原理</h2><blockquote>
+<p>磁盘结构与参数</p>
+</blockquote>
+<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220821232506844.png" srcset="/img/loading.gif" lazyload alt="image-20220821232506844"></p>
+<p>内容存储在磁道上,磁头先移到磁道上,然后旋转磁盘,转到相应的扇区,然后读取出信息</p>
+<p>**等待时间:**磁盘转一圈的时间</p>
+<blockquote>
+<p>试题</p>
+</blockquote>
+<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/github-image/img/image-20220821233220278.png" srcset="/img/loading.gif" lazyload alt="image-20220821233220278"></p>
+<h2 id="1-18-计算机总线"><a href="#1-18-计算机总线" class="headerlink" title="1.18 计算机总线"></a>1.18 计算机总线</h2><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826223534565.png" srcset="/img/loading.gif" lazyload alt="image-20220826223534565"></p>
+<ul>
+<li>内部总线</li>
+<li>系统总线<ul>
+<li>数据总线   32位系统就是数据总线有32个bit位</li>
+<li>地址总线   32位系统就是地址有2^32^个,也就是4g</li>
+<li>控制总线</li>
+</ul>
+</li>
+<li>外部总线</li>
+</ul>
+<p>经常考察选择题</p>
+<hr>
+<h2 id="1-19串联系统和并联系统可靠性分析"><a href="#1-19串联系统和并联系统可靠性分析" class="headerlink" title="1.19串联系统和并联系统可靠性分析"></a>1.19串联系统和并联系统可靠性分析</h2><blockquote>
+<p>串联</p>
+</blockquote>
+<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826224211258.png" srcset="/img/loading.gif" lazyload alt="image-20220826224211258"></p>
+<p>可靠性&#x3D; 每个可靠度相乘</p>
+<blockquote>
+<p>并联</p>
+</blockquote>
+<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826224913992.png" srcset="/img/loading.gif" lazyload alt="image-20220826224913992"></p>
+<p>失效率 &#x3D;1- ( 每个失效率相乘)</p>
+<p><strong>模冗余系统与混合系统</strong></p>
+<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826225204348.png" srcset="/img/loading.gif" lazyload alt="image-20220826225204348"></p>
+<blockquote>
+<p>练习题</p>
+</blockquote>
+<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826225318377.png" srcset="/img/loading.gif" lazyload alt="image-20220826225318377"></p>
+<p>求可靠度</p>
+<p>总体是串联,右边两个是并联,先分层三块计算,最后再计算总体串联的</p>
+<hr>
+<h2 id="1-20-校验码的概念"><a href="#1-20-校验码的概念" class="headerlink" title="1.20 校验码的概念"></a>1.20 校验码的概念</h2><h3 id="查错控制-CRC与海明校验码"><a href="#查错控制-CRC与海明校验码" class="headerlink" title="查错控制-CRC与海明校验码"></a>查错控制-CRC与海明校验码</h3><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826225436069.png" srcset="/img/loading.gif" lazyload alt="image-20220826225436069"></p>
+<p>码距:变化几个位才能从一个合法码字变成另一个合法码字</p>
+<h3 id="校验码-循环校验码CRC"><a href="#校验码-循环校验码CRC" class="headerlink" title="校验码-循环校验码CRC"></a>校验码-循环校验码CRC</h3><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826230606575.png" srcset="/img/loading.gif" lazyload alt="image-20220826230606575"></p>
+<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826231417124.png" srcset="/img/loading.gif" lazyload alt="image-20220826231417124"></p>
+<h3 id="海明校验码"><a href="#海明校验码" class="headerlink" title="海明校验码"></a>海明校验码</h3><p>考试难点,频率很高</p>
+<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826231530418.png" srcset="/img/loading.gif" lazyload alt="image-20220826231530418"></p>
+<hr>
+<h1 id="2-操作系统原理"><a href="#2-操作系统原理" class="headerlink" title="2. 操作系统原理"></a>2. 操作系统原理</h1><p>分值占比:5-7分</p>
+<h2 id="2-1-概述"><a href="#2-1-概述" class="headerlink" title="2.1 概述"></a>2.1 概述</h2><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826232151517.png" srcset="/img/loading.gif" lazyload alt="image-20220826232151517"></p>
+<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826232230303.png" srcset="/img/loading.gif" lazyload alt="image-20220826232230303"></p>
+<h2 id="2-2-进程的状态"><a href="#2-2-进程的状态" class="headerlink" title="2.2 进程的状态"></a>2.2 进程的状态</h2><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826232331975.png" srcset="/img/loading.gif" lazyload alt="image-20220826232331975"></p>
+<hr>
+<h2 id="2-3-前趋图"><a href="#2-3-前趋图" class="headerlink" title="2.3 前趋图"></a>2.3 前趋图</h2><p>经常考,和pv操作一起考</p>
+<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826232450469.png" srcset="/img/loading.gif" lazyload alt="image-20220826232450469"></p>
+<p>用前趋图可以表示事件的先后关系</p>
+<hr>
+<h2 id="2-4-进程的同步与互斥"><a href="#2-4-进程的同步与互斥" class="headerlink" title="2.4 进程的同步与互斥"></a>2.4 进程的同步与互斥</h2><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/img/image-20220826232717862.png" srcset="/img/loading.gif" lazyload alt="image-20220826232717862"></p>
+<p>互斥:同一个资源在同一时间只能被一个进程访问</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%BD%AF%E8%80%83/" class="category-chain-item">软考</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%BD%AF%E8%80%83/">#软考</a>
+      
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">#计算机</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>软考中级-程序设计师</div>
+      <div>http://tgkzxy.top/2022/08/22/软考中级-程序设计师/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Alan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月22日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/25/SpringBootToken/" title="SpringBoot便捷的token验证方式">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SpringBoot便捷的token验证方式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="软考"
+        id="heading-762116165498e17e45d148008fd808a1" role="tab" data-toggle="collapse" href="#collapse-762116165498e17e45d148008fd808a1"
+        aria-expanded="true"
+      >
+        软考
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-762116165498e17e45d148008fd808a1"
+           role="tabpanel" aria-labelledby="heading-762116165498e17e45d148008fd808a1">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/08/22/%E8%BD%AF%E8%80%83%E4%B8%AD%E7%BA%A7-%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%B8%88/" title="软考中级-程序设计师"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">软考中级-程序设计师</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      皖ICP备2022001395号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
