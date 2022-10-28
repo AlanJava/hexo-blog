@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>Maven依赖导出</title>
+    <link href="/2022/10/28/Maven%E4%BE%9D%E8%B5%96%E5%AF%BC%E5%87%BA/"/>
+    <url>/2022/10/28/Maven%E4%BE%9D%E8%B5%96%E5%AF%BC%E5%87%BA/</url>
+    
+    <content type="html"><![CDATA[<p>使用mvn命令导出maven工程依赖的所有jar包</p><span id="more"></span><h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h1><p>在没有网络的时候,我们无法使用maven管理项目依赖.这是如果需要搭建springboot项目的话,就只能引入jar包</p><p>但是springboot依赖的jar包这么多,怎么知道要引入哪些呢</p><h1 id="2-导出jar包"><a href="#2-导出jar包" class="headerlink" title="2. 导出jar包"></a>2. 导出jar包</h1><p>可以先在有网络环境下搭建maven项目,pom配置好依赖后,使用以下命令将依赖的jar包导出本地的lib文件夹下</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">mvn dependency:copy-dependencies -DoutputDirectory=lib <br><span class="hljs-meta prompt_"># </span><span class="language-bash">lib文件夹可更改为其它文件夹</span><br></code></pre></td></tr></table></figure><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028103307859.png" alt="image-20221028103307859"></p><h1 id="3-导入jar包"><a href="#3-导入jar包" class="headerlink" title="3. 导入jar包"></a>3. 导入jar包</h1><ul><li><p>idea新建个普通的Java项目</p></li><li><p>点击Project Structure</p></li></ul><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028103457001.png" alt="image-20221028103457001"></p><ul><li>选择jar包</li></ul><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028103716902.png" alt="image-20221028103716902"></p><ul><li>引入lib</li></ul><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028103814383.png" alt="image-20221028103814383"></p><ul><li>最后根据springboot的文件目录创建java和resources目录,分别右键java和resources目录<code>Mark Directoty As</code></li></ul><p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028104204052.png" alt="image-20221028104204052"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>maven</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>maven</tag>
+      
+      <tag>mvn</tag>
+      
+      <tag>内网</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>java11-java17新特性</title>
     <link href="/2022/10/12/java%E6%96%B0%E7%89%B9%E6%80%A7/"/>
     <url>/2022/10/12/java%E6%96%B0%E7%89%B9%E6%80%A7/</url>
@@ -54,19 +83,6 @@
       <tag>爬虫</tag>
       
     </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>黑苹果</title>
-    <link href="/2022/10/06/%E9%BB%91%E8%8B%B9%E6%9E%9C/"/>
-    <url>/2022/10/06/%E9%BB%91%E8%8B%B9%E6%9E%9C/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    
     
   </entry>
   
