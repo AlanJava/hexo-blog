@@ -1,5 +1,5 @@
 ---
-title: Nexus搭建Yum私服
+title: Nexus搭建yum私服
 date: 2022-10-28 15:33:44
 tags: [内网,linux,yum,nexus]
 categories: nexus
