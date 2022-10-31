@@ -45,7 +45,7 @@
 <meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028152236774.png">
 <meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028152630034.png">
 <meta property="article:published_time" content="2022-10-28T07:33:44.000Z">
-<meta property="article:modified_time" content="2022-10-28T08:26:13.511Z">
+<meta property="article:modified_time" content="2022-10-31T02:04:25.729Z">
 <meta property="article:author" content="Alan">
 <meta property="article:tag" content="内网">
 <meta property="article:tag" content="linux">
@@ -353,7 +353,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2022年10月28日 下午
+                    本文最后更新于：2022年10月31日 上午
                   
                 
               </p>
@@ -367,9 +367,9 @@
 <h1 id="1-问题"><a href="#1-问题" class="headerlink" title="1. 问题"></a>1. 问题</h1><p>在生产环境中,很多Centos服务器都部署在内网环境中,如果需要安装软件只能手动编译源码或者下载rpm包进行安装.</p>
 <p>在使用rpm包安装时,经常会出现缺失依赖的情况,这时候我们需要自己下载依赖,不仅繁琐,还经常出现依赖包等级过低,需要升级才能安装的情况.</p>
 <p>这时候我们不禁怀念有外网时可以<code>yum install xxx</code>的舒服</p>
-<h1 id="2-解决思路"><a href="#2-解决思路" class="headerlink" title="2. 解决思路"></a>2. 解决思路</h1><h2 id="2-1-搭建yum私服"><a href="#2-1-搭建yum私服" class="headerlink" title="2.1 搭建yum私服"></a>2.1 搭建yum私服</h2><p>我们知道,Centos添加阿里云,腾讯云的yum镜像服务.那么自然,也可以添加我们自己的yum镜像私服</p>
+<h1 id="2-解决思路"><a href="#2-解决思路" class="headerlink" title="2. 解决思路"></a>2. 解决思路</h1><h2 id="2-1-搭建yum私服"><a href="#2-1-搭建yum私服" class="headerlink" title="2.1 搭建yum私服"></a>2.1 搭建yum私服</h2><p>我们自用的Centos经常会添加阿里云,腾讯云的yum镜像服务.那么自然,也可以添加我们自己的yum镜像私服</p>
 <p>如果我们在内网的另一台电脑部署一个yum私服,然后在centos服务器中添加我们的yum私服地址.就可以通过<code>yum install xxx</code>从私服安装软件并自动解决依赖问题</p>
-<h2 id="2-2-上传rpm包至yum私服中"><a href="#2-2-上传rpm包至yum私服中" class="headerlink" title="2.2 上传rpm包至yum私服中"></a>2.2 上传rpm包至yum私服中</h2><p>为了能让内网中的centos访问yum私服,我们是在内网搭建的yum私服,那yum私服中所需要的rpm包从哪来呢?</p>
+<h2 id="2-2-上传rpm包至yum私服中"><a href="#2-2-上传rpm包至yum私服中" class="headerlink" title="2.2 上传rpm包至yum私服中"></a>2.2 上传rpm包至yum私服中</h2><p>为了能让内网中的centos访问yum私服,我们是在内网的另一台电脑(也可以是centos服务器本身)搭建的yum私服,这台电脑同样是没有外网的,那yum私服中所需要的rpm包从哪来呢?</p>
 <p>虽然内网电脑无法上网,但是作为程序员肯定是有自己的笔记本的呀,自己的笔记本肯定是能使用外网的.</p>
 <p>在自己笔记本的centos虚拟机下载软件所需所有依赖</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">repotrack firefox -p /opt/firefox-all-dep-test<br><span class="hljs-meta prompt_"># </span><span class="language-bash">repotrack 可以不止可以下载软件包和软件依赖,还能下载依赖的依赖</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">-p 指定下载位置</span><br></code></pre></td></tr></table></figure>
@@ -493,7 +493,7 @@
 <ul>
 <li><strong>下载</strong></li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">yum install firefox --enablerepo=nexus-local<br><span class="hljs-meta prompt_"># </span><span class="language-bash">--enablerepo 使用指定镜像下载</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">yum install firefox --enablerepo=nexus-local<br><span class="hljs-meta prompt_"># </span><span class="language-bash">--enablerepo 使用指定的yum仓库下载</span><br></code></pre></td></tr></table></figure>
 
 <p>忘记镜像名使用如下命令查看镜像源</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">yum repolist<br></code></pre></td></tr></table></figure>
