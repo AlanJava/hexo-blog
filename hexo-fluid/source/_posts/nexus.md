@@ -20,13 +20,13 @@ categories: nexus
 
 ## 2.1 搭建yum私服
 
-我们知道,Centos添加阿里云,腾讯云的yum镜像服务.那么自然,也可以添加我们自己的yum镜像私服
+我们自用的Centos经常会添加阿里云,腾讯云的yum镜像服务.那么自然,也可以添加我们自己的yum镜像私服
 
 如果我们在内网的另一台电脑部署一个yum私服,然后在centos服务器中添加我们的yum私服地址.就可以通过`yum install xxx`从私服安装软件并自动解决依赖问题
 
 ## 2.2 上传rpm包至yum私服中
 
-为了能让内网中的centos访问yum私服,我们是在内网搭建的yum私服,那yum私服中所需要的rpm包从哪来呢?
+为了能让内网中的centos访问yum私服,我们是在内网的另一台电脑(也可以是centos服务器本身)搭建的yum私服,这台电脑同样是没有外网的,那yum私服中所需要的rpm包从哪来呢?
 
 虽然内网电脑无法上网,但是作为程序员肯定是有自己的笔记本的呀,自己的笔记本肯定是能使用外网的.
 
@@ -250,7 +250,7 @@ yum makecache
 
 ```shell
 yum install firefox --enablerepo=nexus-local
-# --enablerepo 使用指定镜像下载
+# --enablerepo 使用指定的yum仓库下载
 ```
 
 忘记镜像名使用如下命令查看镜像源
@@ -260,4 +260,3 @@ yum repolist
 ```
 
 ![image-20221028152630034](https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028152630034.png)
-
