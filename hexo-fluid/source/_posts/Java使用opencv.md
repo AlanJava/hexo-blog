@@ -1,8 +1,8 @@
 ---
 title: Java使用opencv
 date: 2022-11-04 16:01:05
-tags:
-categories:
+tags: [opencv,图像处理,图像识别]
+categories: java
 ---
 在Java中使用opencv处理图像
 
