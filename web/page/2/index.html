@@ -19,8 +19,8 @@
   <meta name="keywords" content="">
   
     <meta property="og:type" content="website">
-<meta property="og:title" content="归档">
-<meta property="og:url" content="http://tgkzxy.top/archives/2022/09/index.html">
+<meta property="og:title" content="AlanBlog">
+<meta property="og:url" content="http://tgkzxy.top/page/2/index.html">
 <meta property="og:site_name" content="AlanBlog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Alan">
@@ -30,7 +30,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>归档 - AlanBlog</title>
+  <title>AlanBlog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -112,7 +112,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 60vh;">
+<div class="header-inner" style="height: 100vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -229,13 +229,17 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="归档"></span>
+            <span id="subtitle" data-typed-text="This is Alan&#39;s blog website"></span>
           
         </div>
 
         
       </div>
 
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
       
     </div>
   </div>
@@ -249,36 +253,84 @@
     
       <div class="container nopadding-x-md">
         <div id="board"
-          >
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">共计 11 篇文章</p>
-  <hr>
-  
-  
+
+  <div class="row mx-auto index-card">
     
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/08/22/%E8%BD%AF%E8%80%83%E4%B8%AD%E7%BA%A7-%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%B8%88/" target="_self">
+          软考中级-程序设计师
+        </a>
+      </h1>
+
       
-      <p class="h5">2022</p>
-    
-    <a href="/2022/09/26/redis/" class="list-group-item list-group-item-action">
-      <time>09-26</time>
-      <div class="list-group-item-title">redis入门</div>
-    </a>
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/08/22/%E8%BD%AF%E8%80%83%E4%B8%AD%E7%BA%A7-%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%B8%88/" target="_self">
+        <div>
+          计算机软考程序设计师学习笔记
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-22 22:15" pubdate>
+              2022-08-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
   
     
-    <a href="/2022/09/14/word%E5%AF%BC%E5%87%BA/" class="list-group-item list-group-item-action">
-      <time>09-14</time>
-      <div class="list-group-item-title">word导出</div>
-    </a>
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%BD%AF%E8%80%83/" class="category-chain-item">软考</a>
   
-</div>
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%BD%AF%E8%80%83/">#软考</a>
+            
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">#计算机</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
 
 
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
 
 
 
@@ -401,7 +453,37 @@
       }
       var text = subtitle.getAttribute('data-typed-text');
       
-        typing(text);
+        jQuery.ajax({
+          type: 'GET',
+          url: 'api/slogan',
+          headers: {},
+          dataType: 'json',
+          success: function(result) {
+            var apiText;
+            if (result) {
+              var keys = 'data'.split(',');
+              if (result instanceof Array) {
+                result = result[0];
+              }
+              for (const k of keys) {
+                var value = result[k];
+                if (typeof value === 'string') {
+                  apiText = value;
+                  break;
+                } else if (value instanceof Object) {
+                  result = value;
+                }
+              }
+            }
+            apiText ? typing(apiText) : typing(text);
+          },
+          error: function(xhr, status, error) {
+            if (error) {
+              console.error('Failed to request api/slogan:', error);
+            }
+            typing(text);
+          }
+        })
       
     })(window, document);
   </script>
