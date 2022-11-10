@@ -4,6 +4,8 @@ date: 2022-11-10 21:49:16
 tags: [java,AES,对称加密]
 categories: 加密
 ---
+java中使用对称加密算法
+<!-- more -->
 # 1. 什么是对称加密
 
 > **对称密钥算法**（英语：**Symmetric-key algorithm**）又称为**对称加密**、**私钥加密**、**共享密钥加密**，是[密码学](https://zh.wikipedia.org/wiki/密碼學)中的一类加密算法。这类算法在加密和解密时使用相同的密钥，或是使用两个可以简单地相互推算的密钥。事实上，这组密钥成为在两个或多个成员间的共同秘密，以便维持专属的通信联系[[1\]](https://zh.wikipedia.org/zh-my/對稱密鑰加密#cite_note-1)。与[公开密钥加密](https://zh.wikipedia.org/wiki/公开密钥加密)相比，要求双方获取相同的密钥是对称密钥加密的主要缺点之一[[2\]](https://zh.wikipedia.org/zh-my/對稱密鑰加密#cite_note-2)。
