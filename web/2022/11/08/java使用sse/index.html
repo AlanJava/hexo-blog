@@ -18,35 +18,28 @@
   <meta name="author" content="Alan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在Java中使用opencv处理图像">
+    <meta name="description" content="SSE(Server-Sent Events)比WebSocket更轻量化的服务器主动推送信息的方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java使用opencv">
-<meta property="og:url" content="http://tgkzxy.top/2022/11/04/Java%E4%BD%BF%E7%94%A8opencv/index.html">
+<meta property="og:title" content="java使用sse">
+<meta property="og:url" content="http://tgkzxy.top/2022/11/08/java%E4%BD%BF%E7%94%A8sse/index.html">
 <meta property="og:site_name" content="AlanBlog">
-<meta property="og:description" content="在Java中使用opencv处理图像">
+<meta property="og:description" content="SSE(Server-Sent Events)比WebSocket更轻量化的服务器主动推送信息的方法">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221104154504385.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221104154753665.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img-t.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img2.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img3.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img4.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img5.png">
-<meta property="article:published_time" content="2022-11-04T08:01:05.000Z">
-<meta property="article:modified_time" content="2022-11-04T14:55:04.196Z">
+<meta property="article:published_time" content="2022-11-08T09:20:29.000Z">
+<meta property="article:modified_time" content="2022-11-10T13:45:19.651Z">
 <meta property="article:author" content="Alan">
-<meta property="article:tag" content="opencv">
-<meta property="article:tag" content="图像处理">
-<meta property="article:tag" content="图像识别">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="异步">
+<meta property="article:tag" content="SSE">
+<meta property="article:tag" content="服务端推送">
+<meta property="article:tag" content="半双工">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Java使用opencv - AlanBlog</title>
+  <title>java使用sse - AlanBlog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -251,7 +244,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java使用opencv"></span>
+            <span id="subtitle" data-typed-text="java使用sse"></span>
           
         </div>
 
@@ -268,7 +261,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          2.5k 字
+          2.8k 字
         
       </span>
     
@@ -280,7 +273,7 @@
         
         
           <!-- compatible with older versions-->
-          21 分钟
+          23 分钟
         
       </span>
     
@@ -336,12 +329,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Java使用opencv</h1>
+            <h1 style="display: none">java使用sse</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2022年11月4日 晚上
+                    本文最后更新于：2022年11月10日 晚上
                   
                 
               </p>
@@ -349,59 +342,47 @@
             
               <div class="markdown-body">
                 
-                <p>在Java中使用opencv处理图像</p>
+                <p>SSE(Server-Sent Events)比WebSocket更轻量化的服务器主动推送信息的方法</p>
 <span id="more"></span>
 
-<h1 id="1-需求缘由"><a href="#1-需求缘由" class="headerlink" title="1. 需求缘由"></a>1. 需求缘由</h1><p>在写爬虫时,我们有时会使用Selenium自动输入用户名和密码获取登录权限</p>
-<p>但是有的网站会有数字字母验证码,这些验证码十分碍事,只能人工操作手动输入,而且要手动操作的话就无法在无头模式下运行浏览器了.</p>
-<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img.png" srcset="/img/loading.gif" lazyload alt="常见的数字验证码"></p>
-<p>已知的解决方案是获取验证码图片,使用OCR文字识别获取验证码文字内容</p>
-<p>可以使用的OCR有</p>
+<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><h2 id="1-1-什么是SSE"><a href="#1-1-什么是SSE" class="headerlink" title="1.1 什么是SSE"></a>1.1 什么是SSE</h2><p>SSE(<code>Server Sent Event</code>)，服务器发送事件，顾名思义，也就是客户端可以获取到服务器发送的事件.</p>
+<p>HTTP 协议无法做到服务端主动推送信息给客户端。但是，有一种变通方法，就是服务器向客户端声明，接下来要发送的是流信息(类似于hls)。</p>
+<p>也就是说，发送的不是一次性的数据包，而是一个数据流，会连续不断地发送过来。这时，客户端不会关闭连接(使用长连接)，会一直等着服务器发过来的新的数据流，视频播放(HLS)就是这样的例子。本质上，这种通信就是以流信息的方式，完成一次用时很长的下载。</p>
+<p>SSE 就是利用这种机制，使用流信息向浏览器推送信息。它基于 HTTP 协议，目前除了 IE&#x2F;Edge，其他浏览器都支持。</p>
+<h2 id="1-2-SSE与WebSocket"><a href="#1-2-SSE与WebSocket" class="headerlink" title="1.2 SSE与WebSocket"></a>1.2 SSE与WebSocket</h2><p>SSE 与 WebSocket 作用相似，都是建立浏览器与服务器之间的通信渠道，然后服务器向浏览器推送信息。</p>
+<p>总体来说，WebSocket 更强大和灵活。因为它是全双工通道，可以双向通信；SSE 是单向通道，只能服务器向浏览器发送，因为流信息本质上就是下载。如果浏览器向服务器发送信息，就变成了另一次 HTTP 请求。</p>
 <ul>
-<li>百度的OCR接口,每日有使用次数</li>
-<li>Paddle-OCR开源库,搭建自己的OCR服务</li>
-<li>惠普的tesseract-ocr工具</li>
-<li>…..</li>
+<li><p>SSE 使用 HTTP 协议，现有的服务器软件都支持。WebSocket 是一个独立协议。</p>
+</li>
+<li><p>SSE 属于轻量级，使用简单；WebSocket 协议相对复杂。</p>
+</li>
+<li><p>SSE 默认支持断线重连，WebSocket 需要自己实现。</p>
+</li>
+<li><p>SSE 一般只用来传送文本，二进制数据需要编码后传送，WebSocket 默认支持传送二进制数据。</p>
+</li>
+<li><p>SSE 支持自定义发送的消息类型。</p>
+</li>
+<li><p><strong>sse 是单通道，只能服务端向客户端发消息；而 webscoket 是双通道</strong></p>
+</li>
 </ul>
-<p>百度的免费接口有使用次数,且无法在内网环境中使用,所以并不适用</p>
-<p>由于我们需要识别的内容的字母和数字,惠普的tesseract-ocr工具就很好用</p>
-<p>当我们使用tesseract-ocr工具去识别验证码原图时,由于验证码有很多的干扰线,会导致识别结果有很多错误</p>
-<p>所以我们需要对原始的验证码图片进行图像处理,这时候就需要用上opencv了</p>
-<h1 id="2-在Java中使用opencv"><a href="#2-在Java中使用opencv" class="headerlink" title="2. 在Java中使用opencv"></a>2. 在Java中使用opencv</h1><h2 id="2-1-下载opencv"><a href="#2-1-下载opencv" class="headerlink" title="2.1 下载opencv"></a>2.1 下载opencv</h2><p><a target="_blank" rel="noopener" href="https://opencv.org/releases/">下载地址</a></p>
-<p>下载所需的版本</p>
-<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221104154504385.png" srcset="/img/loading.gif" lazyload alt="版本选择"></p>
-<p>我电脑是windows,下载的是一个exe安装文件,运行安装后文件目录如下</p>
-<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221104154753665.png" srcset="/img/loading.gif" lazyload alt="opencv目录"></p>
-<p>build是已经打包好的文件</p>
-<p>sources是opencv的源码</p>
-<p>我们在build-java中可以看到自己需要的文件,主要是jar包和dll文件</p>
-<h2 id="2-2-引入jar包"><a href="#2-2-引入jar包" class="headerlink" title="2.2 引入jar包"></a>2.2 引入jar包</h2><p>把jar包引入我们的项目中,dll文件也复制到项目目录中</p>
-<h2 id="2-3-使用opencv处理图像"><a href="#2-3-使用opencv处理图像" class="headerlink" title="2.3 使用opencv处理图像"></a>2.3 使用opencv处理图像</h2><p>处理步骤:</p>
-<ol>
-<li>读取原图</li>
-</ol>
-<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img-t.png" srcset="/img/loading.gif" lazyload alt="img原图"></p>
-<ol start="2">
-<li>消除色彩,变为黑白图</li>
-</ol>
-<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img2.png" srcset="/img/loading.gif" lazyload alt="img黑白"></p>
-<ol start="3">
-<li>灰度二值化</li>
-</ol>
-<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img3.png" srcset="/img/loading.gif" lazyload alt="img灰度二值化"></p>
-<ol start="4">
-<li>线消噪</li>
-</ol>
-<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img4.png" srcset="/img/loading.gif" lazyload alt="img线消噪"></p>
-<ol start="5">
-<li>灰度反转</li>
-</ol>
-<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img5.png" srcset="/img/loading.gif" lazyload alt="img灰度反转"></p>
-<p>代码如下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Test.class.getClassLoader().getResource(<span class="hljs-string">&quot;//&quot;</span>).getPath();<br>    System.load(path+<span class="hljs-string">&quot;opencv/opencv_java455.dll&quot;</span>);<br>    <span class="hljs-comment">// 原图</span><br>    <span class="hljs-type">Mat</span> <span class="hljs-variable">image</span> <span class="hljs-operator">=</span> imread(<span class="hljs-string">&quot;E:\\pic\\img.png&quot;</span>);<br>    System.out.println( <span class="hljs-string">&quot;原图 = &quot;</span> + image.dump() );<br>    <span class="hljs-comment">// 变黑白照片</span><br>    Imgproc.cvtColor(image, image,Imgproc.COLOR_BGR2GRAY);<br>    Imgcodecs.imwrite(<span class="hljs-string">&quot;E:\\pic\\img2-黑白.png&quot;</span>, image);<br>    <span class="hljs-type">Mat</span> <span class="hljs-variable">target3</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Mat</span>();<br>    <span class="hljs-comment">//灰度二值化,参数(原图,输出,处理灰度值大于200的,最大灰度,阈值类型)</span><br>    Imgproc.threshold(image, target3, <span class="hljs-number">230</span>, <span class="hljs-number">255</span>, Imgproc.THRESH_BINARY );<br>    System.out.println( <span class="hljs-string">&quot;灰度图像二值化 = &quot;</span> + target3.dump() );<br>    <span class="hljs-comment">//写入灰度图像</span><br>    Imgcodecs.imwrite(<span class="hljs-string">&quot;E:\\pic\\img3-灰度二值化.png&quot;</span>, target3);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">width</span> <span class="hljs-operator">=</span> target3.width();<br>    <span class="hljs-type">int</span> <span class="hljs-variable">height</span> <span class="hljs-operator">=</span> target3.height();<br>    <span class="hljs-comment">// 消除噪点</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt; width-<span class="hljs-number">1</span>; i++) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; j &lt; height-<span class="hljs-number">1</span>; j++) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>            <span class="hljs-type">double</span>[] doubles = target3.get(j, i);<br>            <span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> (<span class="hljs-type">int</span>)doubles[<span class="hljs-number">0</span>];<br>            <span class="hljs-type">double</span>[] doubles1 = target3.get(j-<span class="hljs-number">1</span>, i);<br>            <span class="hljs-type">int</span> <span class="hljs-variable">up</span> <span class="hljs-operator">=</span> (<span class="hljs-type">int</span>)doubles1[<span class="hljs-number">0</span>];<br>            <span class="hljs-type">double</span>[] doubles2 = target3.get(j+<span class="hljs-number">1</span>, i);<br>            <span class="hljs-type">int</span> <span class="hljs-variable">down</span> <span class="hljs-operator">=</span> (<span class="hljs-type">int</span>)doubles2[<span class="hljs-number">0</span>];<br>            <span class="hljs-type">double</span>[] doubles3 = target3.get(j, i-<span class="hljs-number">1</span>);<br>            <span class="hljs-type">int</span> <span class="hljs-variable">left</span> <span class="hljs-operator">=</span> (<span class="hljs-type">int</span>)doubles3[<span class="hljs-number">0</span>];<br>            <span class="hljs-type">double</span>[] doubles4 = target3.get(j, i+<span class="hljs-number">1</span>);<br>            <span class="hljs-type">int</span> <span class="hljs-variable">right</span> <span class="hljs-operator">=</span> (<span class="hljs-type">int</span>)doubles4[<span class="hljs-number">0</span>];<br>            <span class="hljs-comment">// 该像素点的上下左右是不是空白的</span><br>            <span class="hljs-keyword">if</span> (up &gt; <span class="hljs-number">250</span>)&#123;<br>                count += <span class="hljs-number">1</span>;<br>            &#125;<span class="hljs-keyword">if</span> (down&gt; <span class="hljs-number">250</span>)&#123;<br>                count += <span class="hljs-number">1</span>;<br>            &#125;<span class="hljs-keyword">if</span> (left &gt; <span class="hljs-number">250</span>)&#123;<br>                count += <span class="hljs-number">1</span>;<br>            &#125;<span class="hljs-keyword">if</span> (right &gt; <span class="hljs-number">250</span>)&#123;<br>                count += <span class="hljs-number">1</span>;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (count &gt; <span class="hljs-number">2</span>)&#123;<br>                <span class="hljs-type">double</span>[] value = &#123;<span class="hljs-number">255.0</span>&#125;;<br>                target3.put(j,i,value);<br>            &#125;<br>        &#125;<br>    &#125;<br>    Imgcodecs.imwrite(<span class="hljs-string">&quot;E:\\pic\\img4-线消噪.png&quot;</span>, target3);<br>    <span class="hljs-comment">// 灰度反转</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt; width; i++) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; j &lt; height; j++) &#123;<br>            <span class="hljs-type">double</span>[] doubles = target3.get(j, i);<br>            <span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> (<span class="hljs-type">int</span>)doubles[<span class="hljs-number">0</span>];<br>            <span class="hljs-keyword">if</span>(num == <span class="hljs-number">255</span>)&#123;<br>                <span class="hljs-type">double</span>[] value = &#123;<span class="hljs-number">0.0</span>&#125;;<br>                target3.put(j,i,value);<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (num == <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-type">double</span>[] value = &#123;<span class="hljs-number">255.0</span>&#125;;<br>                target3.put(j,i,value);<br>            &#125;<br>        &#125;<br>    &#125;<br>    Imgcodecs.imwrite(<span class="hljs-string">&quot;E:\\pic\\img5-灰度反转.png&quot;</span>, target3);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="1-3-应用场景"><a href="#1-3-应用场景" class="headerlink" title="1.3 应用场景"></a>1.3 应用场景</h2><p>SSE常用于会实时刷新的数据的需求中,比如</p>
+<ul>
+<li>实时显示网站在线人数</li>
+<li>汇率实时显示</li>
+<li>弹窗消息实时通知</li>
+<li>……</li>
+</ul>
+<h1 id="2-实战使用"><a href="#2-实战使用" class="headerlink" title="2. 实战使用"></a>2. 实战使用</h1><p><strong>客户端代码:</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-keyword">var</span> source = <span class="hljs-keyword">new</span> <span class="hljs-title class_">EventSource</span>(<span class="hljs-string">&quot;http://127.0.0.1:9313/sse/subscribe?id=3&quot;</span>);</span><br><span class="language-javascript">    source.<span class="hljs-property">onopen</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) &#123;</span><br><span class="language-javascript">      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(event);</span><br><span class="language-javascript">    &#125;;</span><br><span class="language-javascript">    source.<span class="hljs-property">onmessage</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) &#123;</span><br><span class="language-javascript">      <span class="hljs-keyword">var</span> data = event.<span class="hljs-property">data</span>;</span><br><span class="language-javascript">      <span class="hljs-keyword">var</span> origin = event.<span class="hljs-property">origin</span>;</span><br><span class="language-javascript">      <span class="hljs-keyword">var</span> lastEventId = event.<span class="hljs-property">lastEventId</span>;</span><br><span class="language-javascript">      <span class="hljs-comment">// handle message</span></span><br><span class="language-javascript">      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data)</span><br><span class="language-javascript">    &#125;;</span><br><span class="language-javascript">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>sse-test<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
 
 
 
+<p><strong>服务端代码:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SseTestService</span> &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * SSE连接池,&lt;br/&gt;</span><br><span class="hljs-comment">     * SpringBean的作用域默认为单例模式,整个web容器中只会存在一个SseTestService的实例对象,</span><br><span class="hljs-comment">     * 所以可以用该实例对象的属性当做一个SSE连接池,存放不同的SSE连接</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> ConcurrentHashMap&lt;String, SseEmitter&gt; sseCache = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConcurrentHashMap</span>&lt;&gt;();<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 建立长连接</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> id</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> SseEmitter <span class="hljs-title function_">subscribe</span><span class="hljs-params">(String id)</span> &#123;<br>        <span class="hljs-comment">// 超时时间设置为10min(每过10min连接关闭)</span><br>        <span class="hljs-type">SseEmitter</span> <span class="hljs-variable">sseEmitter</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SseEmitter</span>(<span class="hljs-number">1000L</span> * <span class="hljs-number">60</span> * <span class="hljs-number">10</span>);<br>        <span class="hljs-comment">// 存入连接池</span><br>        sseCache.put(id, sseEmitter);<br>        sseEmitter.onTimeout(() -&gt; sseCache.remove(id));<br>        <span class="hljs-comment">// 异步请求因任何原因（包括超时和网络错误）完成时的回调</span><br>        sseEmitter.onCompletion(() -&gt; sseCache.remove(id));<br>        <span class="hljs-keyword">return</span> sseEmitter;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 推送数据</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> id</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> content</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> IOException</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">push</span><span class="hljs-params">(String id, String content)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-type">SseEmitter</span> <span class="hljs-variable">sseEmitter</span> <span class="hljs-operator">=</span> sseCache.get(id);<br>        <span class="hljs-keyword">if</span> (sseEmitter != <span class="hljs-literal">null</span>) &#123;<br>            sseEmitter.send(content);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 主动关闭连接</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> id</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">over</span><span class="hljs-params">(String id)</span> &#123;<br>        <span class="hljs-type">SseEmitter</span> <span class="hljs-variable">sseEmitter</span> <span class="hljs-operator">=</span> sseCache.get(id);<br>        <span class="hljs-keyword">if</span> (sseEmitter != <span class="hljs-literal">null</span>) &#123;<br>            sseEmitter.complete();<br>            sseCache.remove(id);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>参考资料:</strong></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1620176">https://cloud.tencent.com/developer/article/1620176</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2017/05/server-sent_events.html">https://www.ruanyifeng.com/blog/2017/05/server-sent_events.html</a></p>
 
                 
               </div>
@@ -435,11 +416,15 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/opencv/">#opencv</a>
+        <a href="/tags/java/">#java</a>
       
-        <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">#图像处理</a>
+        <a href="/tags/%E5%BC%82%E6%AD%A5/">#异步</a>
       
-        <a href="/tags/%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/">#图像识别</a>
+        <a href="/tags/SSE/">#SSE</a>
+      
+        <a href="/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%8E%A8%E9%80%81/">#服务端推送</a>
+      
+        <a href="/tags/%E5%8D%8A%E5%8F%8C%E5%B7%A5/">#半双工</a>
       
     </div>
   
@@ -451,8 +436,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java使用opencv</div>
-      <div>http://tgkzxy.top/2022/11/04/Java使用opencv/</div>
+      <div>java使用sse</div>
+      <div>http://tgkzxy.top/2022/11/08/java使用sse/</div>
     </div>
     <div class="license-meta">
       
@@ -464,7 +449,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年11月4日</div>
+          <div>2022年11月8日</div>
         </div>
       
       
@@ -487,9 +472,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/07/javaWeb%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/" title="javaWeb异步请求">
+                      <a href="/2022/11/10/AES%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/" title="AES对称加密">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">javaWeb异步请求</span>
+                        <span class="hidden-mobile">AES对称加密</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -497,8 +482,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/10/28/nexus/" title="Nexus搭建yum私服">
-                        <span class="hidden-mobile">Nexus搭建yum私服</span>
+                      <a href="/2022/11/07/javaWeb%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/" title="javaWeb异步请求">
+                        <span class="hidden-mobile">javaWeb异步请求</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -570,7 +555,7 @@
       
         <a href="/2022/11/04/Java%E4%BD%BF%E7%94%A8opencv/" title="Java使用opencv"
            class="list-group-item list-group-item-action
-           active">
+           ">
           <span class="category-post">Java使用opencv</span>
         </a>
       
@@ -588,7 +573,7 @@
       
         <a href="/2022/11/08/java%E4%BD%BF%E7%94%A8sse/" title="java使用sse"
            class="list-group-item list-group-item-action
-           ">
+           active">
           <span class="category-post">java使用sse</span>
         </a>
       
