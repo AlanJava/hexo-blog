@@ -105,6 +105,8 @@ tag:
     min_font: 20
 # 文章配置
 post:
+  # 首页文章默认图
+  default_index_img: /img/man.svg
   banner_img: /img/wallhaven.png
   updated:
     enable: true
