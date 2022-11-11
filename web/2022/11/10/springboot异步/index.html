@@ -17,28 +17,25 @@
   <meta name="author" content="Alan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="免费的天气API几乎都要申请令牌,之前的流行的中国天气网官方api接口http:&#x2F;&#x2F;wthrcdn.etouch.cn&#x2F;weather_mini?city&#x3D;北京,也已经关闭了，但是我利用Fiddler对中国天气官网进行抓包后找到了新的接口">
+    <meta name="description" content="在springboot中使用异步方法调用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="中国天气接口">
-<meta property="og:url" content="http://tgkzxy.top/2022/10/11/%E4%B8%AD%E5%9B%BD%E5%A4%A9%E6%B0%94%E6%8E%A5%E5%8F%A3/index.html">
+<meta property="og:title" content="springboot异步">
+<meta property="og:url" content="http://tgkzxy.top/2022/11/10/springboot%E5%BC%82%E6%AD%A5/index.html">
 <meta property="og:site_name" content="AlanBlog">
-<meta property="og:description" content="免费的天气API几乎都要申请令牌,之前的流行的中国天气网官方api接口http:&#x2F;&#x2F;wthrcdn.etouch.cn&#x2F;weather_mini?city&#x3D;北京,也已经关闭了，但是我利用Fiddler对中国天气官网进行抓包后找到了新的接口">
+<meta property="og:description" content="在springboot中使用异步方法调用">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221012152835878.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221011172029210.png">
-<meta property="article:published_time" content="2022-10-11T14:07:23.000Z">
-<meta property="article:modified_time" content="2022-10-12T08:11:29.113Z">
+<meta property="article:published_time" content="2022-11-10T15:00:54.000Z">
+<meta property="article:modified_time" content="2022-11-11T01:05:07.407Z">
 <meta property="article:author" content="Alan">
-<meta property="article:tag" content="天气">
-<meta property="article:tag" content="爬虫">
+<meta property="article:tag" content="springboot">
+<meta property="article:tag" content="异步">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221012152835878.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>中国天气接口 - AlanBlog</title>
+  <title>springboot异步 - AlanBlog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -243,7 +240,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="中国天气接口"></span>
+            <span id="subtitle" data-typed-text="springboot异步"></span>
           
         </div>
 
@@ -260,7 +257,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          2.6k 字
+          1.2k 字
         
       </span>
     
@@ -272,7 +269,7 @@
         
         
           <!-- compatible with older versions-->
-          22 分钟
+          11 分钟
         
       </span>
     
@@ -328,12 +325,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">中国天气接口</h1>
+            <h1 style="display: none">springboot异步</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2022年10月12日 下午
+                    本文最后更新于：2022年11月11日 上午
                   
                 
               </p>
@@ -341,30 +338,26 @@
             
               <div class="markdown-body">
                 
-                <p>免费的天气API几乎都要申请令牌,之前的流行的中国天气网官方api接口<a target="_blank" rel="noopener" href="http://wthrcdn.etouch.cn/weather_mini?city=%E5%8C%97%E4%BA%AC">http://wthrcdn.etouch.cn/weather_mini?city=北京</a>,也已经关闭了，但是我利用Fiddler对中国天气官网进行抓包后找到了新的接口</p>
+                <p>在springboot中使用异步方法调用</p>
 <span id="more"></span>
+<h1 id="1-什么是异步"><a href="#1-什么是异步" class="headerlink" title="1. 什么是异步"></a>1. 什么是异步</h1><p>要知道什么是异步,首先要知道什么是同步,其实,我们写的大部分的代码,都是同步的</p>
+<p>例如下面这段代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">syncCodeTest</span><span class="hljs-params">()</span>&#123;<br>    System.out.println(<span class="hljs-string">&quot;同步代码1&quot;</span>);<br>    System.out.println(<span class="hljs-string">&quot;同步代码2&quot;</span>);<br>    System.out.println(<span class="hljs-string">&quot;同步代码3&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h1><p>免费的天气API几乎都要申请令牌,之前的流行的中国天气网官方api接口<a target="_blank" rel="noopener" href="http://wthrcdn.etouch.cn/weather_mini?city=%E5%8C%97%E4%BA%AC">http://wthrcdn.etouch.cn/weather_mini?city=北京</a>,也已经关闭了，但是我利用Fiddler对中国天气官网进行抓包后找到了新的接口</p>
-<p>这里提供一下我的解决思路</p>
-<h1 id="2-新的中国天气网官方api接口"><a href="#2-新的中国天气网官方api接口" class="headerlink" title="2. 新的中国天气网官方api接口"></a>2. 新的中国天气网官方api接口</h1><h2 id="2-1-地址"><a href="#2-1-地址" class="headerlink" title="2.1 地址"></a>2.1 地址</h2><p>新的API地址: <a target="_blank" rel="noopener" href="http://d1.weather.com.cn/dingzhi/101190101.html?_=1665469658464">http://d1.weather.com.cn/dingzhi/101190101.html?_=1665469658464</a></p>
-<p>请求方式为GET</p>
-<h2 id="2-2-参数"><a href="#2-2-参数" class="headerlink" title="2.2 参数"></a>2.2 参数</h2><p><strong>query参数</strong></p>
-<p>问号后面的query参数名是下划线,值为查询的时间戳(13位),参数值不确定</p>
-<p><strong>path参数</strong></p>
-<p>还有一个path参数101190101,这个是城市的编码,可以去<a target="_blank" rel="noopener" href="http://t.zoukankan.com/zhiqiangsimida-p-2774702.html">中国气象局城市编码</a>查询对应的编码</p>
-<p><strong>header参数</strong></p>
-<p>有一个固定请求头<code>Referer</code>,值为<code>http://www.weather.com.cn/</code></p>
-<p>如果不加这个请求头,直接访问地址会返回403的</p>
-<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221012152835878.png" srcset="/img/loading.gif" lazyload alt="403"></p>
-<h2 id="2-3-返回值"><a href="#2-3-返回值" class="headerlink" title="2.3 返回值"></a>2.3 返回值</h2><p>接口的返回值为一段js代码</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> cityDZ101190101 =&#123;<br>    <span class="hljs-string">&quot;weatherinfo&quot;</span>: &#123;<br>        <span class="hljs-string">&quot;city&quot;</span>: <span class="hljs-string">&quot;101190101&quot;</span>,<br>        <span class="hljs-string">&quot;cityname&quot;</span>: <span class="hljs-string">&quot;南京&quot;</span>,<br>        <span class="hljs-string">&quot;fctime&quot;</span>: <span class="hljs-string">&quot;202210111100&quot;</span>,<br>        <span class="hljs-string">&quot;temp&quot;</span>: <span class="hljs-string">&quot;18℃&quot;</span>,<br>        <span class="hljs-string">&quot;tempn&quot;</span>: <span class="hljs-string">&quot;9℃&quot;</span>,<br>        <span class="hljs-string">&quot;weather&quot;</span>: <span class="hljs-string">&quot;晴&quot;</span>,<br>        <span class="hljs-string">&quot;weathercode&quot;</span>: <span class="hljs-string">&quot;d0&quot;</span>,<br>        <span class="hljs-string">&quot;weathercoden&quot;</span>: <span class="hljs-string">&quot;n0&quot;</span>,<br>        <span class="hljs-string">&quot;wd&quot;</span>: <span class="hljs-string">&quot;北风转东北风&quot;</span>,<br>        <span class="hljs-string">&quot;ws&quot;</span>: <span class="hljs-string">&quot;3-4级转&lt;3级&quot;</span><br>    &#125;<br>&#125;;<span class="hljs-keyword">var</span> alarmDZ101190101 =&#123;<br>    <span class="hljs-string">&quot;w&quot;</span>: []<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>一共执行了3个语句,3个语句都是按照代码行数顺序执行的.这就是同步方法</p>
+<p>而异步就是：不等任务执行完，直接执行下一个任务。</p>
+<h1 id="2-异步的作用"><a href="#2-异步的作用" class="headerlink" title="2. 异步的作用"></a>2. 异步的作用</h1><p>那我们正常用同步方法去写代码也没遇到什么问题呀,为什么要使用异步呢?</p>
+<p>我们想一下,如果有个功能十分耗时,可能需要10分钟才能执行完任务,然后接口再返回结果.如果用同步的写法话,难道要界面等待10分钟才能继续操作吗?</p>
+<p>如果用异步的写法,用户下达任务后立即返回一个收到指令的结果,具体的任务放在异步代码里去慢慢执行.</p>
+<h1 id="3-如何在Springboot中使用异步调用"><a href="#3-如何在Springboot中使用异步调用" class="headerlink" title="3. 如何在Springboot中使用异步调用"></a>3. 如何在Springboot中使用异步调用</h1><h2 id="3-1-开启异步注解"><a href="#3-1-开启异步注解" class="headerlink" title="3.1 开启异步注解"></a>3.1 开启异步注解</h2><p>在启动类上加上注解<code>@EnableAsync</code></p>
+<h2 id="3-2-在异步方法上加上-Async注解"><a href="#3-2-在异步方法上加上-Async注解" class="headerlink" title="3.2 在异步方法上加上@Async注解"></a>3.2 在异步方法上加上@Async注解</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Async</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testAsync</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;<br>        System.out.println(i+<span class="hljs-string">&quot;:&quot;</span>);<br>        <span class="hljs-keyword">try</span> &#123;<br>            Thread.sleep(<span class="hljs-number">2000</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>有的朋友们可能纳闷了,一般接口不都是返回JSON格式的字符串吗,怎么这个返回的是一段JavaScript代码,其实这个是为了反爬虫的,之前老的API接口被太多人调用了,所以用了这个方法增加了接口调用的难度.</p>
-<p>我们可以看见,这段js代码里面就两个对象,其中<code>cityDZ101190101</code>对象存放的就是我们需要的数据(<strong>注意:这个对象名并不是固定的,是”cityDZ+”城市编码”拼接而成的</strong>).但是我们没法直接拿来使用,我的解决方式是在java中调用JS引擎执行这段js代码,获取到我们需要的对象,对其进行解析</p>
-<h1 id="3-java执行JS代码"><a href="#3-java执行JS代码" class="headerlink" title="3. java执行JS代码"></a>3. java执行JS代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.alan.demo;<br><br><span class="hljs-keyword">import</span> cn.hutool.http.HttpRequest;<br><span class="hljs-keyword">import</span> com.alibaba.fastjson.JSONObject;<br><br><span class="hljs-keyword">import</span> javax.script.ScriptEngine;<br><span class="hljs-keyword">import</span> javax.script.ScriptEngineManager;<br><span class="hljs-keyword">import</span> javax.script.ScriptException;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> tengguokun</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2022-10-11 16:25:59</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@description</span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainTest</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> ScriptException, NoSuchMethodException &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">body</span> <span class="hljs-operator">=</span> HttpRequest.get(<span class="hljs-string">&quot;http://d1.weather.com.cn/dingzhi/101190101.html?_=1665479077835&quot;</span>).header(<br>                <span class="hljs-string">&quot;Referer&quot;</span>, <span class="hljs-string">&quot;http://www.weather.com.cn/&quot;</span>)<br>                .execute().body();<br>        <span class="hljs-comment">// 引擎管理者</span><br>        <span class="hljs-type">ScriptEngineManager</span> <span class="hljs-variable">scriptEngineManager</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ScriptEngineManager</span>();<br>        <span class="hljs-comment">// 获取js引擎</span><br>        <span class="hljs-type">ScriptEngine</span> <span class="hljs-variable">jsEngine</span> <span class="hljs-operator">=</span> scriptEngineManager.getEngineByName(<span class="hljs-string">&quot;js&quot;</span>);<br>        <span class="hljs-comment">// 执行这段js代码</span><br>        jsEngine.eval(body);<br>        <span class="hljs-comment">// 获取js代码中的定义的对象</span><br>        <span class="hljs-type">Object</span> <span class="hljs-variable">cityDZ101190101</span> <span class="hljs-operator">=</span> jsEngine.get(<span class="hljs-string">&quot;cityDZ101190101&quot;</span>);<br>        <span class="hljs-comment">// 解析为JSONObject,其实更推荐建一个专门的pojo类存放</span><br>        <span class="hljs-type">JSONObject</span> <span class="hljs-variable">jsonObj</span> <span class="hljs-operator">=</span> (JSONObject)JSONObject.toJSON(cityDZ101190101);<br>        <span class="hljs-comment">// 获取返回值的weatherinfo对象</span><br>        <span class="hljs-type">JSONObject</span> <span class="hljs-variable">weatherinfo</span> <span class="hljs-operator">=</span> jsonObj.getJSONObject(<span class="hljs-string">&quot;weatherinfo&quot;</span>);<br>        <span class="hljs-comment">// 获取温度</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> weatherinfo.getString(<span class="hljs-string">&quot;temp&quot;</span>);<br>        System.out.println(jsonObj.toJSONString());<br>        System.out.println(<span class="hljs-string">&quot;当前温度为:&quot;</span>+temp);<br>        <br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>然后再其他类的方法中调用次对象的异步方法就可以实现异步了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">    <span class="hljs-meta">@GetMapping(&quot;/async&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">testAsync</span><span class="hljs-params">()</span>&#123;<br>        sseTestService.testAsync();<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;好了&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>可以获取到我们需要的所有数据</p>
-<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221011172029210.png" srcset="/img/loading.gif" lazyload alt="debug结果"></p>
+<p>这里调用这个接口,并没有等 <code>sseTestService.testAsync()</code>方法执行完再返回值,而是开启一个线程异步执行此方法,让这个线程自己慢慢执行,同时返回”好了”</p>
+<h2 id="3-3-注意点"><a href="#3-3-注意点" class="headerlink" title="3.3 注意点"></a>3.3 注意点</h2><p>该异步实现的原理是基于动态代理实现的,实际调用的异步方法并不是真实的<code>sseTestService</code>对象,而是该对象的一个代理对象.</p>
+<p>异步方法和调用异步方法的方法不能在同一个类中,比如只能A类的a方法调用B类的b方法,而不能A类的a方法调用A类的b方法.因为<code>@Async</code>注解是基于Spring AOP （面向切面编程）的，而AOP的实现是基于动态代理模式实现的,Spring容器在初始化的时候Spring容器会将含有AOP注解的类对象“替换”为代理对象.</p>
 
                 
               </div>
@@ -383,7 +376,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E8%AE%B0%E5%BD%95/" class="category-chain-item">记录</a>
+  <a href="/categories/springboot/" class="category-chain-item">springboot</a>
   
   
 
@@ -398,9 +391,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%A4%A9%E6%B0%94/">#天气</a>
+        <a href="/tags/springboot/">#springboot</a>
       
-        <a href="/tags/%E7%88%AC%E8%99%AB/">#爬虫</a>
+        <a href="/tags/%E5%BC%82%E6%AD%A5/">#异步</a>
       
     </div>
   
@@ -412,8 +405,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>中国天气接口</div>
-      <div>http://tgkzxy.top/2022/10/11/中国天气接口/</div>
+      <div>springboot异步</div>
+      <div>http://tgkzxy.top/2022/11/10/springboot异步/</div>
     </div>
     <div class="license-meta">
       
@@ -425,7 +418,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月11日</div>
+          <div>2022年11月10日</div>
         </div>
       
       
@@ -448,18 +441,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/12/java%E6%96%B0%E7%89%B9%E6%80%A7/" title="java11-java17新特性">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">java11-java17新特性</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/26/redis/" title="redis入门">
-                        <span class="hidden-mobile">redis入门</span>
+                      <a href="/2022/11/10/AES%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/" title="AES对称加密">
+                        <span class="hidden-mobile">AES对称加密</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -492,17 +479,17 @@
     
     <div class="category row nomargin-x">
       <a class="category-item 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="记录"
-        id="heading-620bf82011e0c14ebe4a20d6e9df6708" role="tab" data-toggle="collapse" href="#collapse-620bf82011e0c14ebe4a20d6e9df6708"
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="springboot"
+        id="heading-d164d99c46d45be6b1e7585ff7ea10e7" role="tab" data-toggle="collapse" href="#collapse-d164d99c46d45be6b1e7585ff7ea10e7"
         aria-expanded="true"
       >
-        记录
-        <span class="list-group-count">(1)</span>
+        springboot
+        <span class="list-group-count">(2)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
-      <div class="category-collapse collapse show" id="collapse-620bf82011e0c14ebe4a20d6e9df6708"
-           role="tabpanel" aria-labelledby="heading-620bf82011e0c14ebe4a20d6e9df6708">
+      <div class="category-collapse collapse show" id="collapse-d164d99c46d45be6b1e7585ff7ea10e7"
+           role="tabpanel" aria-labelledby="heading-d164d99c46d45be6b1e7585ff7ea10e7">
         
         
           
@@ -511,10 +498,19 @@
     
       
       
-        <a href="/2022/10/11/%E4%B8%AD%E5%9B%BD%E5%A4%A9%E6%B0%94%E6%8E%A5%E5%8F%A3/" title="中国天气接口"
+        <a href="/2022/08/25/SpringBootToken/" title="SpringBoot便捷的token验证方式"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SpringBoot便捷的token验证方式</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/10/springboot%E5%BC%82%E6%AD%A5/" title="springboot异步"
            class="list-group-item list-group-item-action
            active">
-          <span class="category-post">中国天气接口</span>
+          <span class="category-post">springboot异步</span>
         </a>
       
     
