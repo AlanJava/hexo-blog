@@ -16,20 +16,22 @@
   <meta name="author" content="Alan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="java中使用对称加密算法">
+    <meta name="description" content="在java中使用对称加密算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AES对称加密">
 <meta property="og:url" content="http://tgkzxy.top/2022/11/10/AES%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/index.html">
 <meta property="og:site_name" content="AlanBlog">
-<meta property="og:description" content="java中使用对称加密算法">
+<meta property="og:description" content="在java中使用对称加密算法">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://tgkzxy.top/img/%E5%8A%A0%E5%AF%86.png">
 <meta property="article:published_time" content="2022-11-10T13:49:16.000Z">
-<meta property="article:modified_time" content="2022-11-11T01:05:07.407Z">
+<meta property="article:modified_time" content="2022-11-14T14:47:37.153Z">
 <meta property="article:author" content="Alan">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="AES">
 <meta property="article:tag" content="对称加密">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://tgkzxy.top/img/%E5%8A%A0%E5%AF%86.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -331,7 +333,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2022年11月11日 上午
+                    本文最后更新于：2022年11月14日 晚上
                   
                 
               </p>
@@ -339,9 +341,7 @@
             
               <div class="markdown-body">
                 
-                <p>java中使用对称加密算法</p>
-<span id="more"></span>
-<h1 id="1-什么是对称加密"><a href="#1-什么是对称加密" class="headerlink" title="1. 什么是对称加密"></a>1. 什么是对称加密</h1><blockquote>
+                <h1 id="1-什么是对称加密"><a href="#1-什么是对称加密" class="headerlink" title="1. 什么是对称加密"></a>1. 什么是对称加密</h1><blockquote>
 <p><strong>对称密钥算法</strong>（英语：<strong>Symmetric-key algorithm</strong>）又称为<strong>对称加密</strong>、<strong>私钥加密</strong>、<strong>共享密钥加密</strong>，是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%AF%86%E7%A2%BC%E5%AD%B8">密码学</a>中的一类加密算法。这类算法在加密和解密时使用相同的密钥，或是使用两个可以简单地相互推算的密钥。事实上，这组密钥成为在两个或多个成员间的共同秘密，以便维持专属的通信联系[<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-my/%E5%B0%8D%E7%A8%B1%E5%AF%86%E9%91%B0%E5%8A%A0%E5%AF%86#cite_note-1">1]</a>。与<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%85%AC%E5%BC%80%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86">公开密钥加密</a>相比，要求双方获取相同的密钥是对称密钥加密的主要缺点之一[<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-my/%E5%B0%8D%E7%A8%B1%E5%AF%86%E9%91%B0%E5%8A%A0%E5%AF%86#cite_note-2">2]</a>。</p>
 <p>常见的对称加密算法有<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%AB%98%E7%BA%A7%E5%8A%A0%E5%AF%86%E6%A0%87%E5%87%86">AES</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Salsa20">ChaCha20</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/3DES">3DES</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Salsa20">Salsa20</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%B3%87%E6%96%99%E5%8A%A0%E5%AF%86%E6%A8%99%E6%BA%96">DES</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Blowfish">Blowfish</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%9C%8B%E9%9A%9B%E8%B3%87%E6%96%99%E5%8A%A0%E5%AF%86%E6%BC%94%E7%AE%97%E6%B3%95">IDEA</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/RC5">RC5</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/RC6">RC6</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Camellia">Camellia</a>。</p>
 </blockquote>

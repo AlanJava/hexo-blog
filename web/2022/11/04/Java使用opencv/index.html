@@ -23,22 +23,15 @@
 <meta property="og:site_name" content="AlanBlog">
 <meta property="og:description" content="在Java中使用opencv处理图像">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221104154504385.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221104154753665.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img-t.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img2.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img3.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img4.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img5.png">
+<meta property="og:image" content="http://tgkzxy.top/img/%E5%8A%A0%E5%AF%86.png">
 <meta property="article:published_time" content="2022-11-04T08:01:05.000Z">
-<meta property="article:modified_time" content="2022-11-04T08:20:00.867Z">
+<meta property="article:modified_time" content="2022-11-14T14:49:11.124Z">
 <meta property="article:author" content="Alan">
 <meta property="article:tag" content="opencv">
 <meta property="article:tag" content="图像处理">
 <meta property="article:tag" content="图像识别">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img.png">
+<meta name="twitter:image" content="http://tgkzxy.top/img/%E5%8A%A0%E5%AF%86.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -340,7 +333,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2022年11月4日 下午
+                    本文最后更新于：2022年11月14日 晚上
                   
                 
               </p>
@@ -348,10 +341,7 @@
             
               <div class="markdown-body">
                 
-                <p>在Java中使用opencv处理图像</p>
-<span id="more"></span>
-
-<h1 id="1-需求缘由"><a href="#1-需求缘由" class="headerlink" title="1. 需求缘由"></a>1. 需求缘由</h1><p>在写爬虫时,我们有时会使用Selenium自动输入用户名和密码获取登录权限</p>
+                <h1 id="1-需求缘由"><a href="#1-需求缘由" class="headerlink" title="1. 需求缘由"></a>1. 需求缘由</h1><p>在写爬虫时,我们有时会使用Selenium自动输入用户名和密码获取登录权限</p>
 <p>但是有的网站会有数字字母验证码,这些验证码十分碍事,只能人工操作手动输入,而且要手动操作的话就无法在无头模式下运行浏览器了.</p>
 <p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/img.png" srcset="/img/loading.gif" lazyload alt="常见的数字验证码"></p>
 <p>已知的解决方案是获取验证码图片,使用OCR文字识别获取验证码文字内容</p>
