@@ -3,6 +3,7 @@ title: Maven依赖导出
 date: 2022-10-28 10:44:28
 tags: [maven,mvn,内网]
 categories: maven
+index_img: /img/maven.png
 ---
 使用mvn命令导出maven工程依赖的所有jar包
 
