@@ -3,7 +3,7 @@ title: Java使用opencv
 date: 2022-11-04 16:01:05
 tags: [opencv,图像处理,图像识别]
 categories: java
-index_img: /img/加密.png
+index_img: /img/opencv.png
 excerpt: 在Java中使用opencv处理图像
 ---
 # 1. 需求缘由
