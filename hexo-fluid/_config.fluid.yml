@@ -106,7 +106,7 @@ tag:
 # 文章配置
 post:
   # 首页文章默认图
-  default_index_img: /img/man.svg
+  default_index_img: /img/default.png
   banner_img: /img/wallhaven.png
   updated:
     enable: true
