@@ -3,10 +3,9 @@ title: Nexus搭建yum私服
 date: 2022-10-28 15:33:44
 tags: [内网,linux,yum,nexus]
 categories: nexus
+index_img: /img/nexus.png
+excerpt: 使用Nexus在Windows搭建yum私服,供内网环境的Centos使用
 ---
-使用Nexus在Windows搭建yum私服,供内网环境的Centos使用
-
-<!-- more -->
 
 # 1. 问题
 
