@@ -3,12 +3,9 @@ title: java11-java17新特性
 date: 2022-10-12 17:23:51
 tags: [java新特性,java17,java11]
 categories: java
+index_img: /img/jdk17.png
+excerpt: Springboot宣布最新的3.0最低只支持Java 17版本,大部分开发者由于一直使用Java 8,并不了解Java 11到Java17更新了什么, 进来了解一下Java11到Java17的更新内容
 ---
-Springboot宣布最新的3.0最低只支持Java 17版本,大部分开发者由于一直使用Java 8,并不了解Java 11到Java17更新了什么,
-本文将介绍Java11到Java17的更新内容
-
-<!-- more -->
-
 文章转载来源:民工哥技术之路 <https://mp.weixin.qq.com/s/SVleHYFQeePNT7q67UoL4Q>
 
 # Java 11 特性详解
