@@ -23,33 +23,16 @@
 <meta property="og:site_name" content="AlanBlog">
 <meta property="og:description" content="使用Nexus在Windows搭建yum私服,供内网环境的Centos使用">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028135451011.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028135543204.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028135633908.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028135725361.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028140831163.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028141105901.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/08f4c17365424e60a9077bd164905a28.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/9e4c25926a6140f8a083ecec95e8364e.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028142109308.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028142144770.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028142208477.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028142916068.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028142936464.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028143031491.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028143211399.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028151530415.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028152236774.png">
-<meta property="og:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028152630034.png">
+<meta property="og:image" content="http://tgkzxy.top/img/nexus.png">
 <meta property="article:published_time" content="2022-10-28T07:33:44.000Z">
-<meta property="article:modified_time" content="2022-11-04T14:55:04.198Z">
+<meta property="article:modified_time" content="2022-11-14T15:03:29.870Z">
 <meta property="article:author" content="Alan">
 <meta property="article:tag" content="内网">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="yum">
 <meta property="article:tag" content="nexus">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221028135451011.png">
+<meta name="twitter:image" content="http://tgkzxy.top/img/nexus.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -351,7 +334,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2022年11月4日 晚上
+                    本文最后更新于：2022年11月14日 晚上
                   
                 
               </p>
@@ -359,10 +342,7 @@
             
               <div class="markdown-body">
                 
-                <p>使用Nexus在Windows搭建yum私服,供内网环境的Centos使用</p>
-<span id="more"></span>
-
-<h1 id="1-问题"><a href="#1-问题" class="headerlink" title="1. 问题"></a>1. 问题</h1><p>在生产环境中,很多Centos服务器都部署在内网环境中,如果需要安装软件只能手动编译源码或者下载rpm包进行安装.</p>
+                <h1 id="1-问题"><a href="#1-问题" class="headerlink" title="1. 问题"></a>1. 问题</h1><p>在生产环境中,很多Centos服务器都部署在内网环境中,如果需要安装软件只能手动编译源码或者下载rpm包进行安装.</p>
 <p>在使用rpm包安装时,经常会出现缺失依赖的情况,这时候我们需要自己下载依赖,不仅繁琐,还经常出现依赖包等级过低,需要升级才能安装的情况.</p>
 <p>这时候我们不禁怀念有外网时可以<code>yum install xxx</code>的舒服</p>
 <h1 id="2-解决思路"><a href="#2-解决思路" class="headerlink" title="2. 解决思路"></a>2. 解决思路</h1><h2 id="2-1-搭建yum私服"><a href="#2-1-搭建yum私服" class="headerlink" title="2.1 搭建yum私服"></a>2.1 搭建yum私服</h2><p>我们自用的Centos经常会添加阿里云,腾讯云的yum镜像服务.那么自然,也可以添加我们自己的yum镜像私服</p>
