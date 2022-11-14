@@ -3,11 +3,9 @@ title: Java使用opencv
 date: 2022-11-04 16:01:05
 tags: [opencv,图像处理,图像识别]
 categories: java
+index_img: /img/加密.png
+excerpt: 在Java中使用opencv处理图像
 ---
-在Java中使用opencv处理图像
-
-<!-- more -->
-
 # 1. 需求缘由
 
 在写爬虫时,我们有时会使用Selenium自动输入用户名和密码获取登录权限
