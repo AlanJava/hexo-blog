@@ -3,9 +3,9 @@ title: redis入门
 date: 2022-09-26 18:12:23
 tags: [redis]
 categories: 中间件
+index_img: /img/redis.png
+excerpt: redis常用命名,java中使用redis,springboot整合redis,redis工具类
 ---
-redis常用命名,java中使用redis,springboot整合redis,redis工具类
-<!-- more -->
 # 1. Nosql概述
 
 ## 1.1 为什么要用Nosql
