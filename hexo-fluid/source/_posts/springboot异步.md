@@ -3,6 +3,7 @@ title: springboot异步
 date: 2022-11-10 23:00:54
 tags: [springboot,异步,]
 categories: springboot
+index_img: /img/springboot.png
 ---
 在springboot中使用异步方法调用
 <!-- more -->
