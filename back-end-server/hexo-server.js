@@ -1,5 +1,7 @@
 const http= require("http");
 const sloganArray = require("./slogan.json")
+const fs = require('fs');
+const path = require('path')
 // 创建http server，并传入回调函数:
 const server = http.createServer(function (request,response) {
     var result = {
@@ -8,6 +10,34 @@ const server = http.createServer(function (request,response) {
         success :true,
         data: {}
     }
+    // 记录访问ip
+    const headers = request.headers;
+    const ip = headers['x-real-ip'];
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    const day = now.getDay();
+    const hour = now.getHours();
+    const min = now.getMinutes();
+    const sec = now.getSeconds();
+    const stringNow = year +"-"+ month +"-"+ day +" "+ hour +":"+ min +":"+ sec
+    // 获取
+    fs.readFile(path.join(__dirname, 'request_log.json'), 'utf8', (err, data) => {
+        // 转成数组
+        let array = JSON.parse(data)
+        // 添加
+        array.push({
+            "ip": ip,
+            "time": stringNow
+            }
+        )
+        // 转回json格式
+        const box = JSON.stringify(array)
+        // 覆盖写入
+        fs.writeFile('request_log.json', box, 'utf8', (err) => {
+            // console.log(err)
+        })
+    })
     // 设置跨域
     response.setHeader("Access-Control-Allow-Origin","*");
     // 设置cookie允许跨域
