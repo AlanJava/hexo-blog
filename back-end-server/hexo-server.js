@@ -15,11 +15,26 @@ const server = http.createServer(function (request,response) {
     const ip = headers['x-real-ip'];
     const now = new Date();
     const year = now.getFullYear();
-    const month = now.getMonth()+1;
-    const day = now.getDate();
-    const hour = now.getHours();
-    const min = now.getMinutes();
-    const sec = now.getSeconds();
+    let month = now.getMonth()+1;
+    if(month.length == 1){
+        month = "0"+month
+    }
+    let day = now.getDate();
+    if(day.length == 1){
+        day = "0"+day
+    }
+    let hour = now.getHours();
+    if(hour.length == 1){
+        hour = "0"+hour
+    }
+    let min = now.getMinutes();
+    if(min.length == 1){
+        min = "0"+min
+    }
+    let sec = now.getSeconds();
+    if(sec.length == 1){
+        sec = "0"+sec
+    }
     const stringNow = year +"-"+ month +"-"+ day +" "+ hour +":"+ min +":"+ sec
     // 获取
     fs.readFile(path.join(__dirname, 'request_log.json'), 'utf8', (err, data) => {
