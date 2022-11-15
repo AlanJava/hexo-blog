@@ -3,10 +3,9 @@ title: SpringBoot便捷的token验证方式
 date: 2022-08-25 20:58:53
 tags: [springboot,token,jwt]
 categories: springboot
+index_img: /img/springboot.png
+excerpt: 在javaWeb中,我们常用JWT作为权限令牌,后端接口对token参数进行解析验证,判断token是否有效.常用的方式有传递query参数,传递body参数,传递请求头参数...如果每个controller都要写代码进行token验证,将会是十分繁琐的工作. springboot中提供了`HandlerMethodArgumentResolver`参数解析器,配合自定义注解可以大大减少代码冗余.
 ---
-在javaWeb中,我们常用JWT作为权限令牌,后端接口对token参数进行解析验证,判断token是否有效.
-常用的方式有传递query参数,传递body参数,传递请求头参数...如果每个controller都要写代码进行token验证,将会是十分繁琐的工作. springboot中提供了`HandlerMethodArgumentResolver`参数解析器,配合自定义注解可以大大减少代码冗余.
-<!-- more -->
 # 1. 前言
 
 在javaWeb中,我们常用JWT(Java Web Token)作为权限令牌,客户端请求后台接口的时候需要携带token参数,后端接口在接收时对token参数进行解析验证,判断token是否有效.

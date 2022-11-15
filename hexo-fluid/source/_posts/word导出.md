@@ -3,11 +3,9 @@ title: word导出
 date: 2022-09-14 20:23:54
 tags: [导出,word]
 categories: java
+index_img: /img/word.png
+excerpt: 利用java动态导出word,根据数据行数在word中动态生成表格,并在表格中显示图片
 ---
-
-利用java动态导出word,根据数据行数在word中动态生成表格,并在表格中显示图片
-<!--more-->
-
 
 # 1.前言
 

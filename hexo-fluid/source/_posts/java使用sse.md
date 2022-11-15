@@ -3,16 +3,14 @@ title: java使用sse
 date: 2022-11-08 17:20:29
 tags: [java,SSE,异步,服务端推送,半双工]
 categories: java
+index_img: /img/Server-Send-Event.png
+excerpt: SSE(Server-Sent-Events)比WebSocket更轻量化的服务器主动推送信息的方法
 ---
-SSE(Server-Sent Events)比WebSocket更轻量化的服务器主动推送信息的方法
-
-<!-- more -->
-
 # 1. 简介
 
 ## 1.1 什么是SSE
 
-SSE(`Server Sent Event`)，服务器发送事件，顾名思义，也就是客户端可以获取到服务器发送的事件.
+SSE(`Server-Sent-Event`)，服务器发送事件，顾名思义，也就是客户端可以获取到服务器发送的事件.
 
 HTTP 协议无法做到服务端主动推送信息给客户端。但是，有一种变通方法，就是服务器向客户端声明，接下来要发送的是流信息(类似于hls)。
 
