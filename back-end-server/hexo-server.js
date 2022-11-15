@@ -15,23 +15,23 @@ const server = http.createServer(function (request,response) {
     const ip = headers['x-real-ip'];
     const now = new Date();
     const year = now.getFullYear();
-    let month = now.getMonth()+1;
+    let month = (now.getMonth()+1).toString();
     if(month.length == 1){
         month = "0"+month
     }
-    let day = now.getDate();
+    let day = now.getDate().toString();
     if(day.length == 1){
         day = "0"+day
     }
-    let hour = now.getHours();
+    let hour = now.getHours().toString();
     if(hour.length == 1){
         hour = "0"+hour
     }
-    let min = now.getMinutes();
+    let min = now.getMinutes().toString();
     if(min.length == 1){
         min = "0"+min
     }
-    let sec = now.getSeconds();
+    let sec = now.getSeconds().toString();
     if(sec.length == 1){
         sec = "0"+sec
     }
