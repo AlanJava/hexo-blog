@@ -1,8 +1,9 @@
 ---
 title: java下载图片
 date: 2022-11-22 13:39:08
-tags:
-categories:
+tags: [java,下载,图片链接]
+categories: java
+index_img: /img/HttpURLConnection.png
 ---
 在java中通过图片url下载图片至本地
 <!-- more -->
