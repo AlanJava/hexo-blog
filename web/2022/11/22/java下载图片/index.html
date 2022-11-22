@@ -16,28 +16,23 @@
   <meta name="author" content="Alan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在java中使用对称加密算法">
+    <meta name="description" content="在java中通过图片url下载图片至本地">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AES对称加密">
-<meta property="og:url" content="http://tgkzxy.top/2022/11/10/AES%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/index.html">
+<meta property="og:title" content="java下载图片">
+<meta property="og:url" content="http://tgkzxy.top/2022/11/22/java%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87/index.html">
 <meta property="og:site_name" content="AlanBlog">
-<meta property="og:description" content="在java中使用对称加密算法">
+<meta property="og:description" content="在java中通过图片url下载图片至本地">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://tgkzxy.top/img/%E5%8A%A0%E5%AF%86.png">
-<meta property="article:published_time" content="2022-11-10T13:49:16.000Z">
-<meta property="article:modified_time" content="2022-11-15T02:08:38.055Z">
+<meta property="article:published_time" content="2022-11-22T05:39:08.000Z">
+<meta property="article:modified_time" content="2022-11-22T05:40:24.610Z">
 <meta property="article:author" content="Alan">
-<meta property="article:tag" content="java">
-<meta property="article:tag" content="AES">
-<meta property="article:tag" content="对称加密">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://tgkzxy.top/img/%E5%8A%A0%E5%AF%86.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>AES对称加密 - AlanBlog</title>
+  <title>java下载图片 - AlanBlog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -243,7 +238,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="AES对称加密"></span>
+            <span id="subtitle" data-typed-text="java下载图片"></span>
           
         </div>
 
@@ -260,7 +255,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.5k 字
+          1.9k 字
         
       </span>
     
@@ -272,7 +267,7 @@
         
         
           <!-- compatible with older versions-->
-          13 分钟
+          17 分钟
         
       </span>
     
@@ -328,12 +323,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">AES对称加密</h1>
+            <h1 style="display: none">java下载图片</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2022年11月15日 上午
+                    本文最后更新于：2022年11月22日 下午
                   
                 
               </p>
@@ -341,31 +336,17 @@
             
               <div class="markdown-body">
                 
-                <h1 id="1-什么是对称加密"><a href="#1-什么是对称加密" class="headerlink" title="1. 什么是对称加密"></a>1. 什么是对称加密</h1><blockquote>
-<p><strong>对称密钥算法</strong>（英语：<strong>Symmetric-key algorithm</strong>）又称为<strong>对称加密</strong>、<strong>私钥加密</strong>、<strong>共享密钥加密</strong>，是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%AF%86%E7%A2%BC%E5%AD%B8">密码学</a>中的一类加密算法。这类算法在加密和解密时使用相同的密钥，或是使用两个可以简单地相互推算的密钥。事实上，这组密钥成为在两个或多个成员间的共同秘密，以便维持专属的通信联系[<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-my/%E5%B0%8D%E7%A8%B1%E5%AF%86%E9%91%B0%E5%8A%A0%E5%AF%86#cite_note-1">1]</a>。与<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%85%AC%E5%BC%80%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86">公开密钥加密</a>相比，要求双方获取相同的密钥是对称密钥加密的主要缺点之一[<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-my/%E5%B0%8D%E7%A8%B1%E5%AF%86%E9%91%B0%E5%8A%A0%E5%AF%86#cite_note-2">2]</a>。</p>
-<p>常见的对称加密算法有<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%AB%98%E7%BA%A7%E5%8A%A0%E5%AF%86%E6%A0%87%E5%87%86">AES</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Salsa20">ChaCha20</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/3DES">3DES</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Salsa20">Salsa20</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%B3%87%E6%96%99%E5%8A%A0%E5%AF%86%E6%A8%99%E6%BA%96">DES</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Blowfish">Blowfish</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%9C%8B%E9%9A%9B%E8%B3%87%E6%96%99%E5%8A%A0%E5%AF%86%E6%BC%94%E7%AE%97%E6%B3%95">IDEA</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/RC5">RC5</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/RC6">RC6</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Camellia">Camellia</a>。</p>
-</blockquote>
-<p>**简单来说:**加密和解密都用一个私钥,就是对称加密</p>
-<p><strong>那这种加密方式和我们常用的MD5有什么区别呢?</strong></p>
-<p>MD5实际上并不是加密算法,而是哈希算法，无论什么值，经过哈希计算后都会生成长度为16的字符串，而哈希是无法反向计算的。</p>
-<h1 id="2-AES对称加密"><a href="#2-AES对称加密" class="headerlink" title="2. AES对称加密"></a>2. AES对称加密</h1><blockquote>
-<p><strong>高级加密标准</strong>（英语：<strong>A</strong>dvanced <strong>E</strong>ncryption <strong>S</strong>tandard，<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%BC%A9%E5%86%99">缩写</a>：AES），又称<strong>Rijndael加密法</strong>（荷兰语发音： [<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Help:%E8%8D%B7%E8%98%AD%E8%AA%9E%E5%9C%8B%E9%9A%9B%E9%9F%B3%E6%A8%99">ˈrɛindaːl]</a>，音似英文的“Rhine doll”），是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%BE%8E%E5%9B%BD%E8%81%94%E9%82%A6%E6%94%BF%E5%BA%9C">美国联邦政府</a>采用的一种<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%8D%80%E5%A1%8A%E5%8A%A0%E5%AF%86">区块加密</a>标准。这个标准用来替代原先的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/DES">DES</a>，已经被多方分析且广为全世界所使用。经过五年的甄选流程，高级加密标准由<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%BE%8E%E5%9B%BD%E5%9B%BD%E5%AE%B6%E6%A0%87%E5%87%86%E4%B8%8E%E6%8A%80%E6%9C%AF%E7%A0%94%E7%A9%B6%E9%99%A2">美国国家标准与技术研究院</a>（NIST）于2001年11月26日发布于FIPS PUB 197，并在2002年5月26日成为有效的标准。现在，高级加密标准已然成为<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%AF%B9%E7%A7%B0%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86">对称密钥加密</a>中最流行的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%BC%94%E7%AE%97%E6%B3%95">算法</a>之一。</p>
-<p>该算法为<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%AF%94%E5%88%A9%E6%97%B6">比利时</a>密码学家Joan Daemen和Vincent Rijmen所设计，结合两位作者的名字，以Rijndael为名投稿高级加密标准的甄选流程。</p>
-</blockquote>
-<h1 id="3-java中使用AES加密"><a href="#3-java中使用AES加密" class="headerlink" title="3. java中使用AES加密"></a>3. java中使用AES加密</h1><h2 id="3-1-依赖"><a href="#3-1-依赖" class="headerlink" title="3.1 依赖"></a>3.1 依赖</h2><p>使用hutool工具包</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>cn.hutool<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hutool-all<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.5.18<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+                <p>在java中通过图片url下载图片至本地</p>
+<span id="more"></span>
 
+<h1 id="1-利用hutool下载"><a href="#1-利用hutool下载" class="headerlink" title="1. 利用hutool下载"></a>1. 利用hutool下载</h1><p>利用hutool工具包下的<code>HttpUtil.downloadFile()</code>可以简单下载图片</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">downloadDa</span><span class="hljs-params">()</span>&#123;<br>	<span class="hljs-type">File</span> <span class="hljs-variable">imgFile</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(IdUtil.fastSimpleUUID() + <span class="hljs-string">&quot;.jpg&quot;</span>);<br>    HttpUtil.downloadFile(<span class="hljs-string">&quot;https://www.xxxxxx.com&quot;</span>,imgFile);<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<p>进入源码我们可以看出,这个实际是利用<code>HttpRequest.get()</code>方法访问url获取response实现图片下载的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">long</span> <span class="hljs-title function_">downloadFile</span><span class="hljs-params">(String url, File destFile, <span class="hljs-type">int</span> timeout, StreamProgress streamProgress)</span> &#123;<br>	<span class="hljs-keyword">if</span> (StrUtil.isBlank(url)) &#123;<br>		<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NullPointerException</span>(<span class="hljs-string">&quot;[url] is null!&quot;</span>);<br>	&#125;<br>	<span class="hljs-keyword">if</span> (<span class="hljs-literal">null</span> == destFile) &#123;<br>		<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NullPointerException</span>(<span class="hljs-string">&quot;[destFile] is null!&quot;</span>);<br>	&#125;<br>	<span class="hljs-keyword">final</span> <span class="hljs-type">HttpResponse</span> <span class="hljs-variable">response</span> <span class="hljs-operator">=</span> HttpRequest.get(url).timeout(timeout).executeAsync();<br>	<span class="hljs-keyword">if</span> (<span class="hljs-literal">false</span> == response.isOk()) &#123;<br>		<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HttpException</span>(<span class="hljs-string">&quot;Server response error with status code: [&#123;&#125;]&quot;</span>, response.getStatus());<br>	&#125;<br>	<span class="hljs-keyword">return</span> response.writeBody(destFile, streamProgress);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="3-2-使用"><a href="#3-2-使用" class="headerlink" title="3.2 使用"></a>3.2 使用</h2><ul>
-<li>代码:</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testEncode</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-comment">// 明文</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;明文&quot;</span>;<br>    <span class="hljs-comment">// 使用md5哈希运算出16位的密钥,AES要求秘钥为128/192/256个比特位</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">md5key</span> <span class="hljs-operator">=</span> SecureUtil.md5(<span class="hljs-string">&quot;alanIsHandsome&quot;</span>);<br>    <span class="hljs-comment">// 生成密钥</span><br>    <span class="hljs-type">byte</span>[] key = md5key.getBytes();<br>    <span class="hljs-comment">// 构建</span><br>    <span class="hljs-type">AES</span> <span class="hljs-variable">aes</span> <span class="hljs-operator">=</span> SecureUtil.aes(key);<br>    <span class="hljs-comment">// 加密值</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">encodeValue</span> <span class="hljs-operator">=</span> aes.encryptHex(content);<br>    <span class="hljs-comment">// 解密值</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">decodeValue</span> <span class="hljs-operator">=</span> aes.decryptStr(encodeValue);<br>    System.out.println(<span class="hljs-string">&quot;明文为:&quot;</span>+content);<br>    System.out.println(<span class="hljs-string">&quot;加密结果:&quot;</span>+encodeValue);<br>    System.out.println(<span class="hljs-string">&quot;对加密值解密结果:&quot;</span>+decodeValue);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<ul>
-<li>输出结果:</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">明文为:明文<br>加密结果:224a679b5fdc3dfdc258c8d2e407198c<br>对加密值解密结果:明文<br></code></pre></td></tr></table></figure>
+<p>但是这种方法会有问题,如果图片链接的访问需要进行验证,这种方法无法自定义http请求,会被远程服务器拦截返回响应码403,如果浏览器直接打开可以访问的话,一般是请求头缺少User-Agent,那么我们可以自定义Http请求,添加需要的请求头获取图片</p>
+<h1 id="2-使用HttpURLConnection"><a href="#2-使用HttpURLConnection" class="headerlink" title="2. 使用HttpURLConnection"></a>2. 使用HttpURLConnection</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">URL</span> <span class="hljs-variable">url</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">URL</span>(<span class="hljs-string">&quot;www.xxxx.com&quot;</span>);<br><span class="hljs-type">HttpURLConnection</span> <span class="hljs-variable">conn</span> <span class="hljs-operator">=</span> (HttpURLConnection )url.openConnection();<br>conn.setRequestMethod(<span class="hljs-string">&quot;GET&quot;</span>);<br>conn.setRequestProperty(<span class="hljs-string">&quot;User-Agent&quot;</span>,<span class="hljs-string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537&quot;</span> +<br>        <span class="hljs-string">&quot;.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36&quot;</span>);<br><span class="hljs-type">InputStream</span> <span class="hljs-variable">inputStream</span> <span class="hljs-operator">=</span> conn.getInputStream();<br><span class="hljs-type">ByteArrayOutputStream</span> <span class="hljs-variable">outStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ByteArrayOutputStream</span>();<br><span class="hljs-comment">//创建一个Buffer字符串</span><br><span class="hljs-type">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">1024</span>];<br><span class="hljs-comment">//每次读取的字符串长度，如果为-1，代表全部读取完毕</span><br><span class="hljs-type">int</span> <span class="hljs-variable">len</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-comment">//使用一个输入流从buffer里把数据读取出来</span><br><span class="hljs-keyword">while</span>( (len=inputStream.read(buffer)) != -<span class="hljs-number">1</span> ) &#123;<br>    <span class="hljs-comment">//用输出流往buffer里写入数据，中间参数代表从哪个位置开始读，len代表读取的长度</span><br>    outStream.write(buffer, <span class="hljs-number">0</span>, len);<br>&#125;<br>inputStream.close();<br><span class="hljs-comment">//得到图片的二进制数据，以二进制封装得到数据，具有通用性</span><br><span class="hljs-type">byte</span>[] data = outStream.toByteArray();<br><span class="hljs-comment">//创建输出流</span><br><span class="hljs-type">FileOutputStream</span> <span class="hljs-variable">fileOutStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(imgFile);<br><span class="hljs-comment">//写入数据</span><br>fileOutStream.write(data);<br>fileOutStream.close();<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -373,38 +354,6 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E5%8A%A0%E5%AF%86/" class="category-chain-item">加密</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/java/">#java</a>
-      
-        <a href="/tags/AES/">#AES</a>
-      
-        <a href="/tags/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/">#对称加密</a>
-      
-    </div>
   
 </div>
 
@@ -414,8 +363,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>AES对称加密</div>
-      <div>http://tgkzxy.top/2022/11/10/AES对称加密/</div>
+      <div>java下载图片</div>
+      <div>http://tgkzxy.top/2022/11/22/java下载图片/</div>
     </div>
     <div class="license-meta">
       
@@ -427,7 +376,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年11月10日</div>
+          <div>2022年11月22日</div>
         </div>
       
       
@@ -450,18 +399,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/10/springboot%E5%BC%82%E6%AD%A5/" title="springboot异步">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">springboot异步</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/08/java%E4%BD%BF%E7%94%A8sse/" title="java使用sse">
-                        <span class="hidden-mobile">java使用sse</span>
+                      <a href="/2022/11/10/springboot%E5%BC%82%E6%AD%A5/" title="springboot异步">
+                        <span class="hidden-mobile">springboot异步</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -488,43 +431,6 @@
 
 <div class="category-list">
   
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="加密"
-        id="heading-56563edf23b9d717dc63981b8836fc60" role="tab" data-toggle="collapse" href="#collapse-56563edf23b9d717dc63981b8836fc60"
-        aria-expanded="true"
-      >
-        加密
-        <span class="list-group-count">(1)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse show" id="collapse-56563edf23b9d717dc63981b8836fc60"
-           role="tabpanel" aria-labelledby="heading-56563edf23b9d717dc63981b8836fc60">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2022/11/10/AES%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/" title="AES对称加密"
-           class="list-group-item list-group-item-action
-           active">
-          <span class="category-post">AES对称加密</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
   
 </div>
 
