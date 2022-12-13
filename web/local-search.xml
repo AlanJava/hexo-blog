@@ -4,6 +4,62 @@
   
   
   <entry>
+    <title>docker导入导出镜像</title>
+    <link href="/2022/12/13/docker%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E9%95%9C%E5%83%8F/"/>
+    <url>/2022/12/13/docker%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E9%95%9C%E5%83%8F/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-镜像导出为tar包"><a href="#1-镜像导出为tar包" class="headerlink" title="1. 镜像导出为tar包"></a>1. 镜像导出为tar包</h1><h2 id="1-1-利用镜像id导出"><a href="#1-1-利用镜像id导出" class="headerlink" title="1.1 利用镜像id导出"></a>1.1 利用镜像id导出</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker save 镜像id &gt; 导出文件名<br></code></pre></td></tr></table></figure><p><strong>示例:</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker save 0fdf2b4c26d3 &gt; xxx_server.tar<br></code></pre></td></tr></table></figure><h2 id="1-2-利用镜像名导出"><a href="#1-2-利用镜像名导出" class="headerlink" title="1.2 利用镜像名导出"></a>1.2 利用镜像名导出</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker save 镜像名 &gt; 导出文件名<br></code></pre></td></tr></table></figure><p><strong>示例:</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker save my-server:1.0 &gt; xxx_server.tar<br></code></pre></td></tr></table></figure><h1 id="2-tar导入镜像"><a href="#2-tar导入镜像" class="headerlink" title="2. tar导入镜像"></a>2. tar导入镜像</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker load &lt; xxx_server.tar<br></code></pre></td></tr></table></figure><p>**PS:**如果使用镜像id导出tar时,在导入时镜像名会丢失,变为null</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>docker</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>导出</tag>
+      
+      <tag>docker</tag>
+      
+      <tag>导入</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>docker从容器中保存镜像</title>
+    <link href="/2022/12/13/docker%E4%BF%9D%E5%AD%98%E9%95%9C%E5%83%8F/"/>
+    <url>/2022/12/13/docker%E4%BF%9D%E5%AD%98%E9%95%9C%E5%83%8F/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-命令"><a href="#1-命令" class="headerlink" title="1. 命令"></a>1. 命令</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker commit -a &quot;作者名&quot; -m &quot;镜像描述&quot; 容器id 镜像名<br></code></pre></td></tr></table></figure><p><strong>示例如下:</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker commit -a &quot;glens&quot; -m &quot;centos with firefox and webdriver&quot; 29b0923c5d82 centos-firefox:1.0<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>docker</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>docker</tag>
+      
+      <tag>镜像</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>java下载图片</title>
     <link href="/2022/11/22/java%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87/"/>
     <url>/2022/11/22/java%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87/</url>
@@ -11,6 +67,22 @@
     <content type="html"><![CDATA[<p>在java中通过图片url下载图片至本地</p><span id="more"></span><h1 id="1-利用hutool下载"><a href="#1-利用hutool下载" class="headerlink" title="1. 利用hutool下载"></a>1. 利用hutool下载</h1><p>利用hutool工具包下的<code>HttpUtil.downloadFile()</code>可以简单下载图片</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">downloadDa</span><span class="hljs-params">()</span>&#123;<br><span class="hljs-type">File</span> <span class="hljs-variable">imgFile</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(IdUtil.fastSimpleUUID() + <span class="hljs-string">&quot;.jpg&quot;</span>);<br>    HttpUtil.downloadFile(<span class="hljs-string">&quot;https://www.xxxxxx.com&quot;</span>,imgFile);<br>&#125;<br></code></pre></td></tr></table></figure><p>进入源码我们可以看出,这个实际是利用<code>HttpRequest.get()</code>方法访问url获取response实现图片下载的</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">long</span> <span class="hljs-title function_">downloadFile</span><span class="hljs-params">(String url, File destFile, <span class="hljs-type">int</span> timeout, StreamProgress streamProgress)</span> &#123;<br><span class="hljs-keyword">if</span> (StrUtil.isBlank(url)) &#123;<br><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NullPointerException</span>(<span class="hljs-string">&quot;[url] is null!&quot;</span>);<br>&#125;<br><span class="hljs-keyword">if</span> (<span class="hljs-literal">null</span> == destFile) &#123;<br><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NullPointerException</span>(<span class="hljs-string">&quot;[destFile] is null!&quot;</span>);<br>&#125;<br><span class="hljs-keyword">final</span> <span class="hljs-type">HttpResponse</span> <span class="hljs-variable">response</span> <span class="hljs-operator">=</span> HttpRequest.get(url).timeout(timeout).executeAsync();<br><span class="hljs-keyword">if</span> (<span class="hljs-literal">false</span> == response.isOk()) &#123;<br><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HttpException</span>(<span class="hljs-string">&quot;Server response error with status code: [&#123;&#125;]&quot;</span>, response.getStatus());<br>&#125;<br><span class="hljs-keyword">return</span> response.writeBody(destFile, streamProgress);<br>&#125;<br></code></pre></td></tr></table></figure><p>但是这种方法会有问题,如果图片链接的访问需要进行验证,这种方法无法自定义http请求,会被远程服务器拦截返回响应码403,如果浏览器直接打开可以访问的话,一般是请求头缺少User-Agent,那么我们可以自定义Http请求,添加需要的请求头获取图片</p><h1 id="2-使用HttpURLConnection"><a href="#2-使用HttpURLConnection" class="headerlink" title="2. 使用HttpURLConnection"></a>2. 使用HttpURLConnection</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">URL</span> <span class="hljs-variable">url</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">URL</span>(<span class="hljs-string">&quot;www.xxxx.com&quot;</span>);<br><span class="hljs-type">HttpURLConnection</span> <span class="hljs-variable">conn</span> <span class="hljs-operator">=</span> (HttpURLConnection )url.openConnection();<br>conn.setRequestMethod(<span class="hljs-string">&quot;GET&quot;</span>);<br>conn.setRequestProperty(<span class="hljs-string">&quot;User-Agent&quot;</span>,<span class="hljs-string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537&quot;</span> +<br>        <span class="hljs-string">&quot;.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36&quot;</span>);<br><span class="hljs-type">InputStream</span> <span class="hljs-variable">inputStream</span> <span class="hljs-operator">=</span> conn.getInputStream();<br><span class="hljs-type">ByteArrayOutputStream</span> <span class="hljs-variable">outStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ByteArrayOutputStream</span>();<br><span class="hljs-comment">//创建一个Buffer字符串</span><br><span class="hljs-type">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">1024</span>];<br><span class="hljs-comment">//每次读取的字符串长度，如果为-1，代表全部读取完毕</span><br><span class="hljs-type">int</span> <span class="hljs-variable">len</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-comment">//使用一个输入流从buffer里把数据读取出来</span><br><span class="hljs-keyword">while</span>( (len=inputStream.read(buffer)) != -<span class="hljs-number">1</span> ) &#123;<br>    <span class="hljs-comment">//用输出流往buffer里写入数据，中间参数代表从哪个位置开始读，len代表读取的长度</span><br>    outStream.write(buffer, <span class="hljs-number">0</span>, len);<br>&#125;<br>inputStream.close();<br><span class="hljs-comment">//得到图片的二进制数据，以二进制封装得到数据，具有通用性</span><br><span class="hljs-type">byte</span>[] data = outStream.toByteArray();<br><span class="hljs-comment">//创建输出流</span><br><span class="hljs-type">FileOutputStream</span> <span class="hljs-variable">fileOutStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(imgFile);<br><span class="hljs-comment">//写入数据</span><br>fileOutStream.write(data);<br>fileOutStream.close();<br></code></pre></td></tr></table></figure>]]></content>
     
     
+    <categories>
+      
+      <category>java</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>下载</tag>
+      
+      <tag>图片链接</tag>
+      
+    </tags>
     
   </entry>
   
