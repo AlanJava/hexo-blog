@@ -3,6 +3,7 @@ title: docker导入导出镜像
 date: 2022-12-13 11:38:30
 tags: [docker,导入,导出]
 categories: docker
+index_img: /img/docker.png
 excerpt: 使用docker命令导入和导出image镜像
 ---
 # 1. 镜像导出为tar包
