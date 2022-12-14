@@ -124,7 +124,7 @@ post:
     # Options: date | title | or other field of front-matter
     post_order_by: "date"
     # 单个分类中折叠展示文章数的最大值，超过限制会显示 More，0 则不限制
-    post_limit: 5
+    post_limit: 10
   # 侧边栏展示文章目录
   toc:
     enable: true
