@@ -3,7 +3,7 @@ title: fastjson空值丢失
 date: 2022-12-14 11:43:27
 tags: [fastjson,java]
 categories: java
-index_img: /img/docker.png
+index_img: /img/fastjson.png
 excerpt: fastjson使用JSONObject,toJSONString()序列化时值null的字段丢失
 ---
 # 1. 问题复现
