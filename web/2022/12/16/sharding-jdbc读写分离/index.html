@@ -16,28 +16,28 @@
   <meta name="author" content="Alan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在java中通过图片url下载图片至本地">
+    <meta name="description" content="在SpringBoot中使用sharding-jdbc实现mysql的读写分离,并配置mysql基于binlog的主从同步">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java下载图片">
-<meta property="og:url" content="http://tgkzxy.top/2022/11/22/java%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87/index.html">
+<meta property="og:title" content="sharding-jdbc读写分离">
+<meta property="og:url" content="http://tgkzxy.top/2022/12/16/sharding-jdbc%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/index.html">
 <meta property="og:site_name" content="AlanBlog">
-<meta property="og:description" content="在java中通过图片url下载图片至本地">
+<meta property="og:description" content="在SpringBoot中使用sharding-jdbc实现mysql的读写分离,并配置mysql基于binlog的主从同步">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://tgkzxy.top/img/HttpURLConnection.png">
-<meta property="article:published_time" content="2022-11-22T05:39:08.000Z">
-<meta property="article:modified_time" content="2022-11-22T05:45:50.728Z">
+<meta property="og:image" content="http://tgkzxy.top/img/sharding-jdbc.png">
+<meta property="article:published_time" content="2022-12-16T09:21:57.000Z">
+<meta property="article:modified_time" content="2022-12-16T09:25:00.985Z">
 <meta property="article:author" content="Alan">
-<meta property="article:tag" content="java">
-<meta property="article:tag" content="下载">
-<meta property="article:tag" content="图片链接">
+<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="sharding-jdbc">
+<meta property="article:tag" content="读写分离">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://tgkzxy.top/img/HttpURLConnection.png">
+<meta name="twitter:image" content="http://tgkzxy.top/img/sharding-jdbc.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>java下载图片 - AlanBlog</title>
+  <title>sharding-jdbc读写分离 - AlanBlog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -243,7 +243,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="java下载图片"></span>
+            <span id="subtitle" data-typed-text="sharding-jdbc读写分离"></span>
           
         </div>
 
@@ -260,7 +260,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.9k 字
+          2.5k 字
         
       </span>
     
@@ -272,7 +272,7 @@
         
         
           <!-- compatible with older versions-->
-          17 分钟
+          22 分钟
         
       </span>
     
@@ -328,12 +328,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">java下载图片</h1>
+            <h1 style="display: none">sharding-jdbc读写分离</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2022年11月22日 下午
+                    本文最后更新于：2022年12月16日 下午
                   
                 
               </p>
@@ -341,17 +341,106 @@
             
               <div class="markdown-body">
                 
-                <p>在java中通过图片url下载图片至本地</p>
-<span id="more"></span>
+                <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p><a target="_blank" rel="noopener" href="https://shardingsphere.apache.org/document/4.1.0/cn/manual/sharding-jdbc/">Sharding-JDBC官网</a></p>
+<p>Sharding-JDBC是ShardingSphere的第一个产品，也是ShardingSphere的前身。 它定位为轻量级Java框架，在Java的JDBC层提供的额外服务。它使用客户端直连数据库，以jar包形式提供服务，无需额外部署和依赖，可理解为增强版的JDBC驱动，完全兼容JDBC和各种ORM框架。</p>
+<ul>
+<li>适用于任何基于JDBC的ORM框架，如：JPA, Hibernate, Mybatis, Spring JDBC Template或直接使用JDBC。</li>
+<li>支持任何第三方的数据库连接池，如：DBCP, C3P0, BoneCP, Druid, HikariCP等。</li>
+<li>支持任意实现JDBC规范的数据库。目前支持MySQL，Oracle，SQLServer，PostgreSQL以及任何遵循SQL92标准的数据库。</li>
+</ul>
+<h2 id="1-1-与ShardingSphere其它产品对比"><a href="#1-1-与ShardingSphere其它产品对比" class="headerlink" title="1.1 与ShardingSphere其它产品对比"></a>1.1 与ShardingSphere其它产品对比</h2><table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"><em>Sharding-JDBC</em></th>
+<th align="left"><em>Sharding-Proxy</em></th>
+<th align="left"><em>Sharding-Sidecar</em></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">数据库</td>
+<td align="left"><code>任意</code></td>
+<td align="left">MySQL&#x2F;PostgreSQL</td>
+<td align="left">MySQL&#x2F;PostgreSQL</td>
+</tr>
+<tr>
+<td align="left">连接消耗数</td>
+<td align="left"><code>高</code></td>
+<td align="left">低</td>
+<td align="left">高</td>
+</tr>
+<tr>
+<td align="left">异构语言</td>
+<td align="left"><code>仅Java</code></td>
+<td align="left">任意</td>
+<td align="left">任意</td>
+</tr>
+<tr>
+<td align="left">性能</td>
+<td align="left"><code>损耗低</code></td>
+<td align="left">损耗略高</td>
+<td align="left">损耗低</td>
+</tr>
+<tr>
+<td align="left">无中心化</td>
+<td align="left"><code>是</code></td>
+<td align="left">否</td>
+<td align="left">是</td>
+</tr>
+<tr>
+<td align="left">静态入口</td>
+<td align="left"><code>无</code></td>
+<td align="left">有</td>
+<td align="left">无</td>
+</tr>
+</tbody></table>
+<p>Sharding-JDBC的优势在于对Java应用的友好度。</p>
+<h1 id="2-SpringBoot中使用Sharding-JDBC"><a href="#2-SpringBoot中使用Sharding-JDBC" class="headerlink" title="2. SpringBoot中使用Sharding-JDBC"></a>2. SpringBoot中使用Sharding-JDBC</h1><h2 id="2-1-引入jar包"><a href="#2-1-引入jar包" class="headerlink" title="2.1 引入jar包"></a>2.1 引入jar包</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.shardingsphere<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>sharding-jdbc-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.1.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<h1 id="1-利用hutool下载"><a href="#1-利用hutool下载" class="headerlink" title="1. 利用hutool下载"></a>1. 利用hutool下载</h1><p>利用hutool工具包下的<code>HttpUtil.downloadFile()</code>可以简单下载图片</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">downloadDa</span><span class="hljs-params">()</span>&#123;<br>	<span class="hljs-type">File</span> <span class="hljs-variable">imgFile</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(IdUtil.fastSimpleUUID() + <span class="hljs-string">&quot;.jpg&quot;</span>);<br>    HttpUtil.downloadFile(<span class="hljs-string">&quot;https://www.xxxxxx.com&quot;</span>,imgFile);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="2-2-yml文件配置主从数据源"><a href="#2-2-yml文件配置主从数据源" class="headerlink" title="2.2 yml文件配置主从数据源"></a>2.2 yml文件配置主从数据源</h2><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">shardingsphere:</span><br>    <span class="hljs-attr">props:</span><br>      <span class="hljs-comment"># 打印sql语句，调试时可开启</span><br>      <span class="hljs-attr">sql:</span><br>        <span class="hljs-attr">show:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">datasource:</span><br>      <span class="hljs-comment"># 配置数据源，主库master，从库slave</span><br>      <span class="hljs-attr">names:</span> <span class="hljs-string">master,slave</span><br>      <span class="hljs-attr">master:</span><br>        <span class="hljs-attr">type:</span> <span class="hljs-string">com.zaxxer.hikari.HikariDataSource</span><br>        <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span><br>        <span class="hljs-attr">jdbc-url:</span> <span class="hljs-string">jdbc:mysql://localhost:3307/test?serverTimezone=Asia/Shanghai&amp;useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false</span><br>        <span class="hljs-attr">username:</span> <br>        <span class="hljs-attr">password:</span> <br>      <span class="hljs-attr">slave:</span><br>        <span class="hljs-attr">type:</span> <span class="hljs-string">com.zaxxer.hikari.HikariDataSource</span><br>        <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span><br>        <span class="hljs-attr">jdbc-url:</span> <span class="hljs-string">jdbc:mysql://localhost:3308/test?serverTimezone=Asia/Shanghai&amp;useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false</span><br>        <span class="hljs-attr">username:</span> <br>        <span class="hljs-attr">password:</span> <br>    <span class="hljs-attr">masterslave:</span><br>      <span class="hljs-comment"># 主从配置的名称，随意，但是要保证唯一</span><br>      <span class="hljs-attr">name:</span> <span class="hljs-string">oneMasterOneSlave</span><br>      <span class="hljs-comment"># 从库负载均衡算法，内置两个值：RANDOM、ROUND_ROBIN</span><br>      <span class="hljs-attr">load-balance-algorithm-type:</span> <span class="hljs-string">round_robin</span><br>      <span class="hljs-comment"># 主库,写操作用的库</span><br>      <span class="hljs-attr">master-data-source-name:</span> <span class="hljs-string">master</span><br>      <span class="hljs-comment"># 从库,读操作用的库(可以把master也加入从库,这样主库也可以参与轮巡进行读操作)</span><br>      <span class="hljs-attr">slave-data-source-names:</span> <br>        <span class="hljs-bullet">-</span> <span class="hljs-string">slave</span><br></code></pre></td></tr></table></figure>
 
-<p>进入源码我们可以看出,这个实际是利用<code>HttpRequest.get()</code>方法访问url获取response实现图片下载的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">long</span> <span class="hljs-title function_">downloadFile</span><span class="hljs-params">(String url, File destFile, <span class="hljs-type">int</span> timeout, StreamProgress streamProgress)</span> &#123;<br>	<span class="hljs-keyword">if</span> (StrUtil.isBlank(url)) &#123;<br>		<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NullPointerException</span>(<span class="hljs-string">&quot;[url] is null!&quot;</span>);<br>	&#125;<br>	<span class="hljs-keyword">if</span> (<span class="hljs-literal">null</span> == destFile) &#123;<br>		<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NullPointerException</span>(<span class="hljs-string">&quot;[destFile] is null!&quot;</span>);<br>	&#125;<br>	<span class="hljs-keyword">final</span> <span class="hljs-type">HttpResponse</span> <span class="hljs-variable">response</span> <span class="hljs-operator">=</span> HttpRequest.get(url).timeout(timeout).executeAsync();<br>	<span class="hljs-keyword">if</span> (<span class="hljs-literal">false</span> == response.isOk()) &#123;<br>		<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HttpException</span>(<span class="hljs-string">&quot;Server response error with status code: [&#123;&#125;]&quot;</span>, response.getStatus());<br>	&#125;<br>	<span class="hljs-keyword">return</span> response.writeBody(destFile, streamProgress);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这时候在已经可以实现读写分离了</p>
+<p>所有的select 都是走从库,所有的update,insert,delete都走主库</p>
+<h1 id="3-mysql配置主从同步"><a href="#3-mysql配置主从同步" class="headerlink" title="3. mysql配置主从同步"></a>3. mysql配置主从同步</h1><p>编辑<code>/etc/mysql/my.cnf</code></p>
+<ul>
+<li><strong>主数据库</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs conf">[mysqld]<br># binlog文件名<br>log-bin=mysql-bin<br># id,数字<br>servier-id=01<br># binlog记录的库<br>binlog-do-db=test<br></code></pre></td></tr></table></figure>
 
-<p>但是这种方法会有问题,如果图片链接的访问需要进行验证,这种方法无法自定义http请求,会被远程服务器拦截返回响应码403,如果浏览器直接打开可以访问的话,一般是请求头缺少User-Agent,那么我们可以自定义Http请求,添加需要的请求头获取图片</p>
-<h1 id="2-使用HttpURLConnection"><a href="#2-使用HttpURLConnection" class="headerlink" title="2. 使用HttpURLConnection"></a>2. 使用HttpURLConnection</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">URL</span> <span class="hljs-variable">url</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">URL</span>(<span class="hljs-string">&quot;www.xxxx.com&quot;</span>);<br><span class="hljs-type">HttpURLConnection</span> <span class="hljs-variable">conn</span> <span class="hljs-operator">=</span> (HttpURLConnection )url.openConnection();<br>conn.setRequestMethod(<span class="hljs-string">&quot;GET&quot;</span>);<br>conn.setRequestProperty(<span class="hljs-string">&quot;User-Agent&quot;</span>,<span class="hljs-string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537&quot;</span> +<br>        <span class="hljs-string">&quot;.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36&quot;</span>);<br><span class="hljs-type">InputStream</span> <span class="hljs-variable">inputStream</span> <span class="hljs-operator">=</span> conn.getInputStream();<br><span class="hljs-type">ByteArrayOutputStream</span> <span class="hljs-variable">outStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ByteArrayOutputStream</span>();<br><span class="hljs-comment">//创建一个Buffer字符串</span><br><span class="hljs-type">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">1024</span>];<br><span class="hljs-comment">//每次读取的字符串长度，如果为-1，代表全部读取完毕</span><br><span class="hljs-type">int</span> <span class="hljs-variable">len</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-comment">//使用一个输入流从buffer里把数据读取出来</span><br><span class="hljs-keyword">while</span>( (len=inputStream.read(buffer)) != -<span class="hljs-number">1</span> ) &#123;<br>    <span class="hljs-comment">//用输出流往buffer里写入数据，中间参数代表从哪个位置开始读，len代表读取的长度</span><br>    outStream.write(buffer, <span class="hljs-number">0</span>, len);<br>&#125;<br>inputStream.close();<br><span class="hljs-comment">//得到图片的二进制数据，以二进制封装得到数据，具有通用性</span><br><span class="hljs-type">byte</span>[] data = outStream.toByteArray();<br><span class="hljs-comment">//创建输出流</span><br><span class="hljs-type">FileOutputStream</span> <span class="hljs-variable">fileOutStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(imgFile);<br><span class="hljs-comment">//写入数据</span><br>fileOutStream.write(data);<br>fileOutStream.close();<br></code></pre></td></tr></table></figure>
+<ul>
+<li><strong>从数据库</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cnf">[mysqld]<br>server-id=11<br># 需要复制的库<br>replicate-do-db=test<br></code></pre></td></tr></table></figure>
+
+<p>改完配置文件需要重启mysql</p>
+<h2 id="3-1-查看主库状态"><a href="#3-1-查看主库状态" class="headerlink" title="3.1 查看主库状态"></a>3.1 查看主库状态</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> master status<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221216170305165.png" srcset="/img/loading.gif" lazyload alt="image-20221216170305165"></p>
+<h2 id="3-2-配置从库同步"><a href="#3-2-配置从库同步" class="headerlink" title="3.2 配置从库同步"></a>3.2 配置从库同步</h2><ul>
+<li>master_host  主库ip</li>
+<li>master_port 主库端口</li>
+<li>master_user 用户名</li>
+<li>master_password 密码</li>
+<li>master_log_file 主库查询的File值</li>
+<li>master_log_pos 主库查询的 Position值</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql">change master <span class="hljs-keyword">to</span> master_host<span class="hljs-operator">=</span><span class="hljs-string">&#x27;172.17.0.2&#x27;</span> , master_port<span class="hljs-operator">=</span><span class="hljs-number">3306</span>, <br>                 master_user<span class="hljs-operator">=</span><span class="hljs-string">&#x27;root&#x27;</span>,master_password<span class="hljs-operator">=</span><span class="hljs-string">&#x27;123456&#x27;</span>,<br>                 master_log_file <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;mysql-bin.000003&#x27;</span>,master_log_pos<span class="hljs-operator">=</span><span class="hljs-number">154</span>;<br></code></pre></td></tr></table></figure>
+
+<p>开启从库复制</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">start</span> slave<br></code></pre></td></tr></table></figure>
+
+<p>查看从库状态</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> slave status <br></code></pre></td></tr></table></figure>
+
+<p>确保红框里的两个都是Yes</p>
+<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221216170631433.png" srcset="/img/loading.gif" lazyload alt="image-20221216170631433"></p>
+<p><strong>PS:</strong></p>
+<p>如果是docker内部署的mysql,会出现Salve_IO_Running一直是Conneting,原因是容器与容器访问不到,需要使用<code>docker network inspect bridge</code>命令,查看docker 容器内部之间的ip,</p>
+<p>在从库执行<code>change master to xxx </code>时使用docker容器之见的ip,并且使用默认的3306端口</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker network inspect bridge<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221216171751873.png" srcset="/img/loading.gif" lazyload alt="image-20221216171751873"></p>
+
                 
               </div>
             
@@ -369,7 +458,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/java/" class="category-chain-item">java</a>
+  <a href="/categories/mysql/" class="category-chain-item">mysql</a>
   
   
 
@@ -384,11 +473,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/java/">#java</a>
+        <a href="/tags/mysql/">#mysql</a>
       
-        <a href="/tags/%E4%B8%8B%E8%BD%BD/">#下载</a>
+        <a href="/tags/sharding-jdbc/">#sharding-jdbc</a>
       
-        <a href="/tags/%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5/">#图片链接</a>
+        <a href="/tags/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/">#读写分离</a>
       
     </div>
   
@@ -400,8 +489,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>java下载图片</div>
-      <div>http://tgkzxy.top/2022/11/22/java下载图片/</div>
+      <div>sharding-jdbc读写分离</div>
+      <div>http://tgkzxy.top/2022/12/16/sharding-jdbc读写分离/</div>
     </div>
     <div class="license-meta">
       
@@ -413,7 +502,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年11月22日</div>
+          <div>2022年12月16日</div>
         </div>
       
       
@@ -436,18 +525,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/12/13/docker%E4%BF%9D%E5%AD%98%E9%95%9C%E5%83%8F/" title="docker从容器中保存镜像">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">docker从容器中保存镜像</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/10/springboot%E5%BC%82%E6%AD%A5/" title="springboot异步">
-                        <span class="hidden-mobile">springboot异步</span>
+                      <a href="/2022/12/14/fastjson%E7%A9%BA%E5%80%BC%E4%B8%A2%E5%A4%B1/" title="fastjson空值丢失">
+                        <span class="hidden-mobile">fastjson空值丢失</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -480,17 +563,17 @@
     
     <div class="category row nomargin-x">
       <a class="category-item 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="java"
-        id="heading-93f725a07423fe1c889f448b33d21f46" role="tab" data-toggle="collapse" href="#collapse-93f725a07423fe1c889f448b33d21f46"
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="mysql"
+        id="heading-81c3b080dad537de7e10e0987a4bf52e" role="tab" data-toggle="collapse" href="#collapse-81c3b080dad537de7e10e0987a4bf52e"
         aria-expanded="true"
       >
-        java
-        <span class="list-group-count">(6)</span>
+        mysql
+        <span class="list-group-count">(1)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
-      <div class="category-collapse collapse show" id="collapse-93f725a07423fe1c889f448b33d21f46"
-           role="tabpanel" aria-labelledby="heading-93f725a07423fe1c889f448b33d21f46">
+      <div class="category-collapse collapse show" id="collapse-81c3b080dad537de7e10e0987a4bf52e"
+           role="tabpanel" aria-labelledby="heading-81c3b080dad537de7e10e0987a4bf52e">
         
         
           
@@ -499,55 +582,10 @@
     
       
       
-        <a href="/2022/09/14/word%E5%AF%BC%E5%87%BA/" title="word导出"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">word导出</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/10/12/java%E6%96%B0%E7%89%B9%E6%80%A7/" title="java11-java17新特性"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">java11-java17新特性</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/11/04/Java%E4%BD%BF%E7%94%A8opencv/" title="Java使用opencv"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Java使用opencv</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/11/08/java%E4%BD%BF%E7%94%A8sse/" title="java使用sse"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">java使用sse</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/11/22/java%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87/" title="java下载图片"
+        <a href="/2022/12/16/sharding-jdbc%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/" title="sharding-jdbc读写分离"
            class="list-group-item list-group-item-action
            active">
-          <span class="category-post">java下载图片</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/12/14/fastjson%E7%A9%BA%E5%80%BC%E4%B8%A2%E5%A4%B1/" title="fastjson空值丢失"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">fastjson空值丢失</span>
+          <span class="category-post">sharding-jdbc读写分离</span>
         </a>
       
     
