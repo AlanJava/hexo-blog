@@ -2,7 +2,7 @@
 title: sharding-jdbc读写分离
 date: 2022-12-16 17:21:57
 tags: [mysql,sharding-jdbc,读写分离]
-categories: mysql
+categories: MySQL
 index_img: /img/sharding-jdbc.png
 excerpt: 在SpringBoot中使用sharding-jdbc实现mysql的读写分离,并配置mysql基于binlog的主从同步
 ---
