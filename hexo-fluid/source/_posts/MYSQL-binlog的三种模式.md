@@ -92,11 +92,11 @@ binlog_format="MIXED"   #开启MIXED模式
 ## 3.1 三种binlog模式的配置
 
 ```properties
-binlog_format="ROW"
+binlog_format=ROW
 
-binlog_format="MIXED"
+binlog_format=MIXED
 
-binlog_format="STATEMENT"
+binlog_format=STATEMENT
 ```
 
 
