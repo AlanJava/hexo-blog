@@ -16,28 +16,29 @@
   <meta name="author" content="Alan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在SpringBoot中使用sharding-jdbc实现mysql的读写分离,并配置mysql基于binlog的主从同步">
+    <meta name="description" content="MySQL中binlog的三种模式,分别为记录sql的Statement模式;记录行操作的行模式;混合模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sharding-jdbc读写分离">
-<meta property="og:url" content="http://tgkzxy.top/2022/12/16/sharding-jdbc%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/index.html">
+<meta property="og:title" content="MySQL中binlog的三种模式">
+<meta property="og:url" content="http://tgkzxy.top/2022/12/21/MYSQL-binlog%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="AlanBlog">
-<meta property="og:description" content="在SpringBoot中使用sharding-jdbc实现mysql的读写分离,并配置mysql基于binlog的主从同步">
+<meta property="og:description" content="MySQL中binlog的三种模式,分别为记录sql的Statement模式;记录行操作的行模式;混合模式">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://tgkzxy.top/img/sharding-jdbc.png">
-<meta property="article:published_time" content="2022-12-16T09:21:57.000Z">
-<meta property="article:modified_time" content="2022-12-19T09:21:32.183Z">
+<meta property="og:image" content="http://tgkzxy.top/img/MySQL.png">
+<meta property="article:published_time" content="2022-12-21T13:22:17.000Z">
+<meta property="article:modified_time" content="2022-12-21T13:26:53.944Z">
 <meta property="article:author" content="Alan">
-<meta property="article:tag" content="mysql">
-<meta property="article:tag" content="sharding-jdbc">
 <meta property="article:tag" content="读写分离">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="binlog">
+<meta property="article:tag" content="主从同步">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://tgkzxy.top/img/sharding-jdbc.png">
+<meta name="twitter:image" content="http://tgkzxy.top/img/MySQL.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>sharding-jdbc读写分离 - AlanBlog</title>
+  <title>MySQL中binlog的三种模式 - AlanBlog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -243,7 +244,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="sharding-jdbc读写分离"></span>
+            <span id="subtitle" data-typed-text="MySQL中binlog的三种模式"></span>
           
         </div>
 
@@ -260,7 +261,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          2.5k 字
+          2.1k 字
         
       </span>
     
@@ -272,7 +273,7 @@
         
         
           <!-- compatible with older versions-->
-          22 分钟
+          18 分钟
         
       </span>
     
@@ -328,12 +329,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">sharding-jdbc读写分离</h1>
+            <h1 style="display: none">MySQL中binlog的三种模式</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2022年12月19日 下午
+                    本文最后更新于：2022年12月21日 晚上
                   
                 
               </p>
@@ -341,105 +342,44 @@
             
               <div class="markdown-body">
                 
-                <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p><a target="_blank" rel="noopener" href="https://shardingsphere.apache.org/document/4.1.0/cn/manual/sharding-jdbc/">Sharding-JDBC官网</a></p>
-<p>Sharding-JDBC是ShardingSphere的第一个产品，也是ShardingSphere的前身。 它定位为轻量级Java框架，在Java的JDBC层提供的额外服务。它使用客户端直连数据库，以jar包形式提供服务，无需额外部署和依赖，可理解为增强版的JDBC驱动，完全兼容JDBC和各种ORM框架。</p>
+                <h1 id="1-什么是binlog"><a href="#1-什么是binlog" class="headerlink" title="1. 什么是binlog"></a>1. 什么是binlog</h1><blockquote>
+<p>二进制日志,它记录了数据库的所有改变,并以二进制的形式保存到磁盘中。它可以用来查看数据库的变更历史,数据库增量备份,恢复,Mysql主从复制。从5.7.22版本开始，Mysql默认的格式由STATEMENT改为了ROW。</p>
+</blockquote>
+<p>binlog 是 MySQL Server 层的日志，而不是存储引擎自带的日志，它记录了所有的 DDL 和 DML(不包含数据查询语句)语句，而且是以事件形式记录，还包含语句所执行的消耗的时间等，需要注意的是：</p>
 <ul>
-<li>适用于任何基于JDBC的ORM框架，如：JPA, Hibernate, Mybatis, Spring JDBC Template或直接使用JDBC。</li>
-<li>支持任何第三方的数据库连接池，如：DBCP, C3P0, BoneCP, Druid, HikariCP等。</li>
-<li>支持任意实现JDBC规范的数据库。目前支持MySQL，Oracle，SQLServer，PostgreSQL以及任何遵循SQL92标准的数据库。</li>
+<li>binlog 是一种逻辑日志，他里边所记录的是一条 SQL 语句的原始逻辑，例如给某一个字段 +1，注意这个区别于 redo log 的物理日志(在某个数据页上做了什么修改)。</li>
+<li>binlog 文件写满后，会自动切换到下一个日志文件继续写，而不会覆盖以前的日志，这个也区别于 redo log，redo log 是循环写入的，即后面写入的可能会覆盖前面写入的。</li>
+<li>一般来说，我们在配置 binlog 的时候，可以指定 binlog 文件的有效期，这样在到期后，日志文件会自动删除，这样避免占用较多存储空间。</li>
 </ul>
-<h2 id="1-1-与ShardingSphere其它产品对比"><a href="#1-1-与ShardingSphere其它产品对比" class="headerlink" title="1.1 与ShardingSphere其它产品对比"></a>1.1 与ShardingSphere其它产品对比</h2><table>
-<thead>
-<tr>
-<th align="left"></th>
-<th align="left"><em>Sharding-JDBC</em></th>
-<th align="left"><em>Sharding-Proxy</em></th>
-<th align="left"><em>Sharding-Sidecar</em></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">数据库</td>
-<td align="left"><code>任意</code></td>
-<td align="left">MySQL&#x2F;PostgreSQL</td>
-<td align="left">MySQL&#x2F;PostgreSQL</td>
-</tr>
-<tr>
-<td align="left">连接消耗数</td>
-<td align="left"><code>高</code></td>
-<td align="left">低</td>
-<td align="left">高</td>
-</tr>
-<tr>
-<td align="left">异构语言</td>
-<td align="left"><code>仅Java</code></td>
-<td align="left">任意</td>
-<td align="left">任意</td>
-</tr>
-<tr>
-<td align="left">性能</td>
-<td align="left"><code>损耗低</code></td>
-<td align="left">损耗略高</td>
-<td align="left">损耗低</td>
-</tr>
-<tr>
-<td align="left">无中心化</td>
-<td align="left"><code>是</code></td>
-<td align="left">否</td>
-<td align="left">是</td>
-</tr>
-<tr>
-<td align="left">静态入口</td>
-<td align="left"><code>无</code></td>
-<td align="left">有</td>
-<td align="left">无</td>
-</tr>
-</tbody></table>
-<p>Sharding-JDBC的优势在于对Java应用的友好度。</p>
-<h1 id="2-SpringBoot中使用Sharding-JDBC"><a href="#2-SpringBoot中使用Sharding-JDBC" class="headerlink" title="2. SpringBoot中使用Sharding-JDBC"></a>2. SpringBoot中使用Sharding-JDBC</h1><h2 id="2-1-引入jar包"><a href="#2-1-引入jar包" class="headerlink" title="2.1 引入jar包"></a>2.1 引入jar包</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.shardingsphere<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>sharding-jdbc-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.1.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="2-2-yml文件配置主从数据源"><a href="#2-2-yml文件配置主从数据源" class="headerlink" title="2.2 yml文件配置主从数据源"></a>2.2 yml文件配置主从数据源</h2><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">shardingsphere:</span><br>    <span class="hljs-attr">props:</span><br>      <span class="hljs-comment"># 打印sql语句，调试时可开启</span><br>      <span class="hljs-attr">sql:</span><br>        <span class="hljs-attr">show:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">datasource:</span><br>      <span class="hljs-comment"># 配置数据源，主库master，从库slave</span><br>      <span class="hljs-attr">names:</span> <span class="hljs-string">master,slave</span><br>      <span class="hljs-attr">master:</span><br>        <span class="hljs-attr">type:</span> <span class="hljs-string">com.zaxxer.hikari.HikariDataSource</span><br>        <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span><br>        <span class="hljs-attr">jdbc-url:</span> <span class="hljs-string">jdbc:mysql://localhost:3307/test?serverTimezone=Asia/Shanghai&amp;useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false</span><br>        <span class="hljs-attr">username:</span> <br>        <span class="hljs-attr">password:</span> <br>      <span class="hljs-attr">slave:</span><br>        <span class="hljs-attr">type:</span> <span class="hljs-string">com.zaxxer.hikari.HikariDataSource</span><br>        <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span><br>        <span class="hljs-attr">jdbc-url:</span> <span class="hljs-string">jdbc:mysql://localhost:3308/test?serverTimezone=Asia/Shanghai&amp;useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false</span><br>        <span class="hljs-attr">username:</span> <br>        <span class="hljs-attr">password:</span> <br>    <span class="hljs-attr">masterslave:</span><br>      <span class="hljs-comment"># 主从配置的名称，随意，但是要保证唯一</span><br>      <span class="hljs-attr">name:</span> <span class="hljs-string">oneMasterOneSlave</span><br>      <span class="hljs-comment"># 从库负载均衡算法，内置两个值：RANDOM、ROUND_ROBIN</span><br>      <span class="hljs-attr">load-balance-algorithm-type:</span> <span class="hljs-string">round_robin</span><br>      <span class="hljs-comment"># 主库,写操作用的库</span><br>      <span class="hljs-attr">master-data-source-name:</span> <span class="hljs-string">master</span><br>      <span class="hljs-comment"># 从库,读操作用的库(可以把master也加入从库,这样主库也可以参与轮巡进行读操作)</span><br>      <span class="hljs-attr">slave-data-source-names:</span> <br>        <span class="hljs-bullet">-</span> <span class="hljs-string">slave</span><br></code></pre></td></tr></table></figure>
-
-<p>这时候在已经可以实现读写分离了</p>
-<p>所有的select 都是走从库,所有的update,insert,delete都走主库</p>
-<h1 id="3-mysql配置主从同步"><a href="#3-mysql配置主从同步" class="headerlink" title="3. mysql配置主从同步"></a>3. mysql配置主从同步</h1><p>编辑<code>/etc/mysql/my.cnf</code></p>
+<p>根据 MySQL 官方文档的介绍，开启 binlog 之后，大概会有 1% 的性能损耗，不过这还是可以接受的，一般来说，binlog 有两个重要的使用场景：</p>
 <ul>
-<li><strong>主数据库</strong></li>
+<li>MySQL 主从复制时：在主机上开启 binlog，主机将 binlog 同步给从机，从机通过 binlog 来同步数据，进而实现主机和从机的数据同步。</li>
+<li>MySQL 数据恢复，通过使用 mysqlbinlog 工具再结合 binlog 文件，可以将数据恢复到过去的某一时刻。</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs conf">[mysqld]<br># binlog文件名<br>log-bin=mysql-bin<br># id,数字<br>servier-id=01<br># binlog记录的库<br>binlog-do-db=test<br></code></pre></td></tr></table></figure>
-
+<h1 id="2-binlog的三种模式"><a href="#2-binlog的三种模式" class="headerlink" title="2. binlog的三种模式"></a>2. binlog的三种模式</h1><p>binlog 有三种格式：</p>
 <ul>
-<li><strong>从数据库</strong></li>
+<li>基于SQL语句的复制(Statement)</li>
+<li>基于行的复制(Row)</li>
+<li>混合模式复制(Mixed)</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cnf">[mysqld]<br>server-id=11<br># 需要复制的库<br>replicate-do-db=test<br></code></pre></td></tr></table></figure>
+<h2 id="2-1-Statement"><a href="#2-1-Statement" class="headerlink" title="2.1 Statement"></a>2.1 Statement</h2><p>Statement 模式只记录执行的 SQL，不需要记录每一行数据的变化，因此极大的减少了 binlog 的日志量，避免了大量的 IO 操作，提升了系统的性能。</p>
+<p>但是，正是由于 Statement 模式只记录 SQL，而如果一些 SQL 中包含了函数，那么可能会出现执行结果不一致的情况。比如说 <code>uuid()</code> 函数，每次执行的时候都会生成一个随机字符串，在 master 中记录了 uuid，当同步到 slave 之后，再次执行，就获取到另外一个结果了。</p>
+<p>所以使用 Statement 格式会出现一些数据一致性问题。</p>
+<h2 id="2-2-Row"><a href="#2-2-Row" class="headerlink" title="2.2 Row"></a>2.2 Row</h2><p>从 MySQL5.1.5 版本开始，binlog 引入了 Row 格式，Row 格式不记录 SQL 语句上下文相关信息，仅仅只需要记录某一条记录被修改成什么样子了。</p>
+<p>Row 格式的日志内容会非常清楚的记录下每一行数据修改的细节，这样就不会出现 Statement 中存在的那种数据无法被正常复制的情况。</p>
+<p>不过 Row 格式也有一个很大的问题，那就是日志量太大了，特别是批量 update、整表 delete、alter 表等操作，由于要记录每一行数据的变化，此时会产生大量的日志，大量的日志也会带来 IO 性能问题。</p>
+<h2 id="2-3-Mixed"><a href="#2-3-Mixed" class="headerlink" title="2.3 Mixed"></a>2.3 Mixed</h2><p>从 MySQL5.1.8 版开始，MySQL 又推出了 Mixed 格式，这种格式实际上就是 Statement 与 Row 的结合。</p>
+<p>在 Mixed 模式下，系统会自动判断该用 Statement 还是 Row：一般的语句修改使用 Statement 格式保存 binlog;对于一些 Statement 无法准确完成主从复制的操作，则采用 Row 格式保存 binlog。</p>
+<p>Mixed 模式中，MySQL 会根据执行的每一条具体的 SQL 语句来区别对待记录的日志格式，也就是在 Statement 和 Row 之间选择一种。</p>
+<h1 id="3-binlog主要配置"><a href="#3-binlog主要配置" class="headerlink" title="3. binlog主要配置"></a>3. binlog主要配置</h1><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># 这个参数表示启用 binlog 功能，并指定 binlog 的存储目录</span><br><span class="hljs-attr">log-bin</span>=<span class="hljs-string">javaboy_logbin</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># 设置一个 binlog 文件的最大字节</span><br><span class="hljs-comment"># 设置最大 100MB</span><br><span class="hljs-attr">max_binlog_size</span>=<span class="hljs-string">104857600</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># 设置了 binlog 文件的有效期（单位：天）</span><br><span class="hljs-attr">expire_logs_days</span> = <span class="hljs-string">7</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># binlog 日志只记录指定库的更新（配置主从复制的时候会用到）</span><br><span class="hljs-comment">#binlog-do-db=javaboy_db</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># binlog 日志不记录指定库的更新（配置主从复制的时候会用到）</span><br><span class="hljs-comment">#binlog-ignore-db=javaboy_no_db</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># 写缓存多少次，刷一次磁盘，默认 0 表示这个操作由操作系统根据自身负载自行决定多久写一次磁盘</span><br><span class="hljs-comment"># 1 表示每一条事务提交都会立即写磁盘，n 则表示 n 个事务提交才会写磁盘</span><br><span class="hljs-attr">sync_binlog</span>=<span class="hljs-string">0</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># 为当前服务取一个唯一的 id（MySQL5.7 之后需要配置）</span><br><span class="hljs-attr">server-id</span>=<span class="hljs-string">1</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#binlog_format=&quot;ROW&quot;</span><br><br><span class="hljs-attr">binlog_format</span>=<span class="hljs-string">&quot;MIXED&quot;   #开启MIXED模式</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">#binlog_format=&quot;STATEMENT&quot;</span><br></code></pre></td></tr></table></figure>
 
-<p>改完配置文件需要重启mysql</p>
-<h2 id="3-1-查看主库状态"><a href="#3-1-查看主库状态" class="headerlink" title="3.1 查看主库状态"></a>3.1 查看主库状态</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> master status<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221216170305165.png" srcset="/img/loading.gif" lazyload alt="image-20221216170305165"></p>
-<h2 id="3-2-配置从库同步"><a href="#3-2-配置从库同步" class="headerlink" title="3.2 配置从库同步"></a>3.2 配置从库同步</h2><ul>
-<li>master_host  主库ip</li>
-<li>master_port 主库端口</li>
-<li>master_user 用户名</li>
-<li>master_password 密码</li>
-<li>master_log_file 主库查询的File值</li>
-<li>master_log_pos 主库查询的 Position值</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql">change master <span class="hljs-keyword">to</span> master_host<span class="hljs-operator">=</span><span class="hljs-string">&#x27;172.17.0.2&#x27;</span> , master_port<span class="hljs-operator">=</span><span class="hljs-number">3306</span>, <br>                 master_user<span class="hljs-operator">=</span><span class="hljs-string">&#x27;root&#x27;</span>,master_password<span class="hljs-operator">=</span><span class="hljs-string">&#x27;123456&#x27;</span>,<br>                 master_log_file <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;mysql-bin.000003&#x27;</span>,master_log_pos<span class="hljs-operator">=</span><span class="hljs-number">154</span>;<br></code></pre></td></tr></table></figure>
 
-<p>开启从库复制</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">start</span> slave<br></code></pre></td></tr></table></figure>
+<h2 id="3-1-三种binlog模式的配置"><a href="#3-1-三种binlog模式的配置" class="headerlink" title="3.1 三种binlog模式的配置"></a>3.1 三种binlog模式的配置</h2><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">binlog_format</span>=<span class="hljs-string">&quot;ROW&quot;</span><br><br><span class="hljs-attr">binlog_format</span>=<span class="hljs-string">&quot;MIXED&quot;</span><br><br><span class="hljs-attr">binlog_format</span>=<span class="hljs-string">&quot;STATEMENT&quot;</span><br></code></pre></td></tr></table></figure>
 
-<p>查看从库状态</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> slave status <br></code></pre></td></tr></table></figure>
 
-<p>确保红框里的两个都是Yes</p>
-<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221216170631433.png" srcset="/img/loading.gif" lazyload alt="image-20221216170631433"></p>
-<p><strong>PS:</strong></p>
-<p>如果是docker内部署的mysql,会出现Salve_IO_Running一直是Conneting,原因是容器与容器访问不到,需要使用<code>docker network inspect bridge</code>命令,查看docker 容器内部之间的ip,</p>
-<p>在从库执行<code>change master to xxx </code>时使用docker容器之见的ip,并且使用默认的3306端口</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker network inspect bridge<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://image-1306887402.cos.ap-nanjing.myqcloud.com/markDown/image-20221216171751873.png" srcset="/img/loading.gif" lazyload alt="image-20221216171751873"></p>
+<p>参考<a target="_blank" rel="noopener" href="https://www.51cto.com/article/703972.html">51CTO:江南一点雨</a></p>
 
                 
               </div>
@@ -458,7 +398,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/mysql/" class="category-chain-item">mysql</a>
+  <a href="/categories/MySQL/" class="category-chain-item">MySQL</a>
   
   
 
@@ -473,11 +413,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/mysql/">#mysql</a>
-      
-        <a href="/tags/sharding-jdbc/">#sharding-jdbc</a>
-      
         <a href="/tags/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/">#读写分离</a>
+      
+        <a href="/tags/MySQL/">#MySQL</a>
+      
+        <a href="/tags/binlog/">#binlog</a>
+      
+        <a href="/tags/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/">#主从同步</a>
       
     </div>
   
@@ -489,8 +431,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>sharding-jdbc读写分离</div>
-      <div>http://tgkzxy.top/2022/12/16/sharding-jdbc读写分离/</div>
+      <div>MySQL中binlog的三种模式</div>
+      <div>http://tgkzxy.top/2022/12/21/MYSQL-binlog的三种模式/</div>
     </div>
     <div class="license-meta">
       
@@ -502,7 +444,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年12月16日</div>
+          <div>2022年12月21日</div>
         </div>
       
       
@@ -525,18 +467,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/12/21/MYSQL-binlog%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F/" title="MySQL中binlog的三种模式">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MySQL中binlog的三种模式</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/12/14/fastjson%E7%A9%BA%E5%80%BC%E4%B8%A2%E5%A4%B1/" title="fastjson空值丢失">
-                        <span class="hidden-mobile">fastjson空值丢失</span>
+                      <a href="/2022/12/16/sharding-jdbc%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/" title="sharding-jdbc读写分离">
+                        <span class="hidden-mobile">sharding-jdbc读写分离</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -569,17 +505,17 @@
     
     <div class="category row nomargin-x">
       <a class="category-item 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="mysql"
-        id="heading-81c3b080dad537de7e10e0987a4bf52e" role="tab" data-toggle="collapse" href="#collapse-81c3b080dad537de7e10e0987a4bf52e"
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="MySQL"
+        id="heading-62a004b95946bb97541afa471dcca73a" role="tab" data-toggle="collapse" href="#collapse-62a004b95946bb97541afa471dcca73a"
         aria-expanded="true"
       >
-        mysql
+        MySQL
         <span class="list-group-count">(1)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
-      <div class="category-collapse collapse show" id="collapse-81c3b080dad537de7e10e0987a4bf52e"
-           role="tabpanel" aria-labelledby="heading-81c3b080dad537de7e10e0987a4bf52e">
+      <div class="category-collapse collapse show" id="collapse-62a004b95946bb97541afa471dcca73a"
+           role="tabpanel" aria-labelledby="heading-62a004b95946bb97541afa471dcca73a">
         
         
           
@@ -588,10 +524,10 @@
     
       
       
-        <a href="/2022/12/16/sharding-jdbc%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/" title="sharding-jdbc读写分离"
+        <a href="/2022/12/21/MYSQL-binlog%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F/" title="MySQL中binlog的三种模式"
            class="list-group-item list-group-item-action
            active">
-          <span class="category-post">sharding-jdbc读写分离</span>
+          <span class="category-post">MySQL中binlog的三种模式</span>
         </a>
       
     
