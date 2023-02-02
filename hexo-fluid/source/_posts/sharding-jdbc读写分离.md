@@ -157,7 +157,7 @@ show slave status
 
 如果是docker内部署的mysql,会出现Salve_IO_Running一直是Conneting,原因是容器与容器访问不到,需要使用`docker network inspect bridge`命令,查看docker 容器内部之间的ip,
 
-在从库执行`change master to xxx `时使用docker容器之见的ip,并且使用默认的3306端口
+在从库执行`change master to xxx `时使用docker容器之间的ip,并且使用默认的3306端口
 
 ```shell
 docker network inspect bridge
