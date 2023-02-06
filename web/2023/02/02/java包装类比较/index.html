@@ -1,0 +1,939 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/blog.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Alan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="java包装类之间使用&#x3D;&#x3D;和.equals()比较的区别">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java包装类之间比较">
+<meta property="og:url" content="http://tgkzxy.top/2023/02/02/java%E5%8C%85%E8%A3%85%E7%B1%BB%E6%AF%94%E8%BE%83/index.html">
+<meta property="og:site_name" content="AlanBlog">
+<meta property="og:description" content="java包装类之间使用&#x3D;&#x3D;和.equals()比较的区别">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://tgkzxy.top/img/java-wrap.png">
+<meta property="article:published_time" content="2023-02-02T08:21:51.000Z">
+<meta property="article:modified_time" content="2023-02-02T08:29:43.217Z">
+<meta property="article:author" content="Alan">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="包装类">
+<meta property="article:tag" content="基本类型">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://tgkzxy.top/img/java-wrap.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>java包装类之间比较 - AlanBlog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"tgkzxy.top","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":40,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"https://hm.baidu.com/hm.js?7d37043c4c8a6f686df5c990bb99f544","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?https://hm.baidu.com/hm.js?7d37043c4c8a6f686df5c990bb99f544";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3579759224836361"
+     crossorigin="anonymous"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>AlanBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/wallhaven.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="java包装类之间比较"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          6.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          51 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">java包装类之间比较</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年2月2日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Java中的<code>基本类型</code>及其<code>包装类的比较（==）</code>一直是一个比较头疼的问题，不仅有<code>自动装箱和拆箱</code>操作，部分的包装类还有对象<code>缓存池</code>，这就导致了这部分知识容易混淆。</p>
+<p>对于<code>==</code>操作符来说，如果比较的数据是<code>基本类型</code>，则比较它们的<code>值</code>，如果比较的是<code>对象</code>，则会比较<code>对象的内存地址</code>。另外，如果一个是基本类型、一个是包装类型，在比较前会先把包装类型<code>拆箱</code>成基本类型，然后进行比较。</p>
+<p>以int为例，这里我们把参与比较的类型分为三种：<code>int</code>、直接<code>new出来的Integer对象</code>和<code>自动装箱出来的Integer对象</code>。</p>
+<p>这里先不考虑<code>Integer的缓存池</code>，我们对三种类型之间的<code>两两比较</code>进行下排列组合，3 * 3一共有<code>9</code>种可能。由于<code>==</code>运算符是<code>不区分左右的先后顺序</code>的，也就是说<code>a == b</code>跟<code>b == a</code>等价，所以可以去除3种重复比较，这样就只有6种情况了。具体如下图：</p>
+<table>
+<thead>
+<tr>
+<th>类型&#x2F;类型</th>
+<th>int</th>
+<th>new Integer</th>
+<th>Integer AutoBoxing</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int</td>
+<td>①</td>
+<td>②</td>
+<td>③</td>
+</tr>
+<tr>
+<td>new Integer</td>
+<td>②</td>
+<td>④</td>
+<td>⑤</td>
+</tr>
+<tr>
+<td>Integer AutoBoxing</td>
+<td>③</td>
+<td>⑤</td>
+<td>⑥</td>
+</tr>
+</tbody></table>
+<p>接下来我们依次看下这六种情况，下面上代码：</p>
+<p>情况①：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">// ①int 与 int 类型比较</span><br><span class="hljs-built_in">int</span> i1 = <span class="hljs-number">128</span>;<br><span class="hljs-built_in">int</span> i2 = <span class="hljs-number">128</span>;<br>System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;int == int, result:&quot;</span> + (i1 == i2));<span class="hljs-comment">// true</span><br>System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;----------------------------------------------------&quot;</span>);<br>复制代码<br></code></pre></td></tr></table></figure>
+
+<p>基本类型使用<code>==</code>比较的是<code>值</code>，所以这个毫无疑问就是<code>true</code>。</p>
+<p>情况②：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">/</span><span class="hljs-operator">/</span> ②<span class="hljs-type">int</span>类型 和 <span class="hljs-keyword">new</span>出来的<span class="hljs-type">Integer</span>对象 比较<br><span class="hljs-type">int</span> i3 <span class="hljs-operator">=</span> <span class="hljs-number">128</span>;<br><span class="hljs-type">Integer</span> i4 <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-type">Integer</span>(<span class="hljs-number">128</span>);<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span> 在进行运算前，i4会自动拆箱，实质是两个<span class="hljs-type">int</span>类型比较<br>System.out.println(&quot;int == new Integer, result:&quot; <span class="hljs-operator">+</span> (i3 <span class="hljs-operator">=</span><span class="hljs-operator">=</span> i4));<span class="hljs-operator">/</span><span class="hljs-operator">/</span> <span class="hljs-literal">true</span><br>System.out.println(&quot;----------------------------------------------------&quot;);<br>复制代码<br></code></pre></td></tr></table></figure>
+
+<p><code>基本类型</code>跟<code>包装类型</code>比较，包装类会先<code>自动拆箱</code>，然后再比较，实质上还是两个<code>int</code>在比较，所以这里结果还是true。</p>
+<p>情况③：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">// ③int类型 和 自动装箱的Integer对象 比较</span><br><span class="hljs-built_in">int</span> i5 = <span class="hljs-number">128</span>;<br>Integer i6 = <span class="hljs-number">128</span>;<br><span class="hljs-comment">// 在进行运算前，i6会自动拆箱，实质是两个int类型比较</span><br>System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;int == Integer autoBoxing, result:&quot;</span> + (i5 == i6));<span class="hljs-comment">// true</span><br>System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;----------------------------------------------------&quot;</span>);<br>复制代码<br></code></pre></td></tr></table></figure>
+
+<p>这里的i6在赋值的时候，会自动把128装箱成Integer类型，接着使用<code>==</code>比较的时候，i6又会自动拆箱成int，所以实质上还是两个<code>int</code>在比较，跟情况②原理一样。</p>
+<p>情况④：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">/</span><span class="hljs-operator">/</span> ④两个<span class="hljs-keyword">new</span>出来的<span class="hljs-type">Integer</span>对象的内存地址比较<br><span class="hljs-type">Integer</span> i7 <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-type">Integer</span>(<span class="hljs-number">128</span>);<br><span class="hljs-type">Integer</span> i8 <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-type">Integer</span>(<span class="hljs-number">128</span>);<br>System.out.println(&quot;new Integer == new Integer, result:&quot; <span class="hljs-operator">+</span> (i7 <span class="hljs-operator">=</span><span class="hljs-operator">=</span> i8));<span class="hljs-operator">/</span><span class="hljs-operator">/</span> <span class="hljs-literal">false</span><br>System.out.println(&quot;----------------------------------------------------&quot;);<br>复制代码<br></code></pre></td></tr></table></figure>
+
+<p>这里是两个<code>new出来的包装类对象</code>进行比较，这里比较的是他们各自<code>对象的内存地址</code>，由于是两个不同的对象，所以地址值必然不同，结果是false。</p>
+<p>情况⑤：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">/</span><span class="hljs-operator">/</span> ⑤自动装箱的<span class="hljs-type">Integer</span>类型 和 <span class="hljs-keyword">new</span>出来的<span class="hljs-type">Integer</span>对象 比较<br><span class="hljs-type">Integer</span> i9 <span class="hljs-operator">=</span> <span class="hljs-number">128</span>;<br><span class="hljs-type">Integer</span> i10 <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-type">Integer</span>(<span class="hljs-number">128</span>);<br>System.out.println(&quot;Integer autoBoxing == new Integer, result:&quot; <span class="hljs-operator">+</span> (i9 <span class="hljs-operator">=</span><span class="hljs-operator">=</span> i10));<span class="hljs-operator">/</span><span class="hljs-operator">/</span> <span class="hljs-literal">false</span><br>System.out.println(&quot;----------------------------------------------------&quot;);<br>复制代码<br></code></pre></td></tr></table></figure>
+
+<p>这里的i9在赋值时会将128<code>自动装箱成Integer类型</code>，所以最终是两个<code>不同对象的内存地址比较</code>，结果必然为false。</p>
+<p>情况⑥：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs ini">// ⑥自动装箱的Integer对象 和 自动装箱的Integer对象 比较，区间<span class="hljs-section">[-128, 127]</span>之外<br>Integer <span class="hljs-attr">i11</span> = <span class="hljs-number">128</span><span class="hljs-comment">;</span><br>Integer <span class="hljs-attr">i12</span> = <span class="hljs-number">128</span><span class="hljs-comment">;</span><br>System.out.println(&quot;Integer <span class="hljs-attr">autoBoxing</span> == Integer autoBoxing, 区间[-<span class="hljs-number">128</span>, <span class="hljs-number">127</span>]之外，result:<span class="hljs-string">&quot; + (i11 == i12));// false</span><br><span class="hljs-string">System.out.println(&quot;</span>----------------------------------------------------<span class="hljs-string">&quot;);</span><br><span class="hljs-string">复制代码</span><br></code></pre></td></tr></table></figure>
+
+<p>这里的i10和i11在赋值时都会先将128<code>自动装箱成Integer类型</code>，然后再进行比较，原理跟情况⑤一样，所以最终结果为false。</p>
+<p>细心的同学可能已经发现，我这里举例用的数字是<code>128</code>，选择这个数字的意义在于在比较时不涉及<code>Integer的缓存池</code>。</p>
+<h4 id="Integer的缓存池"><a href="#Integer的缓存池" class="headerlink" title="Integer的缓存池"></a>Integer的缓存池</h4><p>关于Integer的缓存池，我们还是举例说明：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 自动装箱会从缓存池中取对象，缓存池的区间为[-128, 127]</span><br><span class="hljs-comment">// 自动装箱的Integer对象 和 自动装箱的Integer对象 比较，区间[-128, 127]中</span><br><span class="hljs-type">Integer</span> <span class="hljs-variable">i13</span> <span class="hljs-operator">=</span> <span class="hljs-number">127</span>;<span class="hljs-comment">// 缓存池</span><br><span class="hljs-type">Integer</span> <span class="hljs-variable">i14</span> <span class="hljs-operator">=</span> <span class="hljs-number">127</span>;<span class="hljs-comment">// 缓存池</span><br>System.out.println(<span class="hljs-string">&quot;Integer autoBoxing == Integer autoBoxing, 区间[-128, 127]中，result:&quot;</span> + (i13 == i14));<span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+
+<p>这个例子跟上面的<code>情况⑥</code>一模一样，唯一不同是这里使用的是<code>127</code>，<code>情况⑥</code>使用的是<code>128</code>，但是<code>情况⑥</code>的结果是<code>false</code>，这里的比较结果却是<code>true</code>，这就很让人疑惑。</p>
+<p>我们分析下这个过程，<code>i13</code>和<code>i14</code>的赋值过程中，均会触发<code>自动装箱</code>，给127生成对应的<code>Integer对象</code>；接下来使用<code>==</code>比较这两个<code>Integer对象的地址</code>，最后的输出结果为<code>true</code>。</p>
+<p>我们知道，Java中如果两个对象的内存地址一样，那么他们就是同一个对象，分配的就是同一块内存。我们这里的<code>i13</code>和<code>i14</code>都是<code>自动装箱</code>产生的，是不是在产生过程中返回了同一个对象？</p>
+<p>对自动装箱和拆箱有疑问的同学可以看<a href="https://link.juejin.cn/?target=https://blog.csdn.net/qq_26287435/article/details/107803661">一文带你理解Java中自动装箱和拆箱</a>。</p>
+<p>Integer对应的自动装箱的方法是<code>Integer#valueOf()</code>，我们看下它的实现:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Integer <span class="hljs-title function_">valueOf</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span> &#123;<br>    <span class="hljs-keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)<br>        <span class="hljs-keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Integer</span>(i);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>可以看到如果i的值在某个范围内的话，就会从<code>IntegerCache.cache</code>这个数组中取出一个<code>Integer对象</code>返回；如果超出了这个范围的话就直接<code>new</code>一个<code>Integer对象</code>返回。</p>
+<p>我们看下<code>IntegerCache</code>的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">IntegerCache</span> &#123;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">low</span> <span class="hljs-operator">=</span> -<span class="hljs-number">128</span>;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> high;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Integer cache[];<br><br>    <span class="hljs-keyword">static</span> &#123;<br>        <span class="hljs-comment">// high value may be configured by property</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">h</span> <span class="hljs-operator">=</span> <span class="hljs-number">127</span>;<br>        ...<br>        high = h;<br><br>        cache = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Integer</span>[(high - low) + <span class="hljs-number">1</span>];<br>        <span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> low;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">k</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; k &lt; cache.length; k++)<br>            cache[k] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Integer</span>(j++);<br><br>        <span class="hljs-comment">// range [-128, 127] must be interned (JLS7 5.1.7)</span><br>        <span class="hljs-keyword">assert</span> IntegerCache.high &gt;= <span class="hljs-number">127</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-title function_">IntegerCache</span><span class="hljs-params">()</span> &#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>按照惯例，省略掉了无关代码。</p>
+<p>这里的<code>下限low</code>的值默认为<code>-128</code>，<code>上限high</code>的值默认为<code>127</code>，<code>cache</code>是一个<code>Integer类型的数组</code>。</p>
+<p><code>static</code>代码块里面主要做了两件事： ①初始化<code>cache</code>这个Integer数组，数组容量为256。 ②给<code>cache</code>的所有元素赋值。在for循环里面，依次给cache的各个元素进行赋值，Integer的值从-128开始，一直到127，对应的是闭区间[-128, 127]，刚好256个元素。</p>
+<p>所以我们常说的<code>Integer的缓存池</code>其实就是这里的<code>IntegerCache.cache</code>，它在Integer进行<code>类加载</code>的时候初始化。</p>
+<p>在基本类型int需要<code>自动装箱</code>的时候，就会调用<code>Integer#valueOf</code>方法，在<code>Integer#valueOf</code>方法的实现中，如果int的值在<code>IntegerCache.cache</code>缓存的范围内(<code>闭区间[-128, 127]</code>)，就返回已经构建好的Integer对象，具体是根据<code>角标</code>从<code>IntegerCache.cache</code>这个数组中去取。</p>
+<p>经过上面的讲解可以知道，我们这里的<code>127</code>经过<code>自动装箱</code>后，是从缓存池中拿的Integer对象，所以<code>i13</code>和<code>i14</code>拿到的是同一个Integer对象（因为它们的值相同，在<code>IntegerCache.cache</code>数组中对应的index相同，所以获取到的是同一个缓存对象）。</p>
+<h4 id="Byte、Short、Integer、Long、Character、Boolean对应的缓存池。"><a href="#Byte、Short、Integer、Long、Character、Boolean对应的缓存池。" class="headerlink" title="Byte、Short、Integer、Long、Character、Boolean对应的缓存池。"></a>Byte、Short、Integer、Long、Character、Boolean对应的缓存池。</h4><p>既然Integer有缓存池，那其他的包装类是否也有同样的情况呢？</p>
+<p>我们看下测试代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 自动装箱的Byte对象 和 自动装箱的Byte对象 比较，区间[-128, 127]中</span><br><span class="hljs-type">Byte</span> <span class="hljs-variable">b1</span> <span class="hljs-operator">=</span> <span class="hljs-number">127</span>;<span class="hljs-comment">// 缓存池</span><br><span class="hljs-type">Byte</span> <span class="hljs-variable">b2</span> <span class="hljs-operator">=</span> <span class="hljs-number">127</span>;<span class="hljs-comment">// 缓存池</span><br>System.out.println(<span class="hljs-string">&quot;Byte autoBoxing == Byte autoBoxing, 区间[-128, 127]中，result:&quot;</span> + (b1 == b2));<span class="hljs-comment">// true</span><br>System.out.println(<span class="hljs-string">&quot;----------------------------------------------------&quot;</span>);<br><br><span class="hljs-comment">// 自动装箱的Short对象 和 自动装箱的Short对象 比较，区间[-128, 127]中</span><br><span class="hljs-type">Short</span> <span class="hljs-variable">s1</span> <span class="hljs-operator">=</span> <span class="hljs-number">127</span>;<span class="hljs-comment">// 缓存池</span><br><span class="hljs-type">Short</span> <span class="hljs-variable">s2</span> <span class="hljs-operator">=</span> <span class="hljs-number">127</span>;<span class="hljs-comment">// 缓存池</span><br>System.out.println(<span class="hljs-string">&quot;Short autoBoxing == Short autoBoxing, 区间[-128, 127]中，result:&quot;</span> + (s1 == s2));<span class="hljs-comment">// true</span><br>System.out.println(<span class="hljs-string">&quot;----------------------------------------------------&quot;</span>);<br><br><span class="hljs-comment">// 自动装箱的Long对象 和 自动装箱的Long对象 比较，区间[-128, 127]中</span><br><span class="hljs-type">Long</span> <span class="hljs-variable">l1</span> <span class="hljs-operator">=</span> <span class="hljs-number">127L</span>;<span class="hljs-comment">// 缓存池</span><br><span class="hljs-type">Long</span> <span class="hljs-variable">l2</span> <span class="hljs-operator">=</span> <span class="hljs-number">127L</span>;<span class="hljs-comment">// 缓存池</span><br>System.out.println(<span class="hljs-string">&quot;Long autoBoxing == Long autoBoxing, 区间[-128, 127]中，result:&quot;</span> + (l1 == l2));<span class="hljs-comment">// true</span><br>System.out.println(<span class="hljs-string">&quot;----------------------------------------------------&quot;</span>);<br><br><span class="hljs-comment">// 自动装箱的Character对象 和 自动装箱的Character对象 比较，区间[-128, 127]中</span><br><span class="hljs-type">Character</span> <span class="hljs-variable">c1</span> <span class="hljs-operator">=</span> <span class="hljs-number">127</span>;<span class="hljs-comment">// 缓存池</span><br><span class="hljs-type">Character</span> <span class="hljs-variable">c2</span> <span class="hljs-operator">=</span> <span class="hljs-number">127</span>;<span class="hljs-comment">// 缓存池</span><br>System.out.println(<span class="hljs-string">&quot;Character autoBoxing == Character autoBoxing, 区间[-128, 127]中，result:&quot;</span> + (c1 == c2));<span class="hljs-comment">// true</span><br>System.out.println(<span class="hljs-string">&quot;----------------------------------------------------&quot;</span>);<br><br><span class="hljs-comment">// 自动装箱的Boolean对象 和 自动装箱的Boolean对象 比较，区间[-128, 127]中</span><br><span class="hljs-type">Boolean</span> <span class="hljs-variable">bool1</span> <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;<span class="hljs-comment">// 缓存池</span><br><span class="hljs-type">Boolean</span> <span class="hljs-variable">bool2</span> <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;<span class="hljs-comment">// 缓存池</span><br>System.out.println(<span class="hljs-string">&quot;Boolean autoBoxing == Boolean autoBoxing, 区间[true, false]中，result:&quot;</span> + (bool1 == bool2));<span class="hljs-comment">// true</span><br>System.out.println(<span class="hljs-string">&quot;----------------------------------------------------&quot;</span>);<br><br></code></pre></td></tr></table></figure>
+
+<p>基本类型对应的包装类中，<code>Byte</code>、<code>Short</code>、<code>Integer</code>、<code>Long</code>和<code>Character</code>的缓存池都是<code>[-128, 127]</code>，<code>Boolean</code>的缓存池比较特殊，只有true和false两个Boolean对象。</p>
+<p>总结如下：</p>
+<table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>包装类</th>
+<th>缓存池</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte</td>
+<td>Byte</td>
+<td>[-128, 127]</td>
+</tr>
+<tr>
+<td>short</td>
+<td>Short</td>
+<td>[-128, 127]</td>
+</tr>
+<tr>
+<td>int</td>
+<td>Integer</td>
+<td>[-128, 127]</td>
+</tr>
+<tr>
+<td>long</td>
+<td>Long</td>
+<td>[-128, 127]</td>
+</tr>
+<tr>
+<td>char</td>
+<td>Character</td>
+<td>[-128, 127]</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>Boolean</td>
+<td>[true, false]</td>
+</tr>
+<tr>
+<td>float</td>
+<td>Float</td>
+<td>无</td>
+</tr>
+<tr>
+<td>double</td>
+<td>Double</td>
+<td>无</td>
+</tr>
+</tbody></table>
+<p>作者：tinyvampirepudge<br>链接：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6857894663177961486">https://juejin.cn/post/6857894663177961486</a><br>来源：稀土掘金</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java/">#java</a>
+      
+        <a href="/tags/%E5%8C%85%E8%A3%85%E7%B1%BB/">#包装类</a>
+      
+        <a href="/tags/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/">#基本类型</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>java包装类之间比较</div>
+      <div>http://tgkzxy.top/2023/02/02/java包装类比较/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Alan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月2日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/12/21/MYSQL-binlog%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F/" title="MySQL中binlog的三种模式">
+                        <span class="hidden-mobile">MySQL中binlog的三种模式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-left: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="java"
+        id="heading-93f725a07423fe1c889f448b33d21f46" role="tab" data-toggle="collapse" href="#collapse-93f725a07423fe1c889f448b33d21f46"
+        aria-expanded="true"
+      >
+        java
+        <span class="list-group-count">(7)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-93f725a07423fe1c889f448b33d21f46"
+           role="tabpanel" aria-labelledby="heading-93f725a07423fe1c889f448b33d21f46">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/09/14/word%E5%AF%BC%E5%87%BA/" title="word导出"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">word导出</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/10/12/java%E6%96%B0%E7%89%B9%E6%80%A7/" title="java11-java17新特性"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">java11-java17新特性</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/04/Java%E4%BD%BF%E7%94%A8opencv/" title="Java使用opencv"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Java使用opencv</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/08/java%E4%BD%BF%E7%94%A8sse/" title="java使用sse"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">java使用sse</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/11/22/java%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87/" title="java下载图片"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">java下载图片</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2022/12/14/fastjson%E7%A9%BA%E5%80%BC%E4%B8%A2%E5%A4%B1/" title="fastjson空值丢失"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">fastjson空值丢失</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2023/02/02/java%E5%8C%85%E8%A3%85%E7%B1%BB%E6%AF%94%E8%BE%83/" title="java包装类之间比较"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">java包装类之间比较</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      皖ICP备2022001395号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
