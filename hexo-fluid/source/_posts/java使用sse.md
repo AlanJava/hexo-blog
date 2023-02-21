@@ -1,5 +1,6 @@
 ---
-title: java使用sse
+title: Java使用SSE
+sticky: 1
 date: 2022-11-08 17:20:29
 tags: [java,SSE,异步,服务端推送,半双工]
 categories: java
