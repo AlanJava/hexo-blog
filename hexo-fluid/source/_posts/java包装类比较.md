@@ -1,10 +1,10 @@
 ---
-title: java包装类之间比较
+title: Java包装类与基本类型的比较(涉及到缓存池)
 date: 2023-02-02 16:21:51
 tags: [java,包装类,基本类型]
 categories: java
 index_img: /img/java-wrap.png
-excerpt: java包装类之间使用==和.equals()比较的区别
+excerpt: java包装类型与基本类型,包装类型与包装类型之间使用==和.equals()比较的区别.(考虑到缓存池)
 ---
 Java中的`基本类型`及其`包装类的比较（==）`一直是一个比较头疼的问题，不仅有`自动装箱和拆箱`操作，部分的包装类还有对象`缓存池`，这就导致了这部分知识容易混淆。
 
