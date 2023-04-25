@@ -1,7 +1,7 @@
 ---
-title: mysql创建用户与授权
+title: MySQL创建用户与授权
 date: 2023-04-25 13:54:45
-tags: [MySQL,binlog,主从同步,读写分离]
+tags: [MySQL,授权,创建用户]
 categories: MySQL
 index_img: /img/MySQL.png
 excerpt: MySQL如何创建新用户,如何对用户单独分配库和表的读写权限
